@@ -15,12 +15,16 @@ body {
   background-size: cover;
 }
 
+a:hover {
+    text-decoration: none;
+}
+
 .form-signin {
   width: 100%;
   max-width: 330px;
   padding: 15px;
   margin: auto;
-  background-color: #ffffffaa;
+  background-color: #ffffffcc;
   border-radius: 20px;
 }
 .form-signin .checkbox {
@@ -54,4 +58,8 @@ body {
     body {
         background-image: url('hanmin_background_media.jpg');
     }
+}
+.btn-register {
+    background-color: #012939;
+    border-color: #012939;
 }
