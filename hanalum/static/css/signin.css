@@ -11,7 +11,7 @@ body {
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #f5f5f5;
-  background-image: url('hanmin_background.jpg');
+  background-image: url('../images/hanmin_background.jpg');
   background-size: cover;
 }
 
@@ -20,7 +20,7 @@ a:hover {
 }
 
 .form-signin {
-  width: 100%;
+  width: 80%;
   max-width: 330px;
   padding: 15px;
   margin: auto;
@@ -56,7 +56,7 @@ a:hover {
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     body {
-        background-image: url('hanmin_background_media.jpg');
+        background-image: url('../images/hanmin_background_media.jpg');
     }
 }
 
