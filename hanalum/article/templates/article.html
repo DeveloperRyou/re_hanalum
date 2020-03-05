@@ -1,14 +1,48 @@
 {% extends "nav.html" %}
 {% block content %}
-<div class="title">
-    <p>1</p>
-    <p>Title</p>
-    <p>Writer</p>
-    <p>Date</p>
-    <p>조회수</p>
-    <p>댓글수</p>
-</div>
-<div class="content">
+  <div class="my-3 p-3 bg-white rounded shadow-sm">
+    <h6 class="pb-2 mb-0 border-bottom border-gray">제목</h6>
+    <div class="media text-muted pt-3">
+      <p class="media-body pb-3 mb-0 small lh-125">
+        안녕하세요 이곳은 글입니다.<br/>
+        제가 글이라면 글인겁니다.<br/><br/>
+        절 믿으세요.<br/><br/><br/>
+        33o1mm2llx -> 11omm3dsss<br/>
+        112mkmsoo2 -> 1skomdl3ms<br/>
+        askndlksdn -> lwkencllsm<br/>
+      </p>
+    </div>
 
-</div>
+    <div class="media-body">
+        <div class="d-flex align-items-center">
+          <p class="mb-0">다운로드 파일 이름</p>
+          <button type="button" class="btn btn-primary">다운로드</button>
+        </div>
+        <div class="d-flex align-items-center">
+          <p class="mb-0">다운로드 파일 이름</p>
+          <button type="button" class="btn btn-primary">다운로드</button>
+        </div>
+    </div>
+
+    <div class="media-body d-flex justify-content-center">
+        <button type="button" class="btn btn-primary">추천</button>
+        <button type="button" class="btn btn-outline-primary">비추천</button>
+    </div>
+
+    <small class="d-block text-right pb-3 border-bottom border-gray">
+      <a href="#">수정</a>
+      <a href="#">삭제</a>
+      <a href="#">목록으로</a>
+    </small>
+
+    <h6 class="pb-2 pt-3 border-bottom border-gray">댓글</h6>
+
+    <div class="media border p-3">
+      <img src="img_avatar3.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+      <div class="media-body">
+        <h4>John Doe <small><i>Posted on February 19, 2016</i></small></h4>
+        <p>Lorem ipsum...</p>
+      </div>
+    </div>
+  </div>
 {% endblock %}
