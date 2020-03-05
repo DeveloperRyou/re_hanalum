@@ -54,13 +54,9 @@ a:hover {
     border-radius: 12px;
 }
 
+/* open in smartphone */
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     body {
         background-image: url('../images/hanmin_background_media.jpg');
     }
 }
-
-
-
-
-

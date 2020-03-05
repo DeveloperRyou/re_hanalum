@@ -1,0 +1,108 @@
+{% extends "head.html" %}
+
+{% load static %}
+
+{% block content_body %}
+
+<body class="bg-light">
+  <div class="container">
+
+  <div class="py-5 text-center">
+    <img class="d-block mx-auto mb-4" src= "{% static 'images/main_icon.png' %}" alt="" width="140" height="140">
+    <h2>회원 가입</h2>
+    <p class="lead">한아름 사이트에 오신걸 환영합니다.</p>
+  </div>
+
+  <div class="row">
+    <div class = "col-md-8"> {{error}} </div>
+    <div class="col-md-8 order-md-1">
+      <h4 class="mb-3">가입자 정보</h4>
+      <form method = "POST" action = "{% url 'register' %}" class="needs-validation">
+      {% csrf_token %}
+        <div class=" mb-3">
+          <label for="username">아이디</label>
+          <input type="text" class="form-control" id="username" placeholder="입력하세요" value="" required>
+          <div class="invalid-feedback">
+            Valid user name is required.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="email">이메일</label>
+          <input type="email" class="form-control" id="email" placeholder="example@hanalum.com" required>
+          <div class="invalid-feedback">
+            Please enter a valid email address.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="password">비밀번호</label>
+          <input type="password" class="form-control" id="password" placeholder="영문 + 숫자로 8자 이상" required>
+          <div class="invalid-feedback">
+            Please enter a valid password
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="re_password">비밀번호 재확인</label>
+          <!--                           위에서 입력한 비밀번호와 입력하지않으면 빨간 경고문구 일치하면 초록문구  -->
+          <input type="password" class="form-control" id="re_password" placeholder="영문 + 숫자로 8자 이상" required>
+          <div class="invalid-feedback">
+            Please enter a valid password
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-5 mb-3">
+            <label for="country">성별</label>
+            <select class="custom-select d-block w-100" id="gender" required>
+              <option value="">필수 선택</option>
+              <option>남</option>
+              <option>여</option>
+            </select>
+            <div class="invalid-feedback">
+              Please select gender.
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="state">입학 연도</label>
+            <select class="custom-select d-block w-100" id="admission-year" required>
+              <option value="">필수 선택</option>
+              <!--                여기는 장고 for문으로!                -->
+              <option>2014</option>
+              <option>2015</option>
+              <option>2016</option>
+              <option>2017</option>
+              <option>2018</option>
+              <option>2019</option>
+              <option>2020</option>
+
+              <!---------------------------------------------------------------->
+            </select>
+            <div class="invalid-feedback">
+              Please select your admission year.
+            </div>
+          </div>
+        </div>
+        <hr class="mb-4">
+
+        <button class="btn btn-primary btn-lg btn-block" type="submit">회원 가입</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2019-{% now 'Y' %} Hanalum</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="#">개인정보 처리방침</a></li>
+      <li class="list-inline-item"><a href="#">약관</a></li>
+      <li class="list-inline-item"><a href="#">지원</a></li>
+    </ul>
+  </footer>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.4/dist/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+        <script src="form-validation.js"></script>
+</body>
+
+{% endblock %}
