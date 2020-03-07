@@ -1,0 +1,24 @@
+html,
+body {
+  overflow-x: hidden; /* Prevent scroll on narrow devices */
+}
+
+body {
+  padding-top: 56px;
+  background-image: url('hanmin_background.jpg');
+}
+.bg-blue { background-color: #000179; max-height: 65}
+
+.box {padding-left: 1rem;}
+
+.board_title {width: 60%; float:left; padding-bottom:1rem; padding-top:1rem}
+
+.board_prof {width: 13%; float: left; padding-bottom:1rem; padding-top:1rem;}
+.board_view {width: 9%; float: left; padding-bottom:1rem; padding-top:1rem;}
+.board_like {width: 9%; float: left; padding-bottom:1rem; padding-top:1rem;}
+.board_date {width: 9%; float: left; padding-bottom:1rem; padding-top:1rem;}
+
+.alc {text-align: left; height:100%; padding-bottom:10px; padding-top:10px;}
+
+.prof-img {float:left; margin-right:6px}
+.board-img {float:left; margin-top:5; margin-bottom:5; margin-right: 6px}

@@ -18,6 +18,7 @@ from django.urls import path
 import login.views
 import article.views
 import member.views
+import board.views
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -27,4 +28,5 @@ urlpatterns = [
     path('article/', article.views.article, name='article'),
     path('write/', article.views.write, name='write'),
     path('register/', member.views.register, name='register'),
+    path('board/', board.views.board, name='board'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
