@@ -1,0 +1,86 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
+}
+
+.is-background {
+    background-image: url('../images/hanmin_background.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.form-signin {
+  width: 80%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+  background-color: #ffffffc0;
+  border-radius: 20px;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.main-icon {
+    border-radius: 12px;
+}
+.register-footer {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+/* open in smartphone */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    .is-background {
+        background-image: url('../images/hanmin_background_media.jpg');
+    }
+}
+
+.bg-light {
+    padding-top: 10px;
+}
+
+.register-container {
+    margin: auto;
+}
+
+.form-register {
+  width: 80%;
+  max-width: 800px;
+  padding: 15px;
+  margin: auto;
+  background-color: #ffffffc0;
+  border-radius: 20px;
+}
