@@ -4,7 +4,7 @@
 
 {% block content_body %}
 
-<body class="text-center">
+<body class="text-center is-background">
     <form class="form-signin">
         <img class="main-icon mb-4" src="{% static 'images/main_icon.png' %}" width="150" height="150">
         <label for="inputEmail" class="sr-only">Email address</label>
@@ -19,7 +19,8 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
         <br>
         <a href="">회원가입</a> | <a href="">아이디/비밀번호 찾기</a>
-        <p class="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
+        <p class="mt-5 mb-0 text-muted">Hanalum</p>
+        <p class="mt-0 text-muted">&copy; 2017-{% now 'Y' %}</p>
     </form>
 </body>
 
