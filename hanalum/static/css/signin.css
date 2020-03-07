@@ -11,8 +11,12 @@ body {
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #f5f5f5;
-  background-image: url('../images/hanmin_background.jpg');
-  background-size: cover;
+}
+
+.is-background {
+    background-image: url('../images/hanmin_background.jpg');
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 a:hover {
@@ -53,10 +57,30 @@ a:hover {
 .main-icon {
     border-radius: 12px;
 }
-
+.register-footer {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
 /* open in smartphone */
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-    body {
+    .is-background {
         background-image: url('../images/hanmin_background_media.jpg');
     }
+}
+
+.bg-light {
+    padding-top: 10px;
+}
+
+.register-container {
+    margin: auto;
+}
+
+.form-register {
+  width: 80%;
+  max-width: 800px;
+  padding: 15px;
+  margin: auto;
+  background-color: #ffffffc0;
+  border-radius: 20px;
 }
