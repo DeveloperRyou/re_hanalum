@@ -1,0 +1,7 @@
+html,
+body {
+  overflow-x: hidden; /* Prevent scroll on narrow devices */
+}
+
+.top-box {background-color:#f8f8f8; height:500px; border-radius: 0rem 0rem 0.25rem 0.25rem;   box-shadow: 0px 4px 2px gray inset}
+.content-box {background-color: #000179; height:80px; border-radius: 0.25rem 0.25rem 0rem 0rem;}
