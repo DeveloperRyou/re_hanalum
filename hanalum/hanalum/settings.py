@@ -122,6 +122,9 @@ USE_L10N = True
 
 USE_TZ = True
 
+# 유저모델 재설정
+
+AUTH_USER_MODEL = 'member.User'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
