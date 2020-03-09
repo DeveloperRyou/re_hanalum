@@ -31,4 +31,5 @@ urlpatterns = [
     path('register/', member.views.register, name='register'),
     path('board/', board.views.board, name='board'),
     path('calendar/', widget.views.calendar, name='widget'),
+    path('cafeteria/', widget.views.cafeteria, name='widget'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
