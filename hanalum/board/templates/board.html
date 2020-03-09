@@ -1,119 +1,47 @@
+{% extends "nav.html" %}
 
-<head>
-  <meta charset="utf-8">
-  <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/offcanvas/">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <link  rel="stylesheet" href="offcanvas.css">
-  <link href="offcanvas.js" rel="stylesheet">
-  <title>자유 게시판</title>
-</head>
+{% load static %}
 
-<main role="main" class="container">
-  <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
-    <img class="mr-3" src="main_icon.png" alt="" width="48" height="48">
-    <div class="lh-100">
-      <h4 class="mb-0 text-white lh-100">자유 게시판</h4>
-    </div>
+{% block content%}
+
+<div class="d-flex align-items-center p-3 my-3 text-white-50 bg-blue rounded shadow-sm">
+  <img class="mr-3" src="{% static 'images/board.png' %}" alt="" width="48" height="48">
+  <div class="lh-100 mb-0">
+    <h4 class="mb-0 text-white lh-100">자유 게시판</h4>
   </div>
+</div>
 
-  <div class="my-3 p-3 bg-white rounded shadow-sm">
-    <div class=" media text-muted pt-3">
-      <a href="#" class="box media-body mb-0 small lh-125 border-bottom border-gray">
-  <div class="board_title">
-          <h5 class="lh-100 d-block text-gray-dark"><strong>게시글 제목</strong></h5>
-        </div>
-        <div class="board_prof">
-          <img class="prof-img" src="person.png" alt="" width="30" height="30">
-          <p class="alc lh-100 info">닉네임</p>
-        </div>
-        <div class="board_view">
-          <img class="board-img" src="eye.png" alt="" width="20" height="20">
-          <p class="alc lh-100 info">조회수</p>
-        </div>
-        <div class="board_like">
-          <img class="board-img" src="like.png" alt="" width="20" height="20">
-          <p class="alc lh-100 info">좋아요 수</p>
-        </div>
-        <div class="board_date">
-          <p class="alc lh-100 info">XXXX/XX/XX</p>
-        </div>
-      </a>
-    </div>
-    <div class=" media text-muted pt-3">
-      <a href="#" class="box media-body mb-0 small lh-125 border-bottom border-gray">
-        <div class="board_title">
-          <h5 class="lh-100 d-block text-gray-dark"><strong>게시글 제목</strong></h5>
-        </div>
-        <div class="board_prof">
-          <img class="prof-img" src="person.png" alt="" width="30" height="30">
-          <p class="alc lh-100 info">닉네임</p>
-        </div>
-        <div class="board_view">
-          <img class="board-img" src="eye.png" alt="" width="20" height="20">
-          <p class="alc lh-100 info">조회수</p>
-        </div>
-        <div class="board_like">
-          <img class="board-img" src="like.png" alt="" width="20" height="20">
-          <p class="alc lh-100 info">좋아요 수</p>
-        </div>
-        <div class="board_date">
-          <p class="alc lh-100 info">XXXX/XX/XX</p>
-        </div>
-      </a>
-    </div>
-    <div class=" media text-muted pt-3">
-      <a href="#" class="box media-body mb-0 small lh-125 border-bottom border-gray">
-        <div class="board_title">
-          <h5 class="lh-100 d-block text-gray-dark"><strong>게시글 제목</strong></h5>
-        </div>
-        <div class="board_prof">
-          <img class="prof-img" src="person.png" alt="" width="30" height="30">
-          <p class="alc lh-100 info">닉네임</p>
-        </div>
-        <div class="board_view">
-          <img class="board-img" src="eye.png" alt="" width="20" height="20">
-          <p class="alc lh-100 info">조회수</p>
-        </div>
-        <div class="board_like">
-          <img class="board-img" src="like.png" alt="" width="20" height="20">
-          <p class="alc lh-100 info">좋아요 수</p>
-        </div>
-        <div class="board_date">
-          <p class="alc lh-100 info">XXXX/XX/XX</p>
-        </div>
-      </a>
-    </div>
-    <div class=" media text-muted pt-3">
-      <a href="#" class="box media-body mb-0 small lh-125 border-bottom border-gray">
-        <div class="board_title">
-          <h5 class="lh-100 d-block text-gray-dark"><strong>게시글 제목</strong></h5>
-        </div>
-        <div class="board_prof">
-          <img class="prof-img" src="person.png" alt="" width="30" height="30">
-          <p class="alc lh-100 info">닉네임</p>
-        </div>
-        <div class="board_view">
-          <img class="board-img" src="eye.png" alt="" width="20" height="20">
-          <p class="alc lh-100 info">조회수</p>
-        </div>
-        <div class="board_like">
-          <img class="board-img" src="like.png" alt="" width="20" height="20">
-          <p class="alc lh-100 info">좋아요 수</p>
-        </div>
-        <div class="board_date">
-          <p class="alc lh-100 info">XXXX/XX/XX</p>
-        </div>
-      </a>
-    </div>
-    <small class="d-block text-right mt-3">
-      <input placeholder="제목을 입력하시오">
-      <a href="#">1</a>
-      <a href="#">2</a>
-      <a href="#">3</a>
-      <a href="#">4</a>
-      <a href="#">5</a>
-      <a href="#">...</a>
-    </small>
+<div class="my-3 p-3 bg-white rounded shadow-sm">
+  <div class=" media text-muted pt-3">
+    <a href="#" class="box media-body mb-0 small lh-125 border-bottom border-gray">
+      <div class="board_title">
+        <h5 class="lh-100 mb-0 d-block text-gray-dark"><strong>게시글 제목</strong></h5>
+      </div>
+      <div class="board_prof">
+        <img class="prof-img" src="{% static 'images/person.png' %}" alt="" width="30" height="30">
+        <p class="alc lh-100 mb-0 info">닉네임</p>
+      </div>
+      <div class="board_view">
+        <img class="board-img" src="{% static 'images/eye.png' %}" alt="" width="20" height="20">
+        <p class="alc lh-100 mb-0 info">조회수</p>
+      </div>
+      <div class="board_like">
+        <img class="board-img" src="{% static 'images/like.png' %}" alt="" width="20" height="20">
+        <p class="alc lh-100 mb-0 info">좋아요 수</p>
+      </div>
+      <div class="board_date">
+        <p class="alc lh-100 mb-0 info">XXXX/XX/XX</p>
+      </div>
+    </a>
   </div>
-
-</main>
+  <small class="d-block text-right mt-3">
+    <input placeholder="제목을 입력하시오">
+    <a href="#">1</a>
+    <a href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">4</a>
+    <a href="#">5</a>
+    <a href="#">...</a>
+  </small>
+</div>
+{% endblock %}
