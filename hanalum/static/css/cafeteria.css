@@ -1,0 +1,12 @@
+html,
+body {
+  overflow-x: hidden; /* Prevent scroll on narrow devices */
+}
+
+.cafeteria-content-box {float: left; background-color:#f8f8f8; width: 75%; height: 300px; border-radius: 0rem 0.25rem 0.25rem 0rem;}
+.cafeteria-top-box {float: left; background-color: #000179; width: 25%; height:300px; border-radius: 0.25rem 0rem 0rem 0.25rem;}
+.cafeteria-food-box {width: 33.333%; float: left; padding-top: 20px}
+
+.top-text {text-align: center; font-size: 30px; color: #ffffff; font-weight: 700; padding-top: 40%; padding-bottom: 40%}
+.food-time {text-align: center; font-size: 20px; color: #000179; font-weight: 700}
+.food-menu {text-align: center}
