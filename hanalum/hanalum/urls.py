@@ -27,4 +27,5 @@ urlpatterns = [
     path('article/', article.views.article, name='article'),
     path('write/', article.views.write, name='write'),
     path('register/', member.views.register, name='register'),
+    path('agree/', member.views.agree, name='agree'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
