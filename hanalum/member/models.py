@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser, PermissionsMixin
 )
+from datetime import datetime
 
 
 # 모델 migrate 할 때 setting의 'django.contrib.admin', urls의 path('admin/', admin.site.urls) 주석처리하기
@@ -61,9 +62,13 @@ class User(AbstractBaseUser, PermissionsMixin):
         null=True,
         blank=True,
     )
+    temp_list = []
+    for year in range(2014, datetime.today().year + 1):
+        temp_list.append((year, str(year)))
+    ADMISSION_YEAR_CHOICES = tuple(temp_list)
     admission_year = models.IntegerField(
         verbose_name='Admission_year',
-        default=1,
+        choices=ADMISSION_YEAR_CHOICES,
     )
     date_joined = models.DateTimeField(
         verbose_name='Date joined',
