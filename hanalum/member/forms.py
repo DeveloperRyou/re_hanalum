@@ -30,7 +30,7 @@ class UserCreationForm(forms.ModelForm):
         password2 = self.cleaned_data.get("password2")
         if password1 and password2 and password1 != password2:
             raise forms.ValidationError("비밀번호가 일치하지 않습니다")
-        return password2
+        return True
 
     def save(self, commit=True):
         # 비밀번호를 해시 상태로 저장
