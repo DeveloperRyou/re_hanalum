@@ -1,9 +1,3 @@
-html,
-body {
-  overflow-x: hidden; /* Prevent scroll on narrow devices */
-}
-
-
 .bg-blue { background-color: #000179; max-height: 65}
 
 .box {padding-left: 1rem;}
