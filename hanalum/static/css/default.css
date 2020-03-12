@@ -1,0 +1,41 @@
+html,
+body {
+  overflow-x: hidden; /* Prevent scroll on narrow devices */
+  height: 100%;
+}
+
+body {
+  font-size: .875rem;
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
+}
+
+.is-background {
+    background-image: url('../images/hanmin_background.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+/* open in smartphone */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    .is-background {
+        background-image: url('../images/hanmin_background_media.jpg');
+    }
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+/* open in smartphone */
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}

@@ -4,7 +4,7 @@
 
 {% block content_body %}
 
-<body class="bg-light is-background">
+<body class="is-background">
   <div class="container m-auto">
   <form method = "POST" action = "{% url 'register' %}" class="form-register">
     {% csrf_token %}
@@ -16,6 +16,9 @@
     {% for field in form %}
       <div class="mb-3">
         <label for="{{field.id_for_label}}">{{field.label}}</label>
+        {% if field.id_for_label == "id_password2" %}
+          <div class="password_error ml-3 mb-2">{{error}}</div>
+        {% endif %}
         {{field}}
       </div>
     {% endfor %}
