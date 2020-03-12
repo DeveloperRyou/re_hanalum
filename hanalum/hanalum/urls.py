@@ -18,6 +18,8 @@ from django.urls import path
 import login.views
 import article.views
 import member.views
+import board.views
+import widget.views
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -28,4 +30,7 @@ urlpatterns = [
     path('write/', article.views.write, name='write'),
     path('register/', member.views.register, name='register'),
     path('agree/', member.views.agree, name='agree'),
+    path('board/', board.views.board, name='board'),
+    path('calendar/', widget.views.calendar, name='widget'),
+    path('cafeteria/', widget.views.cafeteria, name='widget'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

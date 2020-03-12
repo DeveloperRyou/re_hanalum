@@ -1,0 +1,11 @@
+html,
+body {
+  overflow-x: hidden; /* Prevent scroll on narrow devices */
+}
+
+
+.day-box {background-color:#f8f8f8; height:500px; border-radius: 0rem 0rem 0.25rem 0.25rem;   box-shadow: 0px 4px 2px gray inset}
+.month-box {height:80px; border-radius: 0.25rem 0.25rem 0rem 0rem;}
+
+.month-text {text-align: center; line-height:40px; color:#ffffff; font-size: 30px; font-weight: 700}
+.year-text {text-align: center; color:#ffffff}

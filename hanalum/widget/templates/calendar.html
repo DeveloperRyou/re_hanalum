@@ -1,21 +1,16 @@
+{% extends "nav.html" %}
 
-<head>
-  <meta charset="utf-8">
-  <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/offcanvas/">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <link  rel="stylesheet" href="calandar.css">
-  <link href="offcanvas.js" rel="stylesheet">
-  <title>자유 게시판</title>
-</head>
+{% load static %}
 
-<main role="main" class="container">
-  <div class="my-3 bg-white rounded shadow-sm">
-    <div class="month-box">
-      <p>2019</p>
-    </div>
-    <div class="day-box">
+{% block content%}
 
-    </div>
+<div class="my-3 bg-white rounded shadow-sm">
+  <div class="month-box pt-2 bg-blue">
+    <p class="month-text mb-0">March</p>
+    <p class="year-text">2020</p>
   </div>
-
-</main>
+  <div class="day-box">
+    
+  </div>
+</div>
+{% endblock %}
