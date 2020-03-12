@@ -7,9 +7,13 @@ from django.shortcuts import redirect
 def register(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
-        if form.is_valid() and form.check_password2():
-            form.save()
-            return redirect('login')
+        if form.is_valid():
+            is_error = form.check_password2()
+            if is_error is None:
+                form.save()
+                return redirect('login')
+            else:
+                return render(request, 'register.html', {'form': form, 'error': is_error})
         else:
             return redirect('register')
     else:

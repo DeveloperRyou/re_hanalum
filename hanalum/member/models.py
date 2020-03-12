@@ -44,14 +44,14 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name='Realname',
         max_length=30,
     )
-    SEX_CHOICES = (
+    GENDER_CHOICES = (
         ('M', '남'),
         ('F', '여'),
     )
-    sex = models.CharField(
-        verbose_name='Sex',
+    gender = models.CharField(
+        verbose_name='Gender',
         max_length=2,
-        choices=SEX_CHOICES,
+        choices=GENDER_CHOICES,
     )
     authority = models.IntegerField(
         verbose_name='Authority',
@@ -86,7 +86,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['nickname', 'realname', 'sex', ]
+    REQUIRED_FIELDS = ['nickname', 'realname', 'gender', ]
 
     class Meta:
         verbose_name = 'user'
