@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import CreateArticle
+from .forms import ArticleCreationForm
 
 
 # Create your views here.
@@ -9,6 +9,6 @@ def article(request):
 
 
 def write(request):
-    form = CreateArticle()
+    form = ArticleCreationForm()
 
     return render(request, 'write.html', {'form': form})
