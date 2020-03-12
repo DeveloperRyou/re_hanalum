@@ -84,3 +84,10 @@ a:hover {
   background-color: #ffffffc0;
   border-radius: 20px;
 }
+
+.white_background{
+  padding: 5px;
+  margin: auto;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  }
