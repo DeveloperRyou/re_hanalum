@@ -2,9 +2,13 @@
 
 {% load static %}
 
+{% block css %}
+<link href="{% static 'css/member.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block content_body %}
 
-<body class="text-center is-background">
+<body class="text-center is-background is-screen">
     <form class="form-signin" action="{% url 'login' %}" method="POST">
         {% csrf_token %}
         <img class="main-icon mb-4" src="{% static 'images/main_icon.png' %}" width="150" height="150">

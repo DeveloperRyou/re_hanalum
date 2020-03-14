@@ -1,18 +1,8 @@
-html,
-body {
-  overflow-x: hidden; /* Prevent scroll on narrow devices */
-  height: 100%;
-}
-
 body {
   font-size: .875rem;
   display: flex;
-  align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
   background-color: #f5f5f5;
 }
-
 .is-background {
     background-image: url('../images/hanmin_background.jpg');
     background-size: cover;

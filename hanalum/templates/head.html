@@ -27,13 +27,11 @@
 
     <!-- Custom styles for this template -->
     <link href="{% static 'css/default.css' %}" rel="stylesheet">
-    <link href="{% static 'css/member.css' %}" rel="stylesheet">
     <link href="{% static 'css/nav.css' %}" rel="stylesheet">
 
-    <link href="{% static 'css/article.css' %}" rel="stylesheet">
-    <link href="{% static 'css/board.css' %}" rel="stylesheet">
-    <link href="{% static 'css/calendar.css' %}" rel="stylesheet">
-    <link href="{% static 'css/cafeteria.css' %}" rel="stylesheet">
+    {% block css %}
+    {% endblock %}
+
   </head>
 
 {% block content_body %}
