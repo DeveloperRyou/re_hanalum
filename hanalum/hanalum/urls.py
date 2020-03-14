@@ -30,6 +30,7 @@ urlpatterns = [
     path('article/', article.views.article, name='article'),
     path('write/', article.views.write, name='write'),
     path('register/', member.views.register, name='register'),
+    path('agree/', member.views.agree, name='agree'),
     path('board/', board.views.board, name='board'),
     path('calendar/', widget.views.calendar, name='widget'),
     path('cafeteria/', widget.views.cafeteria, name='widget'),

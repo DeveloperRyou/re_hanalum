@@ -29,20 +29,32 @@
         <button type="button" class="btn btn-outline-primary">비추천</button>
     </div>
 
-    <small class="d-block text-right pb-3 border-bottom border-gray">
+    <div class="d-block text-right pb-3 border-bottom border-gray">
       <a href="#">수정</a>
       <a href="#">삭제</a>
       <a href="#">목록으로</a>
-    </small>
+    </div>
 
-    <h6 class="pb-2 pt-3 border-bottom border-gray">댓글</h6>
+    <h6 class="pb-2 pt-3">댓글</h6>
 
-    <div class="media border p-3">
+    <div class="media border pb-3 mb-4">
       <img src="img_avatar3.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
       <div class="media-body">
         <h4>John Doe <small><i>Posted on February 19, 2016</i></small></h4>
         <p>Lorem ipsum...</p>
       </div>
     </div>
+
+    <h6 class="pb-2 pt-3 mt-3 border-top border-gray">댓글 작성</h6>
+
+    <div class="media pb-2">
+      <div class="media-body">
+        <form action="">
+          <textarea class="form-control mb-2" placeholder="내용을 입력하세요."></textarea>
+          <input type="submit" value="등록" class="btn btn-success float-right">
+        </form>
+      </div>
+    </div>
+
   </div>
 {% endblock %}
