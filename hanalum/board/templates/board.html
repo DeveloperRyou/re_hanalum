@@ -11,37 +11,101 @@
   </div>
 </div>
 
+
 <div class="my-3 p-3 bg-white rounded shadow-sm">
-  <div class=" media text-muted pt-3">
-    <a href="#" class="box media-body mb-0 small lh-125 border-bottom border-gray">
-      <div class="board_title">
-        <h5 class="lh-100 mb-0 d-block text-gray-dark"><strong>게시글 제목</strong></h5>
-      </div>
-      <div class="board_prof">
-        <img class="prof-img" src="{% static 'images/person.png' %}" alt="" width="30" height="30">
-        <p class="alc lh-100 mb-0 info">닉네임</p>
-      </div>
-      <div class="board_view">
-        <img class="board-img" src="{% static 'images/eye.png' %}" alt="" width="20" height="20">
-        <p class="alc lh-100 mb-0 info">조회수</p>
-      </div>
-      <div class="board_like">
-        <img class="board-img" src="{% static 'images/like.png' %}" alt="" width="20" height="20">
-        <p class="alc lh-100 mb-0 info">좋아요 수</p>
-      </div>
-      <div class="board_date">
-        <p class="alc lh-100 mb-0 info">XXXX/XX/XX</p>
-      </div>
-    </a>
+  <table class="post_table">
+    <thead>
+      <tr>
+        <th style="vertical-align:middle; width:58%;">게시글 제목</th>
+        <th style="vertical-align:middle; width:14%">글쓴이</th>
+        <th style="width:9%;">조회
+          <div class="order_arrow">
+            <a href="#" style="grid-row:1/2">▲</a>
+            <a href="#" style="grid-row:2/3">▼</a>
+          </div>
+        </th>
+        <th style="width:11%;">좋아요
+          <div class="order_arrow">
+            <a href="#" style="grid-row:1/2">▲</a>
+            <a href="#" style="grid-row:2/3">▼</a>
+          </div>
+        </th>
+        <th style="width:8%;">날짜
+          <div class="order_arrow">
+            <a href="#" style="grid-row:1/2">▲</a>
+            <a href="#" style="grid-row:2/3">▼</a>
+          </div>
+        </th>
+            </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="tdtitle"><a href="#">Lorem Ipsum</a></td>
+        <td class="tdprof">
+          <img class="prof-img" src="{% static 'images/person.png' %}" alt="" width="30" height="30">
+          Nickname
+        </td>
+        <td class="tdview">
+          <img class="board-img" src="{% static 'images/eye.png' %}" alt="" width="20" height="20">
+          43
+        </td>
+        <td class="tdlike">
+          <img class="board-img" src="{% static 'images/like.png' %}" alt="" width="20" height="20">
+          2
+        </td>
+        <td class="tddate">20.03.12</td>
+      </tr>
+      <tr>
+        <td class="tdtitle"><a href="#">Lorem Ipsum</a></td>
+        <td class="tdprof">
+          <img class="prof-img" src="{% static 'images/person.png' %}" alt="" width="30" height="30">
+          Nickname
+        </td>
+        <td class="tdview">
+          <img class="board-img" src="{% static 'images/eye.png' %}" alt="" width="20" height="20">
+          0
+        </td>
+        <td class="tdlike">
+          <img class="board-img" src="{% static 'images/like.png' %}" alt="" width="20" height="20">
+          0
+        </td>
+        <td class="tddate">03:59</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-end pt-2">
+    <button class="btn btn-success mx-3" id="post">글쓰기</button>
+    <button class="btn btn-success mx-3" id="delete">삭제</button>
   </div>
-  <small class="d-block text-right mt-3">
-    <input placeholder="제목을 입력하시오">
-    <a href="#">1</a>
-    <a href="#">2</a>
-    <a href="#">3</a>
-    <a href="#">4</a>
-    <a href="#">5</a>
-    <a href="#">...</a>
-  </small>
+  <nav class="text-center mt-3 container">
+    <ul class="pagination justify-content-center">
+      <li class="page-item disabled"><a class="page-link"href="#">처음</a></li>
+      <li class="page-item disabled"><a class="page-link"href="#">이전</a></li>
+      <li class="page-item active"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item"><a class="page-link" href="#">4</a></li>
+      <li class="page-item"><a class="page-link" href="#">5</a></li>
+      <li class="page-item"><a class="page-link" href="#">6</a></li>
+      <li class="page-item"><a class="page-link" href="#">7</a></li>
+      <li class="page-item"><a class="page-link" href="#">8</a></li>
+      <li class="page-item"><a class="page-link" href="#">9</a></li>
+      <li class="page-item"><a class="page-link" href="#">10</a></li>
+      <li class="page-item"><a class="page-link" href="#">다음</a></li>
+      <li class="page-item"><a class="page-link" href="#">끝</a></li>
+    </ul>
+    <div class="row-justify-content-md-center mt-3">
+      <select class="post_search border-primary col col-md-2">
+        <option>전체</option>
+        <option>제목</option>
+        <option>내용</option>
+        <option>글쓴이</option>
+        <option>제목+내용</option>
+      </select>
+      <input class="post_search border-primary col col-md-6" placeholder="제목을 입력하시오">
+      <button class="btn btn-primary col-md-1">검색</button>
+    </div>
+  </nav>
 </div>
 {% endblock %}
