@@ -1,0 +1,9 @@
+html,
+body {
+  overflow-x: hidden; /* Prevent scroll on narrow devices */
+}
+
+.widget-space {height: 100%; width: 90%; float: left}
+.checkbox-space {height: 100%; width: 10%; float: left;  position: sticky; padding-left: 2px}
+
+.checkbox-board {background-color: #ffffff; height: 500px; border-radius:5px;}
