@@ -2,13 +2,24 @@
 
 {% load static %}
 
-{% block content%}
-    <div class="widget-space">
+{% block css %}
+<link href="{% static 'css/main.css' %}" rel="stylesheet">
+{% endblock %}
 
-    </div>
-    <div class="checkbox-space">
+{% block content%}
+
+<div class="widget-space">
+        <div>
+            {% include 'calendar.html' %}
+        </div>
+        <div>
+            {% include 'cafeteria.html' %}
+        </div>
+</div>
+<div class="checkbox-space">
         <div class="checkbox-board">
             
         </div>
-    </div>
+</div>
+
 {% endblock %}
