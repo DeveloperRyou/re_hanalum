@@ -2,6 +2,10 @@
 
 {% load static %}
 
+{% block css %}
+<link href="{% static 'css/board.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block content%}
 
 <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-blue rounded shadow-sm">

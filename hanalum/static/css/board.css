@@ -1,10 +1,3 @@
-html,
-body {
-  overflow-x: hidden; /* Prevent scroll on narrow devices */
-}
-a {text-decoration:none; color: #000;}
-a:hover {color: #000;}
-
 .bg-blue { background-color: #000179; max-height: 65}
 
 .box {padding-left: 1rem;}

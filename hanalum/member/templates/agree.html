@@ -1,0 +1,59 @@
+{% extends "head.html" %}
+
+{% load static %}
+
+{% block css %}
+<link href="{% static 'css/member.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content_body %}
+
+<body class="is-background" xmlns:text-align="http://www.w3.org/1999/xhtml">
+  <div class="container m-auto">
+  <form method = "POST" action = "{% url 'register' %}" class="form-register">
+    {% csrf_token %}
+    <h4 class="my-1 text-center text-muted">개인정보 제3자 동의</h4>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" value="agree-all">
+        전체 동의
+      </label>
+    </div>
+
+
+    <div class="mt-1" style="height:210px">
+      <label> 동의내용 1 </label>
+      <div style="overflow:auto; height:150px" class="white_background mb-1">
+        동의1 내용
+      </div>
+      <div class="checkbox mx-1">
+        <label>
+          <input type="checkbox" value="agree-first">
+          동의1 동의
+        </label>
+      </div>
+    </div>
+
+    <div class="mt-1" style="height:210px">
+      <label> 동의내용 2 </label>
+      <div style="overflow:auto; height:150px" class="white_background mb-1">
+        동의2 내용
+      </div>
+      <div class="checkbox mx-1">
+        <label>
+          <input type="checkbox" value="agree-second">
+          동의2 동의
+        </label>
+      </div>
+    </div>
+
+    <hr class="mb-3 mt-2">
+    <button class="btn btn-primary btn-lg btn-block" type="submit">확인</button>
+    </form>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.4/dist/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+        <script src="form-validation.js"></script>
+</body>
+
+{% endblock %}
