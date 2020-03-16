@@ -1,8 +1,18 @@
+html, body{
+  overflow-x: hidden; /* Prevent scroll on narrow devices */
+  height: 100%;
+}
+body{
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
 a:hover {
   text-decoration: none;
 }
 .main-icon {
-    border-radius: 12px;
+  border-radius: 12px;
 }
 
 /* 로그인페이지 */
