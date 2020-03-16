@@ -15,7 +15,7 @@
 
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar slide-anim">
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
@@ -88,14 +88,34 @@
                 </a>
               </li>
             </ul>
+
           </div>
         </nav>
-
-        <main role="main" class="col-md-10 ml-sm-auto col-lg-10 px-4">
+        <div class="side-button slide-anim">
+          <i class="fa fa-outdent slider" aria-hidden="true"></i>
+        </div>
+        <main role="main" class="col-md-10 ml-sm-auto col-lg-10 px-4 slide-anim">
             {% block content %}
             {% endblock %}
         </main>
       </div>
     </div>
+
+    <script>
+      $(function(){
+        var duration = 300;
+
+        var side = $('.sidebar');
+        var side_bt = $('.side-button');
+        var main = $('main');
+
+        $('.slider').click(function(){
+          side.toggleClass('side-hide');
+          side_bt.toggleClass('side-hide');
+          main.toggleClass('side-hide');
+        });
+      });
+
+    </script>
 </body>
 {% endblock %}
