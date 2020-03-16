@@ -3,10 +3,12 @@ body {
   overflow-x: hidden; /* Prevent scroll on narrow devices */
 }
 
-.cafeteria-content-box {float: left; background-color:#f8f8f8; width: 75%; height: 300px; border-radius: 0rem 0.25rem 0.25rem 0rem;}
-.cafeteria-top-box {float: left; background-color: #000179; width: 25%; height:300px; border-radius: 0.25rem 0rem 0rem 0.25rem;}
+.cafeteria-content-box {float: left; background-color:#f8f8f8; width: 50%; height: 280px; border-radius: 0rem 0rem 0.25rem 0.25rem; margin-left: 25%;}
+.cafeteria-top-box {background-color: #000179; width: 50%; height:130px; border-radius: 0.25rem 0.25rem 0rem 0rem; margin-left:25%; position: relative;}
 .cafeteria-food-box {width: 33.333%; float: left; padding-top: 20px}
+.pointer-box {float: left; color:#f8f8f8; width:50px; height: 50px; position: absolute; top: 30%; left: 5%;}
 
-.top-text {text-align: center; font-size: 30px; color: #ffffff; font-weight: 700; padding-top: 40%; padding-bottom: 40%}
+.top-text {text-align: center; font-size: 30px; color: #ffffff; font-weight: 500; padding-top: 30px; margin-bottom: auto;}
+.day-text {text-align: center; font-size: 18px; color: #ffffff; font-weight: 400;}
 .food-time {text-align: center; font-size: 20px; color: #000179; font-weight: 700}
-.food-menu {text-align: center}
+.food-menu {text-align: center; display: grid; line-height:2em}

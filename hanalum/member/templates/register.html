@@ -5,7 +5,7 @@
 {% block content_body %}
 
 <body class="bg-light is-background">
-  <div class="container m-auto">
+  <div class="container">
   <form method = "POST" action = "{% url 'register' %}" class="form-register">
     {% csrf_token %}
     <div class="text-center">

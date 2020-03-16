@@ -4,17 +4,23 @@
 
 {% block content%}
 
-<div class="my-3 bg-white rounded shadow-sm">
+
+<div class="mb-3 rounded shadow-sm">
   <div class="cafeteria-top-box bg-blue">
+    <label class="pointer-box mb-0">
+      <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+    </label>
     <p class="top-text">오늘의 급식</p>
+    <p class="day-text">- 2020/xx/xx -</p>
   </div>
+
   <div class="cafeteria-content-box">
     <div class="cafeteria-food-box">
       <div class="border-bottom border-gray">
         <p class="food-time">조식</p>
       </div>
       <div class="mt-3">
-        <p class="food-menu">시리얼</p>
+        <span class="food-menu">시리얼<br>우유</span>
       </div>
     </div>
     <div class="cafeteria-food-box">
@@ -22,7 +28,7 @@
         <p class="food-time">중식</p>
       </div>
       <div class="mt-3">
-        <p class="food-menu">밥</p>
+        <span class="food-menu">밥<br>국</span>
       </div>
     </div>
     <div class="cafeteria-food-box">
@@ -30,7 +36,7 @@
         <p class="food-time">석식</p>
       </div>
       <div class="mt-3">
-        <p class="food-menu">고기</p>
+        <span class="food-menu">고기<br>야채</span>
       </div>
     </div>
   </div>
