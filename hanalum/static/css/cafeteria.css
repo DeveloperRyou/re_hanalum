@@ -6,7 +6,11 @@ body {
 .cafeteria-content-box {float: left; background-color:#f8f8f8; width: 50%; height: 280px; border-radius: 0rem 0rem 0.25rem 0.25rem; margin-left: 25%;}
 .cafeteria-top-box {background-color: #000179; width: 50%; height:130px; border-radius: 0.25rem 0.25rem 0rem 0rem; margin-left:25%; position: relative;}
 .cafeteria-food-box {width: 33.333%; float: left; padding-top: 20px}
-.pointer-box {float: left; color:#f8f8f8; width:50px; height: 50px; position: absolute; top: 30%; left: 5%;}
+.pointer-boxl {float: left; color: #f8f8f8;position: absolute; top: 30%; left: 5%;}
+.pointer-boxl:hover{color: #f8f8f86e}
+.pointer-boxr {float: right; color:#f8f8f8;position: absolute; top: 30%; right: 5%;}
+.pointer-boxr:hover{color:#f8f8f86e}
+
 
 .top-text {text-align: center; font-size: 30px; color: #ffffff; font-weight: 500; padding-top: 30px; margin-bottom: auto;}
 .day-text {text-align: center; font-size: 18px; color: #ffffff; font-weight: 400;}
