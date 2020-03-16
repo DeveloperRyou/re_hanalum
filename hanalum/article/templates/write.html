@@ -1,5 +1,11 @@
 {% extends "nav.html" %}
 
+{% load static %}
+
+{% block css %}
+<link href="{% static 'css/article.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
 <div class="my-3 p-3 bg-white rounded shadow-sm">
     <form action="" method="POST">
