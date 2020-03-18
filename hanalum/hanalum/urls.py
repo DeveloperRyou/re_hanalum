@@ -21,8 +21,9 @@ import member.views
 import board.views
 import widget.views
 import main.views
-from django.conf.urls.static import static
 from django.conf import settings
+from django.conf.urls.static import static
+from django.conf.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -35,4 +36,5 @@ urlpatterns = [
     path('calendar/', widget.views.calendar, name='widget'),
     path('cafeteria/', widget.views.cafeteria, name='widget'),
     path('main/', main.views.main, name='main'),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
