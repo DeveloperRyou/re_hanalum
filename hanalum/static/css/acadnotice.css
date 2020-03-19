@@ -1,4 +1,13 @@
-.noticetitle{background:#0F2462; color:#fcfffc; font-size:1rem; line-height: 1rem;}
+/* .noticetitle{background:#0F2462; color:#fcfffc; font-size:1rem; line-height: 1rem;}
 .noticebox-inner{vertical-align:middle;}
 .notice-item{line-height: 80px; display:none;}
-.active{display:block}
+.active{display:block} */
+
+.noticebox{display:grid;}
+.noticetitle{background-color: blue; color: white;}
+#notice-list a {color: #000;text-decoration: none;}
+#notice-list a:hover {text-decoration: underline;}
+#notice-list {overflow: hidden;width: 160px;height: 20px;margin: 0;}
+#notice-list div {position: relative;margin: 0;}
+#notice-list ol {position: absolute;top: 0;left: 0;margin: 0;padding: 0;list-style-type: none;}
+#notice-list li {height: 20px;line-height: 20px;}
