@@ -1,15 +1,6 @@
-html,
-body {
-  overflow-x: hidden; /* Prevent scroll on narrow devices */
-  height: 100%;
-}
-
 body {
   font-size: .875rem;
   display: flex;
-  align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
   background-color: #f5f5f5;
 }
 
@@ -38,4 +29,39 @@ body {
     .bd-placeholder-img-lg {
         font-size: 3.5rem;
     }
+}
+
+/* nav open and hide */
+.slide-anim{
+  transition: 0.3s;
+}
+
+.side-button{
+  z-index:1;
+  position: fixed;
+  top: 70px;
+  left: 16.6%;
+  margin-left:-30px;
+}
+.side-button:hover{
+  margin-left:0;
+}
+.side-button .slider{
+  cursor: pointer;
+  background-color: #4CAF50;
+  padding: 20px 0 20px 10px;
+  width: 50px;
+  font-size: 20px;
+  color: white;
+  border-radius: 0 5px 5px 0;
+}
+
+nav.side-hide{
+    left:-16.6%;
+}
+.side-button.side-hide{
+    left:0%;
+}
+main.side-hide{
+    margin:auto;
 }

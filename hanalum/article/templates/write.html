@@ -1,24 +1,39 @@
 {% extends "nav.html" %}
 
+{% load static %}
+
+{% block css %}
+<link href="{% static 'css/article.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
 <div class="my-3 p-3 bg-white rounded shadow-sm">
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.media }}
-        {{ form.as_p }}
-
-        <div class="media-body">
-            <div class="d-flex align-items-center">
-              <p class="mb-0">다운로드 파일 이름</p>
-              <button type="button" class="btn btn-primary">다운로드</button>
-            </div>
-            <div class="d-flex align-items-center">
-              <p class="mb-0">다운로드 파일 이름</p>
-              <button type="button" class="btn btn-primary">다운로드</button>
-            </div>
+        {{ form.title }}
+        {{ form.content }}
+        <div class="custom-file mb-3">
+            {{ form.file_1 }}
+            <label class="custom-file-label" for="customFile">Choose file</label>
+        </div>
+        <div class="custom-file mb-3">
+            {{ form.file_2 }}
+            <label class="custom-file-label" for="customFile">Choose file</label>
+        </div>
+        <div class="custom-file mb-3">
+            {{ form.file_3 }}
+            <label class="custom-file-label" for="customFile">Choose file</label>
         </div>
 
         <input type="submit" class="btn btn-primary" value="작성"/>
     </form>
+    <script>
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function() {
+      var fileName = $(this).val().split("\\").pop();
+      $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>
 </div>
 {% endblock %}
