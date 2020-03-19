@@ -69,6 +69,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     admission_year = models.IntegerField(
         verbose_name='Admission_year',
         choices=ADMISSION_YEAR_CHOICES,
+        # 밑에 두 줄은 나중에 삭제해야 함
+        null=True,
+        blank=True,
     )
     date_joined = models.DateTimeField(
         verbose_name='Date joined',
@@ -95,6 +98,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.nickname
+
+    def get_email(self):
+        return self.email
 
     @property
     def is_staff(self):
