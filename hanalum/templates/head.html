@@ -14,6 +14,10 @@
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- fa fa icon -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
     <!-- Favicons
     <link rel="apple-touch-icon" href="/docs/4.4/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
     <link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
@@ -25,30 +29,17 @@
     <meta name="theme-color" content="#563d7c">
     -->
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
     <!-- Custom styles for this template -->
-    <link href="{% static 'css/signin.css' %}" rel="stylesheet">
-    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
-    <link href="{% static 'css/offcanvas.css' %}" rel="stylesheet">
-    <link href="{% static 'css/board.css' %}" rel="stylesheet">
-    <link href="{% static 'css/calendar.css' %}" rel="stylesheet">
-    <link href="{% static 'css/cafeteria.css' %}" rel="stylesheet">
-  </head>
+    <link href="{% static 'css/default.css' %}" rel="stylesheet">
+    <link href="{% static 'css/nav.css' %}" rel="stylesheet">
+
+    {% block css %}
+    {% endblock %}
+
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+</head>
 
 {% block content_body %}
 {% endblock %}

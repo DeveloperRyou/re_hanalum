@@ -1,3 +1,10 @@
 from django.contrib import admin
 
-# Register your models here.
+from .forms import ArticleCreationForm
+from .models import Article
+
+class ArticleAdmin():
+    form = ArticleCreationForm
+    list_display = ['title', 'content',]
+
+admin.site.register(Article)

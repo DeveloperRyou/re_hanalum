@@ -1,7 +1,3 @@
-html,
-body {
-  overflow-x: hidden; /* Prevent scroll on narrow devices */
-}
 
 .cafeteria-content-box {float: left; background-color:#f8f8f8; width: 50%; height: 280px; border-radius: 0rem 0rem 0.25rem 0.25rem; margin-left: 25%;}
 .cafeteria-top-box {background-color: #000179; width: 50%; height:130px; border-radius: 0.25rem 0.25rem 0rem 0rem; margin-left:25%; position: relative;}

@@ -1,11 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+{% extends "nav.html" %}
 
-<body>
+{% load static %}
 
-</body>
-</html>
+{% block css %}
+<link href="{% static 'css/main.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content%}
+
+<div class="widget-space">
+        <div>
+            {% include 'calendar.html' %}
+        </div>
+        <div>
+            {% include 'cafeteria.html' %}
+        </div>
+</div>
+<div class="checkbox-space">
+        <div class="checkbox-board">
+            
+        </div>
+</div>
+
+{% endblock %}

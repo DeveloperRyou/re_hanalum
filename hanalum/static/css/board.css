@@ -1,9 +1,3 @@
-html,
-body {
-  overflow-x: hidden; /* Prevent scroll on narrow devices */
-}
-
-
 .bg-blue { background-color: #000179; max-height: 65}
 
 .box {padding-left: 1rem;}
@@ -19,3 +13,15 @@ body {
 
 .prof-img {float:left; margin-right:6px}
 .board-img {float:left; margin-top:5; margin-bottom:5; margin-right: 6px}
+
+.post_table {text-align:center; vertical-align:middle; width: 100%; margin-bottom: 0.7rem; color: #000; background-color: #FFF;}
+.post_table th, .post_table td {padding: 0.5rem 1rem; vertical-align: middle;}
+.post_table thead th {vertical-align: bottom; border-bottom: 0.2px solid #000;}
+.tdtitle{text-align:left;}
+.tdprof{line-height:30px;}
+.tdlike{line-height:20px; padding:auto;}
+.order_arrow{font-size: 0.6rem; display: inline-grid; vertical-align:middle; padding: 0.5rem 0 0.7rem 0.5rem;}
+.order_arrow>a{color:#000;}
+.pagingbox > a{font-size: 1rem;margin-left: 0.3rem;}
+.post_search{border-width: 2px;display: inline-block; font-weight: 400; vertical-align: middle; padding: .375rem .75rem; line-height: 1.5;}
+.post_search:focus{outline:none;}

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -56,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'hanalum.urls'
@@ -112,7 +114,14 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
+
+LANGUAGES = [
+    ('ko', _('Korean')),
+    ('en', _('English')),
+]
+
+USE_I18N = True
 
 TIME_ZONE = 'Asia/Seoul'
 
@@ -123,8 +132,10 @@ USE_L10N = True
 USE_TZ = True
 
 # 유저모델 재설정
-
 AUTH_USER_MODEL = 'member.User'
+
+# 로그인 실패시 URL
+LOGIN_URL = '/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
@@ -137,5 +148,16 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-CKEDITOR_UPLOAD_PATH = 'uploads/'
+#파일 업로드 최대 용량
+#FILE_UPLOAD_MAX_MEMORY_SIZE = '???'
+
+CKEDITOR_UPLOAD_PATH = 'ckeditor_uploads/'
 CKEDITOR_IMAGE_BACKEND = "pillow"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'width': '100%',
+        'defaultLanguage': 'ko',
+        'language': 'ko',
+    },
+}
