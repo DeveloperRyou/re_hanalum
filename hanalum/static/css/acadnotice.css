@@ -1,0 +1,4 @@
+.noticetitle{background:#0F2462; color:#fcfffc; font-size:1rem; line-height: 1rem;}
+.noticebox-inner{vertical-align:middle;}
+.notice-item{line-height: 80px; display:none;}
+.active{display:block}

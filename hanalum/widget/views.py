@@ -8,3 +8,7 @@ def calendar(request):
 
 def cafeteria(request):
     return render(request, 'cafeteria.html')
+
+
+def acadnotice(request):
+    return render(request, 'acadnotice.html')

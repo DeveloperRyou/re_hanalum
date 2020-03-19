@@ -34,5 +34,6 @@ urlpatterns = [
     path('board/', board.views.board, name='board'),
     path('calendar/', widget.views.calendar, name='widget'),
     path('cafeteria/', widget.views.cafeteria, name='widget'),
+    path('acadnotice/', widget.views.acadnotice, name='widget'),
     path('main/', main.views.main, name='main'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
