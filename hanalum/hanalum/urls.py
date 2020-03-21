@@ -28,7 +28,8 @@ from django.conf.urls import include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', login.views.login, name='login'),
-    path('article/', article.views.article, name='article'),
+    path('main/', main.views.main, name='main'),
+    path('article/<int:article_id>', article.views.article, name='article/<int:article_id>'),
     path('write/', article.views.write, name='write'),
     path('register/', member.views.register, name='register'),
     path('agree/', member.views.agree, name='agree'),
@@ -36,6 +37,5 @@ urlpatterns = [
     path('calendar/', widget.views.calendar, name='widget'),
     path('cafeteria/', widget.views.cafeteria, name='widget'),
     path('acadnotice/', widget.views.acadnotice, name='widget'),
-    path('main/', main.views.main, name='main'),
     path('ckeditor/', include('ckeditor_uploader.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
