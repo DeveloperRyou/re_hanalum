@@ -1,13 +1,64 @@
 {% extends "head.html" %}
 
 {% block content_body %}
-<body class="">
-    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">{{ user }}</a>
-      <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-      <ul class="navbar-nav px-3">
+
+{% load static %}
+<style>
+  .logout{
+  color: white;
+  background-color:#3B3838;
+  width:90px;
+  text-align:center;
+  border-radius:10px;
+  font-size:16px;
+  }
+  .img-title{
+  width:100%;
+  height:30px;
+  margin-left: 10px;
+  display: block;
+  }
+  .img-unnamed{
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  margin-left:10px;
+  margin-top: 15px;
+  float: left;
+  }
+  .menu a{
+  cursor:pointer;
+  font-size: large;
+  }
+
+  .menu .hide{
+  display:none;
+  padding: 5px;
+  margin: 5px;
+  }
+  .hide li{
+  padding: 5px;
+  }
+  #side{
+  font-color: red;
+  }
+
+  .nickname{
+  display:inline-block;
+  margin:10px;
+  padding:5px;
+  color:black;
+  font-weight:bold;
+  font-size: x-large;
+  }
+</style>
+
+<body data-gr-c-s-loaded="true">
+    <nav class="navbar navbar-dark fixed-top flex-md-nowrap p-0 shadow" style="background-color: #585454">
+      <a href="#"> <img class="img-title" src="/static/images/title.png" alt=""> </a>
+      <ul class="navbar-nav px-3" style="padding-bottom:5px; padding-top:5px; ">
         <li class="nav-item text-nowrap">
-          <a class="nav-link" href="#">Sign out</a>
+          <a class="nav-link logout" href="#"><strong>로그아웃</strong></a>
         </li>
       </ul>
     </nav>
@@ -15,93 +66,25 @@
 
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar slide-anim">
-          <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link active" href="#">
-                  <span data-feather="home"></span>
-                  Dashboard <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file"></span>
-                  Orders
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="shopping-cart"></span>
-                  Products
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="users"></span>
-                  Customers
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="bar-chart-2"></span>
-                  Reports
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="layers"></span>
-                  Integrations
-                </a>
-              </li>
-            </ul>
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar shadow-sm">
+          <div class="sidebar col-md-3">
+            <a href="#"> <img class="img-unnamed" src="/static/images/unnamed.jpg" alt=""> </a>
+              <div class="nickname pl-3" style="margin-top: 15px;"> @ @ @ </div> <br>
+            <script type="text/javascript">
 
-            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-              <span>Saved reports</span>
-              <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
-                <span data-feather="plus-circle"></span>
-              </a>
-            </h6>
-            <ul class="nav flex-column mb-2">
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Current month
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Last quarter
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Social engagement
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Year-end sale
-                </a>
-              </li>
-            </ul>
+    $(document).ready(function(){
+        $(".menu>a").click(function(){
+            var submenu = $(this).next("ul");
 
-          </div>
-        </nav>
-        <div class="side-button slide-anim">
-          <i class="fa fa-outdent slider" aria-hidden="true"></i>
-        </div>
-        <main role="main" class="col-md-10 ml-sm-auto col-lg-10 px-4 slide-anim" style="overflow: hidden">
-            {% block content %}
-            {% endblock %}
-        </main>
-      </div>
-    </div>
-
-    <script>
+            if( submenu.is(":visible") ){
+                submenu.slideUp();
+            }else{
+                submenu.slideDown();
+            }
+        });
+    });
+            </script>
+              <script>
       $(function(){
         var duration = 300;
 
@@ -117,5 +100,56 @@
       });
 
     </script>
+<div>
+    <ul>
+        <li class="menu" style="margin-top:30px;">
+            <a> 게시판 </a>
+            <ul class="hide" style="display: block;">
+                <li>청원게시판</li>
+                <li>익명게시판</li>
+                <li>멘토링게시판</li>
+            </ul>
+        </li>
+        <li class="menu" style="margin-top: 20px;">
+            <a>급식</a>
+            <ul class="hide" style="display: block;">
+                <li>학사일정</li>
+                <li>과제일정</li>
+                <li>메뉴2-3</li>
+            </ul>
+        </li>
+        <li class="menu" style="margin-top: 20px;">
+            <a>일정</a>
+            <ul class="hide" style="display: block;">
+                <li>학사일정</li>
+                <li>과제일정</li>
+                <li>메뉴2-3</li>
+            </ul>
+        </li>
+        <li class="menu" style="margin-top: 20px;">
+            <a>한아름 소나무 숲</a>
+        </li>
+      </ul>
+    </div>
+            <h6 class="sidebar-heading d-flex justify-content-left align-items-center px-3 mt-4 mb-1 text-muted">
+
+              <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
+                <span data-feather="plus-circle"></span>
+              </a>
+            </h6>
+
+          </div>
+        </nav>
+        <div class="side-button slide-anim">
+          <i class="fa fa-outdent slider" aria-hidden="true"></i>
+        </div>
+        <main role="main" class="col-md-10 ml-sm-auto col-lg-10 px-4 slide-anim" style="overflow: hidden">
+            {% block content %}
+            {% endblock %}
+        </main>
+      </div>
+    </div>
+
+
 </body>
 {% endblock %}
