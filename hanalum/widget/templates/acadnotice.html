@@ -8,36 +8,32 @@
 
 {% block content%}
 
-<div id="container noticebox ">
-    <div class="row my-4 border">
-        <div class="col-2 noticetitle">학사공지</div>
-        <div class="col-10" id="notice-list">
-            <div>
-                <ol>
-                    <li><a href="#">1111111111</a></li>
-                    <li><a href="#">22222222222222222</a></li>
-                    <li><a href="#">333333</a></li>
-                </ol>
-            </div>
-        </div>
+<div class="my-3 shadow-sm row w-50 float-right">
+    <div class="noticetitle col-3 bg-info text-light">학사공지</div>
+    <div class="roll-area">
+        <ul class="noticelist col-9">
+            <li>Uno</li>
+            <li>Dos</li>
+            <li>Tres</li>
+            <li>Uno</li>
+        </ul>
     </div>
 </div>
 
 <script>
     $(function() {
-        var count = $('#notice-list li').length;
-        var height = $('#notice-list li').height();
+        var count = $('.noticelist li').length;
+        var height = $('.noticelist li').height();
         
-        function step(index) {
-            $('#notice-list ol').delay(3000).animate({
+        function ascend(index) {
+            $('.noticelist').delay(3000).animate({
                 top: -height * index,
              }, 500, function() {
-                if(index < count) step((index + 1));
-                else $('#notice-list ol').css({top: 0}), step(1);
+                if(index < count - 1) ascend((index + 1));
+                else $('.noticelist').css({top: 0}), ascend(1);
             });
-        }
-        
-        step(1);
+        }        
+        ascend(1);
     });
 </script>
 {% endblock %}
