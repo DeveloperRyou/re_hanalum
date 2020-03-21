@@ -21,26 +21,29 @@
   .img-unnamed{
   width: 50px;
   height: 50px;
-  border-radius: 50px;
+  border-radius: 70%;
+  overflow: hidden;
   margin-left:10px;
   margin-top: 15px;
+  object-fit: cover;
   float: left;
   }
-  .menu a{
+  .menu div{
   cursor:pointer;
   font-size: large;
   }
-
+  .menu div:hover{background-color: #A9E2F3; color: white; font-weight: bold}
+  .hide li:hover{background-color: #CEECF5; color: white; font-weight: bold}
+  .menu {list-style: none;}
   .menu .hide{
   display:none;
-  padding: 5px;
-  margin: 5px;
+  padding: 0px;
+  list-style: none;
+  cursor: pointer;
+
   }
   .hide li{
   padding: 5px;
-  }
-  #side{
-  font-color: red;
   }
 
   .nickname{
@@ -51,10 +54,17 @@
   font-weight:bold;
   font-size: x-large;
   }
+  .profile{
+  border-color: #FFFFFF;
+  border-width: 0 0 2px 0;
+  border-style: solid;
+  padding-bottom: 10px;
+  background-color: #E6E6E6;
+  }
 </style>
 
 <body data-gr-c-s-loaded="true">
-    <nav class="navbar navbar-dark fixed-top flex-md-nowrap p-0 shadow" style="background-color: #585454">
+    <nav class="navbar navbar-dark fixed-top flex-md-nowrap p-0" style="background-color: #585454">
       <a href="#"> <img class="img-title" src="/static/images/title.png" alt=""> </a>
       <ul class="navbar-nav px-3" style="padding-bottom:5px; padding-top:5px; ">
         <li class="nav-item text-nowrap">
@@ -67,13 +77,65 @@
     <div class="container-fluid">
       <div class="row">
         <nav class="col-md-2 d-none d-md-block bg-light sidebar shadow-sm">
-          <div class="sidebar col-md-3">
+          <div class="sidebar col-md-2">
+              <div class="profile">
             <a href="#"> <img class="img-unnamed" src="/static/images/unnamed.jpg" alt=""> </a>
               <div class="nickname pl-3" style="margin-top: 15px;"> @ @ @ </div> <br>
-            <script type="text/javascript">
+              </div>
+
+<div>
+    <ul style="padding: 15px;">
+        <li class="menu" style="margin-top: 30px">
+            <div> 게시판 </div>
+            <ul class="hide" style="display: block;">
+                <li>청원게시판</li>
+                <li>익명게시판</li>
+                <li>멘토링게시판</li>
+            </ul>
+        </li>
+        <li class="menu" style="margin-top: 20px;">
+            <div>급식</div>
+            <ul class="hide" style="display: block;">
+                <li>학사일정</li>
+                <li>과제일정</li>
+                <li>메뉴2-3</li>
+            </ul>
+        </li>
+        <li class="menu" style="margin-top: 20px;">
+            <div>일정</div>
+            <ul class="hide" style="display: block;">
+                <li>학사일정</li>
+                <li>과제일정</li>
+                <li>메뉴2-3</li>
+            </ul>
+        </li>
+        <li class="menu" style="margin-top: 20px;">
+            <div>한아름 소나무 숲</div>
+        </li>
+      </ul>
+    </div>
+            <h6 class="sidebar-heading d-flex justify-content-left align-items-center px-3 mt-4 mb-1 text-muted">
+
+              <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
+                <span data-feather="plus-circle"></span>
+              </a>
+            </h6>
+
+          </div>
+        </nav>
+        <div class="side-button slide-anim">
+          <i class="fa fa-outdent slider" aria-hidden="true"></i>
+        </div>
+        <main role="main" class="col-md-10 ml-sm-auto col-lg-10 px-4 slide-anim" style="overflow: hidden">
+            {% block content %}
+            {% endblock %}
+        </main>
+      </div>
+    </div>
+<script type="text/javascript">
 
     $(document).ready(function(){
-        $(".menu>a").click(function(){
+        $(".menu>div").click(function(){
             var submenu = $(this).next("ul");
 
             if( submenu.is(":visible") ){
@@ -100,56 +162,6 @@
       });
 
     </script>
-<div>
-    <ul>
-        <li class="menu" style="margin-top:30px;">
-            <a> 게시판 </a>
-            <ul class="hide" style="display: block;">
-                <li>청원게시판</li>
-                <li>익명게시판</li>
-                <li>멘토링게시판</li>
-            </ul>
-        </li>
-        <li class="menu" style="margin-top: 20px;">
-            <a>급식</a>
-            <ul class="hide" style="display: block;">
-                <li>학사일정</li>
-                <li>과제일정</li>
-                <li>메뉴2-3</li>
-            </ul>
-        </li>
-        <li class="menu" style="margin-top: 20px;">
-            <a>일정</a>
-            <ul class="hide" style="display: block;">
-                <li>학사일정</li>
-                <li>과제일정</li>
-                <li>메뉴2-3</li>
-            </ul>
-        </li>
-        <li class="menu" style="margin-top: 20px;">
-            <a>한아름 소나무 숲</a>
-        </li>
-      </ul>
-    </div>
-            <h6 class="sidebar-heading d-flex justify-content-left align-items-center px-3 mt-4 mb-1 text-muted">
-
-              <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
-                <span data-feather="plus-circle"></span>
-              </a>
-            </h6>
-
-          </div>
-        </nav>
-        <div class="side-button slide-anim">
-          <i class="fa fa-outdent slider" aria-hidden="true"></i>
-        </div>
-        <main role="main" class="col-md-10 ml-sm-auto col-lg-10 px-4 slide-anim" style="overflow: hidden">
-            {% block content %}
-            {% endblock %}
-        </main>
-      </div>
-    </div>
-
 
 </body>
 {% endblock %}
