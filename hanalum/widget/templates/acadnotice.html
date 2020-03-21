@@ -8,31 +8,36 @@
 
 {% block content%}
 
-<div class="container mt-4 ml-5" class="">
-    <div class="row noticebox">
-        <div class="col-2 py-3 text-center noticetitle"> 학사공지 </div>
-        <div class="col-8 noticebox-inner">
-            <div class="notice-item active">1제목~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</div>
-            <div class="notice-item">2제목~~~~~~~~~~~~~~~~~~~~~~</div>
-            <div class="notice-item">3제목~~~~~~~~~~~~~~~</div>
+<div id="container noticebox ">
+    <div class="row my-4 border">
+        <div class="col-2 noticetitle">학사공지</div>
+        <div class="col-10" id="notice-list">
+            <div>
+                <ol>
+                    <li><a href="#">1111111111</a></li>
+                    <li><a href="#">22222222222222222</a></li>
+                    <li><a href="#">333333</a></li>
+                </ol>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
-var slideIndex = 0;
-showSlides();
-
-function showSlides() {
-    var i;
-    var slides = document.getElementsByClassName("notice-item");
-    for (i = 0; i < slides.length; i++) {
-       slides[i].style.display = "none";  
-    }
-    if(slideIndex >= 3) slideIndex = 0;
-    slideIndex++;
-    slides[slideIndex-1].style.display = "block";  
-    setTimeout(showSlides, 3000);
-}
+    $(function() {
+        var count = $('#notice-list li').length;
+        var height = $('#notice-list li').height();
+        
+        function step(index) {
+            $('#notice-list ol').delay(3000).animate({
+                top: -height * index,
+             }, 500, function() {
+                if(index < count) step((index + 1));
+                else $('#notice-list ol').css({top: 0}), step(1);
+            });
+        }
+        
+        step(1);
+    });
 </script>
 {% endblock %}
