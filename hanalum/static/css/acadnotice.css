@@ -1,13 +1,3 @@
-/* .noticetitle{background:#0F2462; color:#fcfffc; font-size:1rem; line-height: 1rem;}
-.noticebox-inner{vertical-align:middle;}
-.notice-item{line-height: 80px; display:none;}
-.active{display:block} */
-
-.noticebox{display:grid;}
-.noticetitle{background-color: blue; color: white;}
-#notice-list a {color: #000;text-decoration: none;}
-#notice-list a:hover {text-decoration: underline;}
-#notice-list {overflow: hidden;width: 160px;height: 20px;margin: 0;}
-#notice-list div {position: relative;margin: 0;}
-#notice-list ol {position: absolute;top: 0;left: 0;margin: 0;padding: 0;list-style-type: none;}
-#notice-list li {height: 20px;line-height: 20px;}
+.noticetitle{border-radius:5px 0 0 5px; height: 3rem; text-align: center; line-height: 3rem; font-size: 1.15rem;}
+.noticelist{list-style:none; margin:0; border-radius:0 5px 5px 0;height: 3rem; text-align: center; line-height: 3rem; font-size: 1.15rem;z-index:-1;} 
+.roll-area{overflow: hidden;}
