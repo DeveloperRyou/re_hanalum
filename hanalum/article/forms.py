@@ -20,5 +20,6 @@ class ArticleCreationForm(forms.ModelForm):
         # 비밀번호를 해시 상태로 저장
         article = super().save(commit=False)
         article.pub_user = kwargs.get('pub_user')
+        article.board_type = kwargs.get('board_type')
         article.save()
         return article.pk
