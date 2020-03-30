@@ -3,6 +3,7 @@ from .forms import ArticleCreationForm
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Article
+from board.models import Board
 
 
 # Create your views here.
@@ -18,7 +19,9 @@ def write(request):
     if request.method == "POST":
         form = ArticleCreationForm(request.POST, request.FILES)
         if form.is_valid():
-            pk = form.save(pub_user = request.user)
+            #유저가 게시판에 등록할수 있는지 검사 필요
+            board_type = get_object_or_404(Board, board_id=request.GET['board_type'])
+            pk = form.save(pub_user=request.user, board_type=board_type)
             return redirect('/article/'+str(pk))
         else:
             return render(request, 'write.html', {'form': form})
