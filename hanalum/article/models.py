@@ -68,3 +68,17 @@ class Article(models.Model):
         except:
             pass
         super(Article, self).delete(*args, **kwargs)  # 원래의 delete 함수를 실행
+
+class Like(models.Model):
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE
+    ) # 추천 할 user 정보
+    article_type = models.ForeignKey(
+        Article,
+        on_delete=models.CASCADE
+    ) # 추천 받을 article 정보
+    num_good = models.IntegerField(
+        verbose_name='Num_good',
+        default=0,
+    ) # 값이 -1이면 비추, 1이면 추
