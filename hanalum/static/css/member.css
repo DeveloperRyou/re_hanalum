@@ -51,7 +51,7 @@ a:hover {
   background-color: #ffffffc0;
   border-radius: 20px;
 }
-.form-register .password_error {
+.form-register .register_error {
     font-size: 13px;
     display: inline-block;
     color: red;
