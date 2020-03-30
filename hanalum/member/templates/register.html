@@ -20,8 +20,20 @@
     {% for field in form %}
       <div class="mb-3">
         <label for="{{field.id_for_label}}">{{field.label}}</label>
+        {% if field.id_for_label == "id_email" %}
+          <div class="register_error ml-3 mb-2">{{email_error}}</div>
+        {% endif %}
+        {% if field.id_for_label == "id_nickname" %}
+          <div class="register_error ml-3 mb-2">{{nickname_error}}</div>
+        {% endif %}
+        {% if field.id_for_label == "id_password" %}
+          <div class="register_error ml-3 mb-2">{{password_error}}</div>
+        {% endif %}
         {% if field.id_for_label == "id_password2" %}
-          <div class="password_error ml-3 mb-2">{{error}}</div>
+          <div class="register_error ml-3 mb-2">{{password2_error}}</div>
+        {% endif %}
+        {% if field.id_for_label == "id_realname" %}
+          <div class="register_error ml-3 mb-2">{{realname_error}}</div>
         {% endif %}
         {{field}}
       </div>

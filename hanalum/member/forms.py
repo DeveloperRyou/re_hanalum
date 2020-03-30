@@ -34,18 +34,25 @@ class UserCreationForm(forms.ModelForm):
 
         p = re.compile("^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$")
         is_match = p.match(password1)  # 여기에 비밀번호 정규식
-        if is_match is None:  # 비밀번호가 정규식에 매치됨
+        if is_match is None:  # 비밀번호가 정규식에 매치되지 않음
             return "비밀번호는 8자리 이상 소문자+숫자"
 
         if password1 and password2 and password1 != password2:
             return "비밀번호가 일치하지 않습니다."
-        return None
+        return ""
 
-    def check_realname(self): # 실명확인
-        return
+    def check_realname(self, _realname): # 실명확인
+        p = re.compile("^[가-힣]+$")
+        is_match = p.match(_realname)
+        if is_match is None:
+            return "한글 실명을 입력하세요."
+        return ""
 
     def check_email(self, _email):
         return User.objects.filter(email=_email).count()
+
+    def check_nickname(self, _nickname):
+        return User.objects.filter(nickname=_nickname).count()
 
     def save(self, commit=True):
         # 비밀번호를 해시 상태로 저장
