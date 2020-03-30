@@ -10,7 +10,7 @@ def login(request):
         if form.is_valid():
             user = form.login(request)
             if user:
-                return redirect('article')
+                return redirect('main')
             else:
                 return redirect('login')
         else:

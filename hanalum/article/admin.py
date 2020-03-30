@@ -1,6 +1,5 @@
 from django.contrib import admin
 
-from .forms import ArticleCreationForm
 from .models import Article
 from .models import Like
 
@@ -14,3 +13,4 @@ class LikeAdmin(admin.ModelAdmin):
     list_display = ['num_good',]
 
 admin.site.register(Like, LikeAdmin)
+

@@ -21,4 +21,4 @@ class ArticleCreationForm(forms.ModelForm):
         article = super().save(commit=False)
         article.pub_user = kwargs.get('pub_user')
         article.save()
-        return article
+        return article.pk

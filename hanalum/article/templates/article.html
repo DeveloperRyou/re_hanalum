@@ -8,27 +8,44 @@
 
 {% block content %}
   <div class="my-3 p-3 bg-white rounded shadow-sm">
-    <h6 class="pb-2 mb-0 border-bottom border-gray">제목</h6>
+    <h6 class="pb-2 mb-0 border-bottom border-gray">{{article.title}}</h6>
     <div class="media text-muted pt-3">
-      <p class="media-body pb-3 mb-0 small lh-125">
-        안녕하세요 이곳은 글입니다.<br/>
-        제가 글이라면 글인겁니다.<br/><br/>
-        절 믿으세요.<br/><br/><br/>
-        33o1mm2llx -> 11omm3dsss<br/>
-        112mkmsoo2 -> 1skomdl3ms<br/>
-        askndlksdn -> lwkencllsm<br/>
-      </p>
+      <div class="media-body pb-3 mb-0 small lh-125">
+        {{article.content | safe }}
+      </div>
     </div>
 
     <div class="media-body">
-        <div class="d-flex align-items-center">
-          <p class="mb-0">다운로드 파일 이름</p>
-          <button type="button" class="btn btn-primary">다운로드</button>
+      {% if article.file_1 %}
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="{{article.file_1}}" disabled/>
+            <a href="/media/{{article.file_1}}" download>
+              <div class="input-group-append">
+                <span class="input-group-text">download</span>
+              </div>
+            </a>
         </div>
-        <div class="d-flex align-items-center">
-          <p class="mb-0">다운로드 파일 이름</p>
-          <button type="button" class="btn btn-primary">다운로드</button>
+      {% endif %}
+      {% if article.file_2 %}
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="{{article.file_2}}" disabled/>
+            <a href="/media/{{article.file_2}}" download>
+              <div class="input-group-append">
+                <span class="input-group-text">download</span>
+              </div>
+            </a>
         </div>
+      {% endif %}
+      {% if article.file_3 %}
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="{{article.file_3}}" disabled/>
+            <a href="/media/{{article.file_3}}" download>
+              <div class="input-group-append">
+                <span class="input-group-text">download</span>
+              </div>
+            </a>
+        </div>
+      {% endif %}
     </div>
 
     <div class="media-body d-flex justify-content-center">
