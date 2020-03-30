@@ -2,11 +2,16 @@ from django.db import models
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 from member.models import User
+from board.models import Board
 from hanalum import settings
 import os
 
 # Create your models here.
 class Article(models.Model):
+    board_type = models.ForeignKey(
+        Board,
+        on_delete=models.CASCADE
+    )
     pub_user = models.ForeignKey(
         User,
         on_delete=models.CASCADE

@@ -1,10 +1,9 @@
 from django.contrib import admin
 
-from .forms import ArticleCreationForm
 from .models import Article
 
-class ArticleAdmin():
-    form = ArticleCreationForm
-    list_display = ['title', 'content',]
+class ArticleAdmin(admin.ModelAdmin):
+    list_display = ['title', 'content', 'pub_user', 'pub_date']
+    list_filter = ['pub_user', 'pub_date', ]
 
-admin.site.register(Article)
+admin.site.register(Article, ArticleAdmin)
