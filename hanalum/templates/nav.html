@@ -22,42 +22,41 @@
 
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar shadow-sm">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar shadow-sm slide-anim">
           <div class="sidebar col-md-2 slide-anim">
-              <div class="profile">
-            <a href="#"> <img class="img-unnamed" src="/static/images/unnamed.jpg" alt=""> </a>
+            <div class="profile">
+              <a href="#"> <img class="img-unnamed" src="/static/images/unnamed.jpg" alt=""> </a>
               <div class="nickname pl-3"> {{user}} </div> <br>
-              </div>
-
-<div>
-    <ul style="padding: 15px;">
-        {% for each_category in category %}
-            <li class="menu">
-                <div>{{each_category}}</div>
-                <ul class="hide">
-                    {% for each_unit in unit %}
-                        {% if each_unit.upper_category == each_category %}
-                            <li>{{each_unit}}</li>
-                        {% endif %}
-                    {% endfor %}
-                </ul>
-            </li>
-        {% endfor %}
-      </ul>
-    </div>
+            </div>
+            <div>
+              <ul style="padding: 15px;">
+                {% for each_category in category %}
+                    <li class="menu">
+                        <div>{{each_category}}</div>
+                        <ul class="hide">
+                            {% for each_unit in unit %}
+                                {% if each_unit.upper_category == each_category %}
+                                    <li>{{each_unit}}</li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+              </ul>
+            </div>
             <h6 class="sidebar-heading d-flex justify-content-left align-items-center px-3 mt-4 mb-1 text-muted">
-
               <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
                 <span data-feather="plus-circle"></span>
               </a>
             </h6>
-
           </div>
         </nav>
+
         <div class="side-button slide-anim">
           <i class="fa fa-outdent slider" aria-hidden="true"></i>
         </div>
-        <main role="main" class="col-md-10 ml-sm-auto col-lg-10 px-4 slide-anim" style="overflow: hidden">
+
+        <main role="main" class="col-md-10 ml-sm-auto col-lg-10 px-4 slide-anim">
             {% block content %}
             {% endblock %}
         </main>
