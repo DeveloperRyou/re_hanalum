@@ -2,7 +2,9 @@
 
 {% block content_body %}
 
+{% load extratags %}
 {% load static %}
+
 <style>
 
 </style>
@@ -24,38 +26,23 @@
           <div class="sidebar col-md-2 slide-anim">
               <div class="profile">
             <a href="#"> <img class="img-unnamed" src="/static/images/unnamed.jpg" alt=""> </a>
-              <div class="nickname pl-3"> @ @ @ </div> <br>
+              <div class="nickname pl-3"> {{user}} </div> <br>
               </div>
 
 <div>
     <ul style="padding: 15px;">
-        <li class="menu">
-            <div> 게시판 </div>
-            <ul class="hide">
-                <li>청원게시판</li>
-                <li>익명게시판</li>
-                <li>멘토링게시판</li>
-            </ul>
-        </li>
-        <li class="menu">
-            <div>급식</div>
-            <ul class="hide">
-                <li>학사일정</li>
-                <li>과제일정</li>
-                <li>메뉴2-3</li>
-            </ul>
-        </li>
-        <li class="menu">
-            <div>일정</div>
-            <ul class="hide">
-                <li>학사일정</li>
-                <li>과제일정</li>
-                <li>메뉴2-3</li>
-            </ul>
-        </li>
-        <li class="menu">
-            <div>한아름 소나무 숲</div>
-        </li>
+        {% for each_category in category %}
+            <li class="menu">
+                <div>{{each_category}}</div>
+                <ul class="hide">
+                    {% for each_unit in unit %}
+                        {% if each_unit.upper_category == each_category %}
+                            <li>{{each_unit}}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
       </ul>
     </div>
             <h6 class="sidebar-heading d-flex justify-content-left align-items-center px-3 mt-4 mb-1 text-muted">
