@@ -3,6 +3,10 @@ body {
   display: flex;
   background-color: #f5f5f5;
 }
+main{
+  display: flex;
+  overflow: hidden;
+}
 
 .is-background {
     background-image: url('../images/hanmin_background.jpg');
@@ -33,7 +37,8 @@ body {
 
 /* nav open and hide */
 .slide-anim{
-  transition: 0.3s;
+  transition: 300ms;
+  animation: slide 300ms;
 }
 
 .side-button{
