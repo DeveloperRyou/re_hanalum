@@ -39,3 +39,7 @@ def like(request):
         if value == 1: #추천을 이미 했으면서 또 할때
                 value = 0 #추천취소
     return render(request, 'article.html', {'value':value})
+
+'''def comment(request):
+    user = Comment.user
+'''    

@@ -87,3 +87,21 @@ class Like(models.Model):
         verbose_name='Num_good',
         default=0,
     ) # 값이 -1이면 비추, 1이면 추
+    
+class comment(models.Model):
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE
+    ) # 댓글 달 user 정보
+    article_type = models.ForeignKey(
+        Article,
+        on_delete=models.CASCADE
+    ) # 댓글 달릴 article 정보
+    content = models.CharField(
+        verbose_name='Content',
+        max_length=2000,
+    ) #댓글 내용
+    authority = models.IntegerField(
+        verbose_name='Authority',
+        default=0,
+    ) #댓글 읽기 권한
