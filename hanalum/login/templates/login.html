@@ -25,6 +25,12 @@
         <p class="mt-5 mb-0 text-muted">Hanalum</p>
         <p class="mt-0 text-muted">&copy; 2017-{% now 'Y' %}</p>
     </form>
+
+    {% if login_is_failed %}
+        <script type="text/javascript">
+             alert('올바른 회원 정보를 입력하세요.');
+        </script>
+    {% endif %}
 </body>
 
 {% endblock %}

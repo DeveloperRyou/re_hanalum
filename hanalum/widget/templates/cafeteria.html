@@ -1,12 +1,9 @@
 {% load static %}
 
-{% block css %}
 <link href="{% static 'css/cafeteria.css' %}" rel="stylesheet">
-{% endblock %}
 
-{% block content%}
-<div class="mb-3 rounded">
-  <div class="cafeteria-top-box bg-blue">
+<div class="cafeteria m-4">
+  <div class="top-box bg-blue">
     <label class="pointer-boxl">
       <i class="fa fa-caret-left fa-4x" aria-hidden="true"></i>
     </label>
@@ -17,8 +14,8 @@
     </label>
   </div>
 
-  <div class="cafeteria-content-box">
-    <div class="cafeteria-food-box">
+  <div class="content-box">
+    <div class="food-box">
       <div class="border-bottom border-gray">
         <p class="food-time">조식</p>
       </div>
@@ -26,7 +23,8 @@
         <span class="food-menu">시리얼<br>우유</span>
       </div>
     </div>
-    <div class="cafeteria-food-box">
+
+    <div class="food-box">
       <div class="border-bottom border-gray">
         <p class="food-time">중식</p>
       </div>
@@ -34,7 +32,7 @@
         <span class="food-menu">밥<br>국</span>
       </div>
     </div>
-    <div class="cafeteria-food-box">
+    <div class="food-box">
       <div class="border-bottom border-gray">
         <p class="food-time">석식</p>
       </div>
@@ -44,4 +42,3 @@
     </div>
   </div>
 </div>
-{% endblock %}

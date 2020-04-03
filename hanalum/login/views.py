@@ -12,9 +12,10 @@ def login(request):
             if user:
                 return redirect('main')
             else:
-                return redirect('login')
+                form = UserLoginForm()
+                return render(request, 'login.html', {'form': form, 'login_is_failed': True})
         else:
             return redirect('login')
     else:
         form = UserLoginForm()
-        return render(request, 'login.html', {'form':form})
+        return render(request, 'login.html', {'form': form})

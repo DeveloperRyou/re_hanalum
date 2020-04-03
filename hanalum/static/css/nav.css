@@ -15,7 +15,7 @@
   left: 0;
   z-index: 100; /* Behind the navbar */
   padding: 48px 0 0; /* Height of navbar */
-
+  background: #ffffff;
 }
 
 .sidebar-sticky {
@@ -84,6 +84,10 @@
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
 }
 
+.navbar-color {
+    background-color: #ffffff;
+}
+
 .navbar .form-control {
   padding: .75rem 1rem;
   border-width: 0;
@@ -102,15 +106,14 @@
 }
 .logout{
   color: white;
-  background-color:#3B3838;
+  background-color: #3f7eff;
   width:90px;
   text-align:center;
   border-radius:10px;
   font-size:16px;
   }
   .img-title{
-  width:100%;
-  height:30px;
+  width: 120px;
   margin-left: 10px;
   display: block;
   }
@@ -119,10 +122,7 @@
   height: 50px;
   border-radius: 70%;
   overflow: hidden;
-  margin-left:10px;
-  margin-top: 15px;
   object-fit: cover;
-  float: left;
   }
   .menu div{
   cursor:pointer;
@@ -130,7 +130,7 @@
   padding: 5px;
   }
   .menu div:hover{
-  background-color: #A9E2F3;
+  background-color: #5aabff;
   color: white;
   font-weight: bold
   }
@@ -154,19 +154,21 @@
   padding: 5px;
   }
 
-  .nickname{
-  display:inline-block;
-  margin:10px;
-  padding:5px;
-  color:black;
-  font-weight:bold;
-  font-size: x-large;
-  margin-top: 15px;
-  }
+  .nickname {
+    display:inline-block;
+    margin:10px;
+    padding:5px;
+    color:black;
+    font-size: 20px;
+    font-family: sans-serif;
+    font-weight: lighter;
+    }
+
   .profile{
-  border-color: #FFFFFF;
-  border-width: 0 0 2px 0;
+  border-color: #e5e5e5;
+  border-width: 1px 0 1px 0;
   border-style: solid;
-  padding-bottom: 10px;
-  background-color: #E6E6E6;
+  padding: 9px;
+  background-color: #ffffff;
+  margin-top: 2px;
   }

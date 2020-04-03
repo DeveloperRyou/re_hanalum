@@ -3,11 +3,6 @@
   padding: 0;
   box-sizing: border-box; }
 
-body {
-  background: #dcdcdc;
-  font-family: 'Roboto', sans-serif;
-}
-
 .text-center {
   text-align: center;
 }
@@ -71,7 +66,7 @@ body {
 
 .calendar .left-side {
     width: 320px;
-    background: #ec364f;
+    background: #368cec;
     float: left;
 }
 .calendar .current-day, .calendar .current-day-events {
@@ -202,7 +197,7 @@ body {
 
 .calendar .calendar-days li.active-day:after {
       color: white;
-      background: #ec364f;
+      background: #368cec;
 }
 
 .calendar .calendar-week {
