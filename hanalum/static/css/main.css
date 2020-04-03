@@ -4,6 +4,7 @@ body {
 }
 
 .widget-space {
+    display: flex;
     margin-top: 20px;
     height: 100%;
     width: 90%;
