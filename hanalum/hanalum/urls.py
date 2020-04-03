@@ -28,6 +28,7 @@ from django.conf.urls import include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', login.views.login, name='login'),
+    path('logout', login.views.logout, name='logout'),
     path('main/', main.views.main, name='main'),
 
     path('article/<int:article_id>', article.views.article, name='article/<int:article_id>'),
