@@ -8,18 +8,21 @@
 
 {% block content%}
 
-<div class="widget-space">
-        <div>
-            {% include 'calendar.html' %}
-        </div>
-        <div>
-            {% include 'cafeteria.html' %}
-        </div>
+<div>
+    {% include 'acadnotice.html' %}
 </div>
+<div>
+    {% include 'calendar.html' %}
+</div>
+<div>
+    {% include 'cafeteria.html' %}
+</div>
+
+
+<!-- 경식이 올때까지 봉인
 <div class="checkbox-space">
-        <div class="checkbox-board">
-            
-        </div>
-</div>
+    <div class="checkbox-board">
+    </div>
+</div>-->
 
 {% endblock %}
