@@ -36,6 +36,7 @@ urlpatterns = [
     path('write/<str:board_id>', article.views.write, name='write'),
 
     path('register/', member.views.register, name='register'),
+    path('memberinfo/', member.views.memberinfo, name='memberinfo'),
     path('agree/', member.views.agree, name='agree'),
 
     path('board/<str:board_id>', board.views.board, name='board'),

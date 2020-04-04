@@ -1,13 +1,13 @@
 from django.shortcuts import render
-from .forms import UserCreationForm
+from .forms import UserCreationForm, CustomUserChangeForm
 from django.shortcuts import redirect
+from django.contrib.auth import update_session_auth_hash
 
 
 # Create your views here.
 def register(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
-
         nickname_error = ""
         email_error = ""
 
@@ -38,4 +38,30 @@ def register(request):
 
 def agree(request):
     return render(request, 'agree.html')
+
+def memberinfo(request):
+    if request.method == "POST":
+        form = CustomUserChangeForm(request.POST, instance = request.user)
+        nickname_error = ""
+
+        if form.check_nickname(request.POST['nickname']) > 0:
+            nickname_error = "이미 사용중인 닉네임입니다."
+
+        if nickname_error == "":  # 닉네임과 이메일 모두 사용가능한경우
+            if form.is_valid():
+                is_error = form.check_password()
+                if is_error == "":
+                    user = form.save()
+                    update_session_auth_hash(request, user)
+                    return redirect('main')
+                else:
+                    return render(request, 'memberinfo.html', {'form': form, 'password2_error': is_error})
+            else:
+                return redirect('register')
+        else:  # 닉네임 중복인경우
+            return render(request, 'memberinfo.html', {'form': form, 'nickname_error': nickname_error})
+
+    else:
+        form = CustomUserChangeForm(instance = request.user)
+        return render(request, 'memberinfo.html', {'form': form})
 
