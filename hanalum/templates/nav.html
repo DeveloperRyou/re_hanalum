@@ -5,16 +5,12 @@
 {% load extratags %}
 {% load static %}
 
-<style>
-
-</style>
-
 <body data-gr-c-s-loaded="true">
-    <nav class="navbar navbar-dark fixed-top flex-md-nowrap p-0" style="background-color: #585454">
+    <nav class="navbar navbar-color fixed-top flex-md-nowrap p-0">
       <a href="#"> <img class="img-title" src="/static/images/title.png" alt=""> </a>
       <ul class="navbar-nav px-3" style="padding-bottom:5px; padding-top:5px; ">
         <li class="nav-item text-nowrap">
-          <a class="nav-link logout" href="#"><strong>로그아웃</strong></a>
+          <a class="nav-link logout" href="{% url 'logout' %}"><strong>로그아웃</strong></a>
         </li>
       </ul>
     </nav>
@@ -22,11 +18,11 @@
 
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar shadow-sm slide-anim">
+        <nav class="col-md-2 d-none d-md-block sidebar shadow-sm slide-anim">
           <div class="sidebar col-md-2 slide-anim">
             <div class="profile">
-              <a href="#"> <img class="img-unnamed" src="/static/images/unnamed.jpg" alt=""> </a>
-              <div class="nickname pl-3"> {{user}} </div> <br>
+              <img class="img-unnamed" src="/static/images/unnamed.jpg" alt="">
+              <div class="nickname"> {{user}} </div> <br>
             </div>
             <div>
               <ul style="padding: 15px;">
@@ -57,8 +53,10 @@
         </div>
 
         <main role="main" class="col-md-10 ml-sm-auto col-lg-10 px-4 slide-anim">
-            {% block content %}
-            {% endblock %}
+            <div class="content">
+                {% block content %}
+                {% endblock %}
+            </div>
         </main>
       </div>
     </div>

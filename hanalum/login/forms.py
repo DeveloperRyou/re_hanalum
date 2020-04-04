@@ -28,5 +28,6 @@ class UserLoginForm(forms.Form):
             auth.login(request, user)
             return user
         else:
-            raise forms.ValidationError("비밀번호가 일치하지 않습니다")
+            return
+            #raise forms.ValidationError("비밀번호가 일치하지 않습니다")
 
