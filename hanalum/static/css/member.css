@@ -56,8 +56,17 @@ a:hover {
     color: red;
 }
 .form-register .white_background{
-  padding: 5px;
-  margin: auto;
-  background-color: #f8f9fa;
-  border-radius: 5px;
- }
+    padding: 5px;
+    margin: auto;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+/* 정보수정, 탈퇴페이지 */
+.memberinfo .form-control{
+    float:right;
+    width: 80%;
+}
+.memberinfomenu p{
+    display: inline-block;
+}
