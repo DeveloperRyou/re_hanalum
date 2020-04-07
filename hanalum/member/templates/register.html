@@ -1,0 +1,51 @@
+{% extends "head.html" %}
+
+{% load static %}
+
+{% block css %}
+<link href="{% static 'css/member.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content_body %}
+
+<body class="bg-light is-background">
+  <div class="container m-auto">
+  <form method = "POST" action = "{% url 'register' %}" class="form-register">
+    {% csrf_token %}
+    <div class="text-center">
+      <img class="main-icon mb-3" src= "{% static 'images/main_icon.png' %}" alt="" width="140" height="140">
+    </div>
+    <h4 class="mb-3 text-center text-muted">가입자 정보</h4>
+
+    {% for field in form %}
+      <div class="mb-3">
+        <label for="{{field.id_for_label}}">{{field.label}}</label>
+        {% if field.id_for_label == "id_email" %}
+          <div class="register_error ml-3 mb-2">{{email_error}}</div>
+        {% endif %}
+        {% if field.id_for_label == "id_nickname" %}
+          <div class="register_error ml-3 mb-2">{{nickname_error}}</div>
+        {% endif %}
+        {% if field.id_for_label == "id_password" %}
+          <div class="register_error ml-3 mb-2">{{password_error}}</div>
+        {% endif %}
+        {% if field.id_for_label == "id_password2" %}
+          <div class="register_error ml-3 mb-2">{{password2_error}}</div>
+        {% endif %}
+        {% if field.id_for_label == "id_realname" %}
+          <div class="register_error ml-3 mb-2">{{realname_error}}</div>
+        {% endif %}
+        {{field}}
+      </div>
+    {% endfor %}
+
+    <hr class="mb-4">
+    <button class="btn btn-primary btn-lg btn-block" type="submit">회원 가입</button>
+  </form>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.4/dist/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+  <script src="form-validation.js"></script>
+</body>
+
+{% endblock %}

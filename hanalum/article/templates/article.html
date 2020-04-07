@@ -1,0 +1,84 @@
+{% extends "nav.html" %}
+
+{% load static %}
+
+{% block css %}
+<link href="{% static 'css/article.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+  <div class="my-3 p-3 bg-white rounded shadow-sm">
+    <h6 class="pb-2 mb-0 border-bottom border-gray">{{article.title}}</h6>
+    <div class="media text-muted pt-3">
+      <div class="media-body pb-3 mb-0 small lh-125">
+        {{article.content | safe }}
+      </div>
+    </div>
+
+    <div class="media-body">
+      {% if article.file_1 %}
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="{{article.file_1}}" disabled/>
+            <a href="/media/{{article.file_1}}" download>
+              <div class="input-group-append">
+                <span class="input-group-text">download</span>
+              </div>
+            </a>
+        </div>
+      {% endif %}
+      {% if article.file_2 %}
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="{{article.file_2}}" disabled/>
+            <a href="/media/{{article.file_2}}" download>
+              <div class="input-group-append">
+                <span class="input-group-text">download</span>
+              </div>
+            </a>
+        </div>
+      {% endif %}
+      {% if article.file_3 %}
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="{{article.file_3}}" disabled/>
+            <a href="/media/{{article.file_3}}" download>
+              <div class="input-group-append">
+                <span class="input-group-text">download</span>
+              </div>
+            </a>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="media-body d-flex justify-content-center">
+      <button type="button" class="btn btn-primary" <a herf = "{% url 'like' %}">{{value}}</a> </button>
+      <button type="button" class="btn btn-outline-primary">비추천</button>
+    </div>
+
+    <div class="d-block text-right pb-3 border-bottom border-gray">
+      <a href="#">수정</a>
+      <a href="#">삭제</a>
+      <a href="#">목록으로</a>
+    </div>
+
+    <h6 class="pb-2 pt-3">댓글</h6>
+
+    <div class="media border pb-3 mb-4">
+      <img src="img_avatar3.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+      <div class="media-body">
+        <h4>John Doe <small><i>Posted on February 19, 2016</i></small></h4>
+        <p>Lorem ipsum...</p>
+      </div>
+    </div>
+
+    <h6 class="pb-2 pt-3 mt-3 border-top border-gray">댓글 작성</h6>
+
+    <div class="media pb-2">
+      <div class="media-body">
+        <form action="">
+          <textarea class="form-control mb-2" placeholder="내용을 입력하세요."></textarea>
+          <input type="submit" value="등록" class="btn btn-success float-right">
+        </form>
+      </div>
+    </div>
+
+  </div>
+{% endblock %}

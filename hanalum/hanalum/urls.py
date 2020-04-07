@@ -15,7 +15,34 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+import login.views
+import article.views
+import member.views
+import board.views
+import widget.views
+import main.views
+from django.conf import settings
+from django.conf.urls.static import static
+from django.conf.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    path('', login.views.login, name='login'),
+    path('logout', login.views.logout, name='logout'),
+    path('main/', main.views.main, name='main'),
+
+    path('article/<int:article_id>', article.views.article, name='article'),
+    path('like/', article.views.like, name='like'),
+    path('write/<str:board_id>', article.views.write, name='write'),
+
+    path('register/', member.views.register, name='register'),
+    path('memberinfo/', member.views.memberinfo, name='memberinfo'),
+    path('agree/', member.views.agree, name='agree'),
+
+    path('board/<str:board_id>', board.views.board, name='board'),
+
+    path('calendar/', widget.views.calendar, name='widget'),
+    path('cafeteria/', widget.views.cafeteria, name='widget'),
+    path('acadnotice/', widget.views.acadnotice, name='widget'),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

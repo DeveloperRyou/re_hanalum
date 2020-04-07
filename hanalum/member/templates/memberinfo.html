@@ -1,0 +1,56 @@
+{% extends "nav.html" %}
+
+{% load static %}
+
+{% block css %}
+<link href="{% static 'css/member.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="memberinfomenu">
+  <p>회원 정보</p>
+  <p>회원 탈퇴</p>
+</div>
+<hr>
+<div class="container memberinfo">
+  <form method = "POST" action = "{% url 'memberinfo' %}" class="form-register">
+    {% csrf_token %}
+      <div class="mb-3">
+        <label for="id_email">이메일</label>
+        <input type="text" value="{{user.email}}" class="form-control" id="id_email" disabled>
+      </div>
+      <div class="mb-3">
+        <label for="{{form.password1.id_for_label}}">{{form.password1.label}}</label>
+        {{form.password1}}
+      </div>
+      <div class="mb-3">
+        <label for="{{form.password2.id_for_label}}">{{form.password2.label}}</label>
+        {{form.password2}}
+      </div>
+      <div class="mb-3">
+        <label for="{{form.avatar.id_for_label}}">{{form.avatar.label}}</label>
+        {{form.avatar}}
+      </div>
+      <div class="mb-3">
+        <label for="{{form.nickname.id_for_label}}">{{form.nickname.label}}</label>
+        {{form.nickname}}
+        <div class="register_error ml-3 mb-2">{{nickname_error}}</div>
+      </div>
+      <div class="mb-3">
+        <label for="id_realname">실명</label>
+        <input type="text" value="{{user.realname}}" class="form-control" id="id_realname" disabled>
+      </div>
+      <div class="mb-3">
+        <label for="id_gender">성별</label>
+        <input type="text" value="{{user.get_gender_display}}" class="form-control" id="id_gender" disabled>
+      </div>
+      <div class="mb-3">
+        <label for="id_admission_year">입학년도</label>
+        <input type="text" value="{{user.admission_year}}" class="form-control" id="id_admission_year" disabled>
+      </div>
+      <hr>
+      <button class="btn btn-primary btn-lg btn-block" type="submit">회원정보 수정</button>
+  </form>
+  </div>
+
+{% endblock %}
