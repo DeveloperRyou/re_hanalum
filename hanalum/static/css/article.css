@@ -1,19 +1,32 @@
-main .lh-100 { line-height: 1; }
-main .lh-125 { line-height: 1.25; }
-main .lh-150 { line-height: 1.5; }
+main .lh-100 {
+    line-height: 1;
+}
+main .lh-125 {
+    line-height: 1.25;
+}
+main .lh-150 {
+    line-height: 1.5;
+}
 
-.django-ckeditor-widget { width:100%; }
+.django-ckeditor-widget {
+    width:100%;
+}
 
-.form-control:disabled, .form-control[readonly]{
+.form-control:disabled, .form-control[readonly] {
     background-color: white;
 }
 
-.input-group-append .input-group-text{
+.input-group-append .input-group-text {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
-.input-group-append a{
+.input-group-append a {
     display: block;
     width: 100%;
     height: 100%
+}
+
+.media-body img {
+    max-width: 100%;
+    height: auto;
 }
