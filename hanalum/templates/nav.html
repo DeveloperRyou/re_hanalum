@@ -21,18 +21,18 @@
         <nav class="col-md-2 d-none d-md-block sidebar shadow-sm slide-anim">
           <div class="sidebar col-md-2 slide-anim">
             <div class="profile">
-              <img class="img-unnamed" src="/static/images/unnamed.jpg" alt="">
+              <img class="profile-image" src="/static/images/no-profile.png" alt="">
               <div class="nickname"> {{user}} </div> <br>
             </div>
-            <div>
-              <ul style="padding: 15px;">
+            <div class="category-box">
+              <ul class="categories">
                 {% for each_category in category %}
-                    <li class="menu">
-                        <div>{{each_category}}</div>
-                        <ul class="hide">
+                    <li class="category" id="flip">
+                        <div class="no-drag">{{each_category}}</div>
+                        <ul class="boards hide">
                             {% for each_unit in unit %}
                                 {% if each_unit.upper_category == each_category %}
-                                    <li>{{each_unit}}</li>
+                                    <li class="board no-drag"><a href="{{each_unit.menu_url}}">{{each_unit}}</a></li>
                                 {% endif %}
                             {% endfor %}
                         </ul>
@@ -64,7 +64,7 @@
     <script type="text/javascript">
 
     $(document).ready(function(){
-        $(".menu>div").click(function(){
+        $("#flip>div").click(function(){
             var submenu = $(this).next("ul");
 
             if( submenu.is(":visible") ){
