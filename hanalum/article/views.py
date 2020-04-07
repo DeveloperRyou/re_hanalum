@@ -5,7 +5,7 @@ from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Article
 from .models import Comment
-from .models import Like
+"""from .models import Like"""
 from board.models import Board
 
 
