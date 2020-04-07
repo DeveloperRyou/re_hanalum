@@ -23,7 +23,8 @@ import widget.views
 import main.views
 from django.conf import settings
 from django.conf.urls.static import static
-from django.conf.urls import include
+from django.conf.urls import incl
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -43,4 +44,5 @@ urlpatterns = [
     path('cafeteria/', widget.views.cafeteria, name='widget'),
     path('acadnotice/', widget.views.acadnotice, name='widget'),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('like/', article.views.article_like, name='article_like'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
