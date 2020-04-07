@@ -23,7 +23,7 @@ import widget.views
 import main.views
 from django.conf import settings
 from django.conf.urls.static import static
-from django.conf.urls import incl
+from django.conf.urls import include
 
 
 urlpatterns = [

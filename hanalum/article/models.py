@@ -41,11 +41,11 @@ class Article(models.Model):
         blank=True,
         related_name='like_user_set',
         through='Like',
-    )"""
+    )
     likes = models.ManyToManyField(
         User,
         verbose_name='likes',
-    )
+    )"""
     num_good = models.IntegerField(
         verbose_name='Num_good',
         default=0,
@@ -85,8 +85,9 @@ class Article(models.Model):
             pass
         super(Article, self).delete(*args, **kwargs)  # 원래의 delete 함수를 실행
 
+    """
     def total_likes(self):
-        return self.likes.count()
+        return self.likes.count()"""
  
 """
 class Like(models.Model):
