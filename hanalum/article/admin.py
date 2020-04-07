@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import Article
-from .models import Like
+"""from .models import Like"""
 
 class ArticleAdmin(admin.ModelAdmin):
     list_display = ['title', 'content', 'pub_user', 'pub_date']
@@ -9,8 +9,8 @@ class ArticleAdmin(admin.ModelAdmin):
 
 admin.site.register(Article, ArticleAdmin)
 
-class LikeAdmin(admin.ModelAdmin):
-    list_display = ['num_good',]
+"""class LikeAdmin(admin.ModelAdmin):
+    list_display = ['user','num_good', 'article_type',]
 
-admin.site.register(Like, LikeAdmin)
+admin.site.register(Like, LikeAdmin)"""
 
