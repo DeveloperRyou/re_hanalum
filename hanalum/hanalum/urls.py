@@ -29,16 +29,18 @@ from django.conf.urls import incl
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', login.views.login, name='login'),
+    path('logout', login.views.logout, name='logout'),
     path('main/', main.views.main, name='main'),
 
-    path('article/<int:article_id>', article.views.article, name='article/<int:article_id>'),
+    path('article/<int:article_id>', article.views.article, name='article'),
     path('like/', article.views.like, name='like'),
-    path('write/', article.views.write, name='write'),
+    path('write/<str:board_id>', article.views.write, name='write'),
 
     path('register/', member.views.register, name='register'),
+    path('memberinfo/', member.views.memberinfo, name='memberinfo'),
     path('agree/', member.views.agree, name='agree'),
 
-    path('board/<str:board_id>', board.views.board, name='board/<str:board_id>'),
+    path('board/<str:board_id>', board.views.board, name='board'),
 
     path('calendar/', widget.views.calendar, name='widget'),
     path('cafeteria/', widget.views.cafeteria, name='widget'),

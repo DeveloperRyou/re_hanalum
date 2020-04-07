@@ -7,7 +7,7 @@ class UserLoginForm(forms.Form):
     email = forms.CharField(
         label='이메일',
         widget=forms.EmailInput(
-            attrs={'class': 'form-control', 'placeholder': 'Email address', 'autofocus':'autofocus'}
+            attrs={'class': 'form-control', 'placeholder': 'Email address', 'autofocus':'autofocus', 'id': 'user_id'}
         )
     )
     password = forms.CharField(
@@ -28,5 +28,6 @@ class UserLoginForm(forms.Form):
             auth.login(request, user)
             return user
         else:
-            raise forms.ValidationError("비밀번호가 일치하지 않습니다")
+            return
+            #raise forms.ValidationError("비밀번호가 일치하지 않습니다")
 

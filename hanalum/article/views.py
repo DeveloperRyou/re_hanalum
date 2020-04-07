@@ -15,12 +15,12 @@ def article(request, article_id):
     return render(request, 'article.html', {'article': article_detail})
 
 
-def write(request):
+def write(request, board_id):
     if request.method == "POST":
         form = ArticleCreationForm(request.POST, request.FILES)
         if form.is_valid():
             #유저가 게시판에 등록할수 있는지 검사 필요
-            board_type = get_object_or_404(Board, board_id=request.GET['board_type'])
+            board_type = get_object_or_404(Board, board_id=board_id)
             pk = form.save(pub_user=request.user, board_type=board_type)
             return redirect('/article/'+str(pk))
         else:
@@ -38,7 +38,7 @@ def article_like(request, pk):
         article.likes.add(user)
     return HttpResponse(str(article.total_likes()))
 
-"""def like(request):
+def like(request):
     post = Post.objects.get(pk=pk)
     value = Like.num_good
     article_like, article_like_created = article.like_set.get_or_create(user=request.user)
@@ -52,4 +52,5 @@ def article_like(request, pk):
     context = {'like_count': article.like_count,
                'message': message,
                'nickname': request.user.profile.nickname}
-    return HttpResponse(json.dumps(context), content_type="application/json")"""
+    return HttpResponse(json.dumps(context), content_type="application/json")
+

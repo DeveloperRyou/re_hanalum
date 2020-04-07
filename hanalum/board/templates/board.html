@@ -42,43 +42,29 @@
             </tr>
     </thead>
     <tbody>
+      {% for article in articles %}
       <tr>
-        <td class="tdtitle"><a href="#">Lorem Ipsum</a></td>
+        <td class="tdtitle"><a href="{% url 'article' article_id=article.pk %}">{{article}}</a></td>
         <td class="tdprof">
           <img class="prof-img" src="{% static 'images/person.png' %}" alt="" width="30" height="30">
-          Nickname
+          {{article.pub_user}}
         </td>
         <td class="tdview">
           <img class="board-img" src="{% static 'images/eye.png' %}" alt="" width="20" height="20">
-          43
+          {{article.num_view}}
         </td>
         <td class="tdlike">
           <img class="board-img" src="{% static 'images/like.png' %}" alt="" width="20" height="20">
-          2
+          {{article.num_good}}
         </td>
-        <td class="tddate">20.03.12</td>
+        <td class="tddate">{{article.pub_date|date:'m-d'}}</td>
       </tr>
-      <tr>
-        <td class="tdtitle"><a href="#">Lorem Ipsum</a></td>
-        <td class="tdprof">
-          <img class="prof-img" src="{% static 'images/person.png' %}" alt="" width="30" height="30">
-          Nickname
-        </td>
-        <td class="tdview">
-          <img class="board-img" src="{% static 'images/eye.png' %}" alt="" width="20" height="20">
-          0
-        </td>
-        <td class="tdlike">
-          <img class="board-img" src="{% static 'images/like.png' %}" alt="" width="20" height="20">
-          0
-        </td>
-        <td class="tddate">03:59</td>
-      </tr>
+      {% endfor %}
     </tbody>
   </table>
 
   <div class="d-flex justify-content-end pt-2">
-    <button class="btn btn-success mx-3" id="post">글쓰기</button>
+    <button class="btn btn-success mx-3" id="post" onclick="location.href='{% url 'write' board_id=board_id %}' ">글쓰기</button>
     <button class="btn btn-success mx-3" id="delete">삭제</button>
   </div>
   <nav class="text-center mt-3 container">
