@@ -1,5 +1,6 @@
 from django import forms
 from .models import Article
+from .models import Comment
 from ckeditor.widgets import CKEditorWidget
 
 
@@ -23,3 +24,11 @@ class ArticleCreationForm(forms.ModelForm):
         article.board_type = kwargs.get('board_type')
         article.save()
         return article.pk
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['content',]
+        widgets = {
+            'content': forms.Textarea(attrs={'placeholder': '댓글을 입력하십시오', 'class': 'mb-2',})
+        }

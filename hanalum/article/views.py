@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from .forms import ArticleCreationForm
+from .forms import CommentForm
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Article
+from .models import Comment
+from .models import Like
 from board.models import Board
 
 
@@ -11,8 +14,9 @@ from board.models import Board
 """@login_required"""
 def article(request, article_id):
     article_detail = get_object_or_404(Article, pk=article_id)
+    form = CommentForm()
     print(article_detail)
-    return render(request, 'article.html', {'article': article_detail})
+    return render(request, 'article.html', {'article': article_detail, 'form': form})
 
 
 def write(request, board_id):
@@ -54,3 +58,15 @@ def like(request):
                'nickname': request.user.profile.nickname}
     return HttpResponse(json.dumps(context), content_type="application/json")
 
+def comment(request, article_id):
+    if request.method == "POST":
+        article = get_object_or_404(article, pk=article_id)
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            form.save(commit=False)
+            comment.article = article
+            comment.writer = request.user
+            form.save()
+    else:
+        pass
+      

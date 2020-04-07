@@ -73,8 +73,9 @@
 
     <div class="media pb-2">
       <div class="media-body">
-        <form action="">
-          <textarea class="form-control mb-2" placeholder="내용을 입력하세요."></textarea>
+        <form action="{% url 'comment' article_id=article.pk %}" method="POST">
+          {% csrf_token %}
+          {{ form }}
           <input type="submit" value="등록" class="btn btn-success float-right">
         </form>
       </div>

@@ -35,6 +35,7 @@ urlpatterns = [
     path('article/<int:article_id>', article.views.article, name='article'),
     path('like/', article.views.like, name='like'),
     path('write/<str:board_id>', article.views.write, name='write'),
+    path('article/<int:article_id>', article.views.comment, name='comment'),
 
     path('register/', member.views.register, name='register'),
     path('memberinfo/', member.views.memberinfo, name='memberinfo'),
