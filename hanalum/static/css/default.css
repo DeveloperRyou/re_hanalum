@@ -3,11 +3,8 @@ body {
   display: flex;
   background-color: #f5f5f5;
 }
-main{
-  display: flex;
-  overflow: hidden;
-}
 
+/* 배경 */
 .is-background {
     background-image: url('../images/hanmin_background.jpg');
     background-size: cover;
@@ -35,52 +32,53 @@ main{
     }
 }
 
-/* nav open and hide */
-.slide-anim{
-  transition: 300ms;
-  animation: slide 300ms;
-}
-
-.side-button{
-  z-index:1;
-  position: fixed;
-  top: 62px;
-  left: 16.6%;
-  margin-left:-30px;
-}
-
-.side-button:hover{
-  margin-left:0;
-}
-
-.side-button .slider{
-  cursor: pointer;
-  background-color: #3f7eff;
-  padding: 20px 0 20px 10px;
-  width: 50px;
-  font-size: 20px;
-  color: white;
-  border-radius: 0 5px 5px 0;
-}
-
-nav.side-hide{
-    left:-16.6%;
-}
-.sidebar.side-hide{
-    left:-16.6%;
-}
-.side-button.side-hide{
-    left:0%;
-}
-main.side-hide{
-    margin:auto;
-}
+/* Content, 반응형 */
 
 .content {
     width: 100%;
 }
 
+main{
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    padding-top: 50px; /* Space for fixed navbar */
+}
+
 .main-text {
     font-size: 20px;
     color: #4b4b4b;
+}
+
+[role="main"] {
+    margin-left: 250px;
+}
+
+/* 반응형 디자인 (모바일버전) */
+@media (max-width: 768px) {
+    [role="main"] {
+        margin-left:0;
+    }
+}
+
+
+/* 기타 클래스 */
+
+.form-control-dark {
+    color: #fff;
+    background-color: rgba(255, 255, 255, .1);
+    border-color: rgba(255, 255, 255, .1);
+}
+
+.form-control-dark:focus {
+    border-color: transparent;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+}
+
+.no-drag {
+    -ms-user-select: none;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
