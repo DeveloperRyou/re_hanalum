@@ -9,13 +9,24 @@ from .models import Comment
 from board.models import Board
 
 
-# Create your views here.
+# 디버깅용 ip get code
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
 
 """@login_required"""
 def article(request, article_id):
     article_detail = get_object_or_404(Article, pk=article_id)
     form = CommentForm()
+    ip = get_client_ip(request)
+    print(ip)
+    print(request.user)
     print(article_detail)
+
     return render(request, 'article.html', {'article': article_detail, 'form': form})
 
 
