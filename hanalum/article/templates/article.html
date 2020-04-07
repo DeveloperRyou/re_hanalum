@@ -8,9 +8,9 @@
 
 {% block content %}
   <div class="my-3 p-3 bg-white rounded shadow-sm">
-    <h6 class="pb-2 mb-0 border-bottom border-gray">{{article.title}}</h6>
-    <div class="media text-muted pt-3">
-      <div class="media-body pb-3 mb-0 small lh-125">
+    <h4 class="pb-2 mb-0 border-bottom border-gray">{{article.title}}</h4>
+    <div class="media pt-3 main-text">
+      <div class="media-body pb-3 mb-0 lh-125">
         {{article.content | safe }}
       </div>
     </div>

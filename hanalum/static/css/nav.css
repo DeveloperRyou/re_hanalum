@@ -63,14 +63,16 @@
 */
 
 [role="main"] {
-    padding-top: 133px; /* Space for fixed navbar */
+    padding-top: 50px; /* Space for fixed navbar */
 }
 
+/* 반응형 디자인(pc버전)
 @media (min-width: 768px) {
     [role="main"] {
-        padding-top: 48px; /* Space for fixed navbar */
+        padding-top: 48px;
     }
 }
+*/
 
 /*
 * Navbar
@@ -86,6 +88,7 @@
 
 .navbar-color {
     background-color: #ffffff;
+    border-bottom: 1px solid#e5e5e5;
 }
 
 .navbar .form-control {

@@ -44,7 +44,7 @@ main{
 .side-button{
   z-index:1;
   position: fixed;
-  top: 70px;
+  top: 62px;
   left: 16.6%;
   margin-left:-30px;
 }
@@ -74,4 +74,13 @@ nav.side-hide{
 }
 main.side-hide{
     margin:auto;
+}
+
+.content {
+    width: 100%;
+}
+
+.main-text {
+    font-size: 20px;
+    color: #4b4b4b;
 }
