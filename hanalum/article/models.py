@@ -36,6 +36,16 @@ class Article(models.Model):
         verbose_name='Num_comment',
         default=0,
     )
+    """like_user_set = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        blank=True,
+        related_name='like_user_set',
+        through='Like',
+    )"""
+    likes = models.ManyToManyField(
+        User,
+        verbose_name='likes',
+    )
     num_good = models.IntegerField(
         verbose_name='Num_good',
         default=0,
@@ -75,6 +85,10 @@ class Article(models.Model):
             pass
         super(Article, self).delete(*args, **kwargs)  # 원래의 delete 함수를 실행
 
+    def total_likes(self):
+        return self.likes.count()
+ 
+"""
 class Like(models.Model):
     user = models.ForeignKey(
         User,
@@ -87,7 +101,7 @@ class Like(models.Model):
     num_good = models.IntegerField(
         verbose_name='Num_good',
         default=0,
-    ) # 값이 -1이면 비추, 1이면 추
+    ) # 값이 -1이면 비추, 1이면 추"""
     
 class Comment(models.Model):
     writer = models.ForeignKey(

@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
 .text-center {
   text-align: center;
 }
@@ -35,11 +40,8 @@
   margin: auto; }
 
 .calendar {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
   background: white;
-  width: 100%;
+  width: 840px;
   height: 500px;
   border-radius: 10px;
   overflow: hidden;
@@ -63,8 +65,8 @@
 }
 
 .calendar .left-side {
-    width: 30%;
-    background: #ec364f;
+    width: 320px;
+    background: #368cec;
     float: left;
 }
 .calendar .current-day, .calendar .current-day-events {
@@ -117,14 +119,14 @@
 }
 
 .calendar .right-side {
-    width: 70%;
+    width: 520px;
     float: right;
 }
 .calendar .calendar-change-year {
     font-size: 20px;
 }
 .calendar .calendar-change-year .calendar-change-year-slider {
-      margin-bottom: 15px;
+      margin: 15px 0;
       color: #737373;
 }
 .calendar .calendar-change-year .calendar-change-year-slider .fa:hover {
@@ -132,13 +134,8 @@
 }
 
 .calendar .calendar-days, .calendar .calendar-week, .calendar .calendar-month {
-    margin-bottom: 10px;
     list-style: none;
     font-size: 0;
-    padding: 0;
-    margin: auto;
-    text-align: center;
-    width: 510px;
 }
 
 .calendar .calendar-days li, .calendar .calendar-week li, .calendar .calendar-month li {
@@ -200,7 +197,7 @@
 
 .calendar .calendar-days li.active-day:after {
       color: white;
-      background: #ec364f;
+      background: #368cec;
 }
 
 .calendar .calendar-week {

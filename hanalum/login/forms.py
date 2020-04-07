@@ -7,7 +7,7 @@ class UserLoginForm(forms.Form):
     email = forms.CharField(
         label='이메일',
         widget=forms.EmailInput(
-            attrs={'class': 'form-control', 'placeholder': 'Email address', 'autofocus':'autofocus'}
+            attrs={'class': 'form-control', 'placeholder': 'Email address', 'autofocus':'autofocus', 'id': 'user_id'}
         )
     )
     password = forms.CharField(

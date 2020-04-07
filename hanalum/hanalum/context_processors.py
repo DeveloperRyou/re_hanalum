@@ -7,6 +7,7 @@ from django.conf import settings
 from main.models import Sidebar_category
 from main.models import Sidebar_unit
 
+
 def sidebar(request):
     """
     DB 참조후 사이드바 변수 정의
