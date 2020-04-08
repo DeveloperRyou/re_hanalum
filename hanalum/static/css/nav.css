@@ -1,21 +1,88 @@
-.feather {
-    width: 16px;
-    height: 16px;
-    vertical-align: text-bottom;
-}
-
-/*
-* Sidebar
-*/
+/* Sidebar */
 
 .sidebar {
+    width: 250px;
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     z-index: 100; /* Behind the navbar */
-    padding: 48px 0 0; /* Height of navbar */
+    padding: 50px 0 0; /* Height of navbar */
     background: #ffffff;
+}
+
+.sidebar .profile {
+    border-color: #e5e5e5;
+    border-width: 1px 0 1px 0;
+    border-style: solid;
+    padding: 9px;
+    background-color: #ffffff;
+}
+
+.sidebar .profile-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 70%;
+    overflow: hidden;
+    object-fit: cover;
+    margin-bottom: 5px;
+}
+
+.sidebar .nickname {
+    display:inline-block;
+    margin:10px;
+    padding:5px;
+    color:black;
+    font-size: 20px;
+    font-family: sans-serif;
+    font-weight: lighter;
+}
+
+.sidebar .category-box .categories {
+    padding: 15px;
+}
+
+.sidebar .category {
+    list-style: none;
+    margin-top: 10px;
+}
+
+.sidebar .category div {
+    cursor:pointer;
+    font-size: 20px;
+    padding: 5px;
+}
+
+.sidebar .category div:hover {
+    background-color: #5aabff;
+    color: white;
+    font-weight: bold
+}
+
+.sidebar .category .hide{
+    display:none;
+    padding: 0px;
+    list-style: none;
+}
+
+.sidebar .category .hide li {
+    padding: 5px;
+    padding-left: 30px;
+    font-size: 15px;
+}
+.sidebar .category .hide li a {
+     text-decoration: none;
+     color: black;
+}
+
+.sidebar .category .hide li:hover {
+    background-color: #5aabff;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.sidebar .category .hide li:hover>a {
+    color: white;
 }
 
 .sidebar-sticky {
@@ -34,79 +101,61 @@
     }
 }
 
-.sidebar .nav-link {
-    font-weight: 500;
-    color: #333;
+
+/* Sidebar animation */
+
+.slide-anim{
+  transition: 300ms;
 }
 
-.sidebar .nav-link .feather {
-    margin-right: 4px;
-    color: #999;
+.side-button{
+  z-index: 1;
+  position: fixed;
+  top: 62px;
+  left: 250px;
+  margin-left: -30px;
 }
 
-.sidebar .nav-link.active {
-    color: #007bff;
+
+.side-button:hover{
+  margin-left:0;
 }
 
-.sidebar .nav-link:hover .feather,
-.sidebar .nav-link.active .feather {
-    color: inherit;
+.side-button .slider{
+  cursor: pointer;
+  background-color: #3f7eff;
+  padding: 20px 0 20px 9px;
+  width: 50px;
+  font-size: 20px;
+  color: white;
+  border-radius: 0 5px 5px 0;
 }
 
-.sidebar-heading {
-    font-size: .75rem;
-    text-transform: uppercase;
+/* if Sidebar hide */
+
+.sidebar.side-hide{
+    left:-250px;
+}
+.side-button.side-hide{
+    left:0px;
+}
+main.side-hide{
+    margin-left: 0;
 }
 
-/*
-* Content
-*/
+/* 상단바 (navbar) */
 
-[role="main"] {
-    padding-top: 50px; /* Space for fixed navbar */
-}
-
-/* 반응형 디자인(pc버전)
-@media (min-width: 768px) {
-    [role="main"] {
-        padding-top: 48px;
-    }
-}
-*/
-
-/*
-* Navbar
-*/
-
-.navbar-brand {
-    padding-top: .75rem;
-    padding-bottom: .75rem;
-    font-size: 1rem;
-    background-color: rgba(0, 0, 0, .25);
-    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
-}
+/* 상단바에 검색칸 있을때 .navbar .form-control {
+    padding: .75rem 1rem;
+    border-width: 0;
+    border-radius: 0;
+}*/
 
 .navbar-color {
     background-color: #ffffff;
     border-bottom: 1px solid#e5e5e5;
 }
 
-.navbar .form-control {
-    padding: .75rem 1rem;
-    border-width: 0;
-    border-radius: 0;
-}
-
-.form-control-dark {
-    color: #fff;
-    background-color: rgba(255, 255, 255, .1);
-    border-color: rgba(255, 255, 255, .1);
-}
-
-.form-control-dark:focus {
-    border-color: transparent;
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
-}
 .logout{
     color: white;
     background-color: #3f7eff;
@@ -115,84 +164,9 @@
     border-radius:10px;
     font-size:16px;
 }
+
 .img-title {
     width: 120px;
     margin-left: 10px;
     display: block;
-}
-.profile-image {
-    width: 50px;
-    height: 50px;
-    border-radius: 70%;
-    overflow: hidden;
-    object-fit: cover;
-    margin-bottom: 5px;
-}
-.category div {
-    cursor:pointer;
-    font-size: 20px;
-    padding: 5px;
-}
-.category div:hover {
-    background-color: #5aabff;
-    color: white;
-    font-weight: bold
-}
-.category {
-    list-style: none;
-    margin-top: 10px;
-}
-
-.category .hide{
-    display:none;
-    padding: 0px;
-    list-style: none;
-}
-.hide li:hover {
-    background-color: #5aabff;
-    font-weight: bold;
-    font-size: 18px;
-}
-.hide li:hover>a {
-    color: white;
-}
-.hide li {
-    padding: 5px;
-    padding-left: 30px;
-    font-size: 15px;
-}
-.hide li a {
-     text-decoration: none;
-     color: black;
-}
-
-.nickname {
-    display:inline-block;
-    margin:10px;
-    padding:5px;
-    color:black;
-    font-size: 20px;
-    font-family: sans-serif;
-    font-weight: lighter;
-}
-
-.profile {
-    border-color: #e5e5e5;
-    border-width: 1px 0 1px 0;
-    border-style: solid;
-    padding: 9px;
-    background-color: #ffffff;
-    margin-top: 2px;
-}
-
-.category-box .categories {
-    padding: 15px;
-}
-
-.no-drag {
-    -ms-user-select: none;
-    -moz-user-select: -moz-none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
 }
