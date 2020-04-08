@@ -24,6 +24,9 @@ import main.views
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import include
+from django.contrib.auth.decorators import login_required
+from ckeditor_uploader import views as views_ckeditor
+from django.views.decorators.cache import never_cache
 
 
 urlpatterns = [
@@ -37,6 +40,9 @@ urlpatterns = [
     path('write/<str:board_id>', article.views.write, name='write'),
     path('article/<int:article_id>', article.views.comment, name='comment'),
 
+    path(r'^upload/', login_required(views_ckeditor.upload), name='ckeditor_upload'),
+    path(r'^browse/', never_cache(login_required(views_ckeditor.browse)), name='ckeditor_browse'),
+
     path('register/', member.views.register, name='register'),
     path('memberinfo/', member.views.memberinfo, name='memberinfo'),
     path('agree/', member.views.agree, name='agree'),
@@ -46,6 +52,6 @@ urlpatterns = [
     path('calendar/', widget.views.calendar, name='widget'),
     path('cafeteria/', widget.views.cafeteria, name='widget'),
     path('acadnotice/', widget.views.acadnotice, name='widget'),
-    path('ckeditor/', include('ckeditor_uploader.urls')),
+
     path('like/', article.views.article_like, name='article_like'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
