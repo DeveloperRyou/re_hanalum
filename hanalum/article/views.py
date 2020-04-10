@@ -53,23 +53,8 @@ def article_like(request, pk):
         article.likes.add(user)
     return HttpResponse(str(article.total_likes()))
 
-def like(request):
-    post = Post.objects.get(pk=pk)
-    value = Like.num_good
-    article_like, article_like_created = article.like_set.get_or_create(user=request.user)
 
-    if not post_like_created:
-        article_like.delete()
-        message = "좋아요 취소"
-    else:
-        message = "좋아요"
-
-    context = {'like_count': article.like_count,
-               'message': message,
-               'nickname': request.user.profile.nickname}
-    return HttpResponse(json.dumps(context), content_type="application/json")
-
-def comment(request, article_id):
+    def comment(request, article_id):
     if request.method == "POST":
         article = get_object_or_404(article, pk=article_id)
         form = CommentForm(request.POST)

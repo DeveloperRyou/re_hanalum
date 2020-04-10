@@ -47,9 +47,42 @@
         </div>
       {% endif %}
     </div>
+    <head>
+    <head class="media-body d-flex justify-content-center">
+      <button type="button" class="btn btn-primary"
+      <a href="javascript:void(0);" onclick="article_like();">
+        <SVG></SVG>
+      </a>
+      <a id="like-count"></a>
+      </button>
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <script type="text/javascript">
+      var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+      function csrfSafeMethod(method) {
+      return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+      }
+      $.ajaxSetup({
+        beforeSend: function (xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+      }
+      });
+    function article_like() {
+    {% if request.user.is_active %}
+    $.ajax({
+        url: "{% url 'article_like' pk=article.pk%}",
+        type: "article",
+    }).done(function (data) {
+        document.getElementById('like-count').innerHTML = data;
+    });
+    {% else %}
+    alert("로그인 된 사용자만 사용할 수 있습니다.");
+    {% endif %}
+}
+</script>
+    </head>
 
-    <div class="media-body d-flex justify-content-center">
-      <button type="button" class="btn btn-primary" <a herf = "{% url 'like' %}">{{value}}</a> </button>
       <button type="button" class="btn btn-outline-primary">비추천</button>
     </div>
 
@@ -82,4 +115,5 @@
     </div>
 
   </div>
+
 {% endblock %}
