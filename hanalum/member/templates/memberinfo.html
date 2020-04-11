@@ -4,16 +4,19 @@
 
 {% block css %}
 <link href="{% static 'css/member.css' %}" rel="stylesheet">
+<link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 {% endblock %}
 
 {% block content %}
-<div class="memberinfomenu">
-  <p>회원 정보</p>
-  <p>회원 탈퇴</p>
-</div>
-<hr>
-<div class="container memberinfo">
-  <form method = "POST" action = "{% url 'memberinfo' %}" class="form-register">
+  <div class="container">
+
+	<ul class="tabs">
+		<li class="tab-link current" data-tab="tab-1">회원정보 수정</li>
+		<li class="tab-link" data-tab="tab-2">회원탈퇴</li>
+	</ul>
+
+	<div id="tab-1" class="tab-content current container memberinfo">
+      <form method = "POST" action = "{% url 'memberinfo' %}" class="form-register">
     {% csrf_token %}
       <div class="mb-3">
         <label for="id_email">이메일</label>
@@ -50,7 +53,51 @@
       </div>
       <hr>
       <button class="btn btn-primary btn-lg btn-block" type="submit">회원정보 수정</button>
-  </form>
+      </form>
+	</div>
+	<div id="tab-2" class="tab-content delete">
+      <form method = "POST" action = "{% url 'memberdelete' %}" >
+        {% csrf_token %}
+        <p>탈퇴를 원하신다면 현재 비밀번호를 입력해주세요.</p>
+        <div class="pwd">
+          <input name="pw_del" id="password" type="password" class= "form-control" placeholder="비밀번호를 입력하세요">
+            <i class="fa fa-eye fa-lg"></i>
+        </div>
+        <a href="{% url 'memberdelete' %}"> <button class="btn btn-primary btn-lg member-delete" type="submit" value="회원탈퇴">회원탈퇴</button></a>
+      </form>
+	</div>
   </div>
+
+  <script>
+  $(document).ready(function(){
+
+	$('ul.tabs li').click(function(){
+		var tab_id = $(this).attr('data-tab');
+
+		$('ul.tabs li').removeClass('current');
+		$('.tab-content').removeClass('current');
+
+		$(this).addClass('current');
+		$("#"+tab_id).addClass('current');
+	})
+
+  })
+  </script>
+  <script>
+    $(document).ready(function(){
+    $('.pwd i').on('click',function(){
+        $('input').toggleClass('active');
+        if($('input').hasClass('active')){
+            $(this).attr('class',"fa fa-eye-slash fa-lg")
+            .prev('input').attr('type',"text");
+        }else{
+            $(this).attr('class',"fa fa-eye fa-lg")
+            .prev('input').attr('type','password');
+        }
+    });
+  });
+  </script>
+
+
 
 {% endblock %}

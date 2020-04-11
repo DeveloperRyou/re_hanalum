@@ -70,3 +70,65 @@ a:hover {
 .memberinfomenu p{
     display: inline-block;
 }
+
+.member-delete{
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+div .pwd{
+    position: relative;
+    padding: 20px;
+}
+div.pwd input{
+    width: 300px;
+    height: 30px;
+    background-color: white;
+    border: 0;
+    color: black;
+    text-indent: 10px;
+}
+div .pwd i{
+    position: absolute;
+    left: 28%;
+    top: 27px;
+    color: orange;
+    cursor: pointer;
+}
+###
+body{
+	margin-top: 100px;
+	font-family: 'Trebuchet MS', serif;
+	line-height: 1.6
+}
+.container{
+	width: 100%;
+	margin: 0 auto;
+}
+ul.tabs{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+ul.tabs li{
+	background: none;
+	color: #222;
+	display: inline-block;
+	padding: 10px 15px;
+	cursor: pointer;
+}
+
+ul.tabs li.current{
+	background: #ededed;
+	color: #222;
+}
+
+.tab-content{
+	display: none;
+	background: #ededed;
+	padding: 15px;
+}
+
+.tab-content.current{
+	display: inherit;
+}
