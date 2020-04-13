@@ -43,7 +43,6 @@ a:hover {
 
 /* 정보동의, 회원가입페이지 */
 .form-register {
-  width: 80%;
   max-width: 800px;
   padding: 15px;
   margin: auto;
@@ -67,39 +66,20 @@ a:hover {
     float:right;
     width: 80%;
 }
-.memberinfomenu p{
-    display: inline-block;
+.memberdelete p{
+    text-align: center;
 }
-
-.member-delete{
-    display: inline-block;
-    margin-top: 10px;
-    margin-left: 20px;
+.memberdelete .row-delete{
+    display: table;
+    width: 100%;
 }
-div .pwd{
-    position: relative;
-    padding: 20px;
+.memberdelete .form-control{
+    float: left;
+    width: 80%;
 }
-div.pwd input{
-    width: 300px;
-    height: 30px;
-    background-color: white;
-    border: 0;
-    color: black;
-    text-indent: 10px;
-}
-div .pwd i{
-    position: absolute;
-    left: 28%;
-    top: 27px;
-    color: orange;
-    cursor: pointer;
-}
-###
-body{
-	margin-top: 100px;
-	font-family: 'Trebuchet MS', serif;
-	line-height: 1.6
+.memberdelete .btn-delete{
+    float: right;
+    font-size: 15px;
 }
 .container{
 	width: 100%;
@@ -117,18 +97,15 @@ ul.tabs li{
 	padding: 10px 15px;
 	cursor: pointer;
 }
-
 ul.tabs li.current{
 	background: #ededed;
 	color: #222;
 }
-
 .tab-content{
 	display: none;
 	background: #ededed;
 	padding: 15px;
 }
-
 .tab-content.current{
 	display: inherit;
 }

@@ -94,3 +94,14 @@ def memberinfo(request):
     else:
         form = CustomUserChangeForm(instance=request.user)
         return render(request, 'memberinfo.html', {'form': form})
+
+def memberdelete(request):
+    if request.method == 'POST':
+        user = auth.authenticate(request, username=request.user.email, password=request.POST['password'])
+
+        if user is not None: # 맞은 경우
+            user.delete()
+            return render(request, 'login.html')
+
+        else:
+            return redirect('memberinfo')
