@@ -46,6 +46,7 @@ urlpatterns = [
     path('register/', member.views.register, name='register'),
     path('memberinfo/', member.views.memberinfo, name='memberinfo'),
     path('agree/', member.views.agree, name='agree'),
+    path('activate/<str:uidb64>/<str:token>/', member.views.activate, name="activate"),
 
     path('memberdelete/', member.views.memberdelete, name='memberdelete'),
 
