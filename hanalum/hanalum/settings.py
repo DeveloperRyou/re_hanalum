@@ -26,7 +26,18 @@ SECRET_KEY = 'e9fy9m$c%)c_75if%h*e_c&06u##2dsl03*$8vp1*$e_ehoxs0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','52.78.178.145']
+ALLOWED_HOSTS = ['127.0.0.1', '52.78.178.145']
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'contacthanmin01@gmail.com'
+EMAIL_HOST_PASSWORD = 'hanalum01'
+EMAIL_USE_TLS = True
+SERVER_EMAIL = 'contacthanmin01@gmail.com'
+DEFAULT_FORM_MAIL = 'contacthanmin01'
+
 
 
 # Application definition
