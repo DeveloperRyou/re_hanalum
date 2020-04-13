@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .forms import UserCreationForm, CustomUserChangeForm
 from django.shortcuts import redirect
 from django.contrib.auth import update_session_auth_hash
-
+from django.contrib import auth
 
 # Create your views here.
 def register(request):
@@ -65,3 +65,14 @@ def memberinfo(request):
         form = CustomUserChangeForm(instance = request.user)
         return render(request, 'memberinfo.html', {'form': form})
 
+
+def memberdelete(request):
+    if request.method == 'POST':
+        user = auth.authenticate(request, username=request.POST.get('email', ''), password=request.POST.get('password', ''))
+
+        if user is not None: # 맞은 경우
+            user.delete()
+            return render(request, 'login.html')
+
+        else:
+            return redirect('/')

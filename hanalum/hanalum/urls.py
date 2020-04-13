@@ -47,6 +47,8 @@ urlpatterns = [
     path('memberinfo/', member.views.memberinfo, name='memberinfo'),
     path('agree/', member.views.agree, name='agree'),
 
+    path('memberdelete/', member.views.memberdelete, name='memberdelete'),
+
     path('board/<str:board_id>', board.views.board, name='board'),
 
     path('calendar/', widget.views.calendar, name='widget'),
