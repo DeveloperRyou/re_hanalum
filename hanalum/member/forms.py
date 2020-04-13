@@ -3,6 +3,12 @@ from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm, ReadOn
 from .models import User
 import re
 
+from django.template.loader import render_to_string
+from django.utils.http import urlsafe_base64_encode
+from django.core.mail import EmailMessage
+from .tokens import account_activation_token
+from django.utils.encoding import force_bytes
+
 
 class UserCreationForm(forms.ModelForm):
     password1 = forms.CharField(label='비밀번호', widget=forms.PasswordInput(
@@ -54,12 +60,24 @@ class UserCreationForm(forms.ModelForm):
     def check_nickname(self, _nickname):
         return User.objects.filter(nickname=_nickname).count()
 
-    def save(self, commit=True):
+    def save(self, current_site, mail_to, commit=True):
         # 비밀번호를 해시 상태로 저장
         user = super().save(commit=False)
         user.set_password(self.cleaned_data['password1'])
         if commit:
+            user.is_active = False
             user.save()
+            message = render_to_string('activation_email.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user),
+            })
+            mail_title = "한아름 계정 활성화 확인 이메일"
+            email = EmailMessage(mail_title, message, to=[mail_to])
+            email.content_subtype = "html"
+            email.send()
+
         return user
 
 

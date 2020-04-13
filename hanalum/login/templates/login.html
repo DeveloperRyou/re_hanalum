@@ -31,6 +31,20 @@
              alert('올바른 회원 정보를 입력하세요.');
         </script>
     {% endif %}
+
+    {% if need_authentication %}
+        <script type="text/javascript">
+            alert('이메일 인증이 필요합니다.');
+        </script>
+    {% endif %}
+
+
+    {% if registered %}
+        <script type="text/javascript">
+            alert('회원가입 성공! 이메일 인증이 필요합니다.');
+        </script>
+    {% endif %}
+
     <script type="text/javascript">
     $(document).ready(function(){
         // 저장된 쿠키값을 가져와서 ID 칸에 넣어준다. 없으면 공백으로 들어감.
