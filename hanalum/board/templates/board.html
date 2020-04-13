@@ -19,42 +19,25 @@
   <table class="post_table">
     <thead>
       <tr>
-        <th style="vertical-align:middle; width:58%;">게시글 제목</th>
-        <th style="vertical-align:middle; width:14%">글쓴이</th>
-        <th style="width:9%;">조회
-          <div class="order_arrow">
-            <a href="#" style="grid-row:1/2">▲</a>
-            <a href="#" style="grid-row:2/3">▼</a>
-          </div>
-        </th>
-        <th style="width:11%;">좋아요
-          <div class="order_arrow">
-            <a href="#" style="grid-row:1/2">▲</a>
-            <a href="#" style="grid-row:2/3">▼</a>
-          </div>
-        </th>
-        <th style="width:8%;">날짜
-          <div class="order_arrow">
-            <a href="#" style="grid-row:1/2">▲</a>
-            <a href="#" style="grid-row:2/3">▼</a>
-          </div>
-        </th>
-            </tr>
+        <th class="thtitle py-2">게시글 제목</th>
+        <th class="thprof py-2">글쓴이</th>
+        <th class="thview py-2">조회</th>
+        <th class="thlike py-2">추천</th>
+        <th class="thdate py-2">날짜</th>
+      </tr>
     </thead>
     <tbody>
       {% for article in articles %}
       <tr>
         <td class="tdtitle"><a href="{% url 'article' article_id=article.pk %}">{{article}}</a></td>
         <td class="tdprof">
-          <img class="prof-img" src="{% static 'images/person.png' %}" alt="" width="30" height="30">
+          <img class="prof_img" src="{% static 'images/no-profile.png' %}" alt="" width="30" height="30">
           {{article.pub_user}}
         </td>
         <td class="tdview">
-          <img class="board-img" src="{% static 'images/eye.png' %}" alt="" width="20" height="20">
           {{article.num_view}}
         </td>
         <td class="tdlike">
-          <img class="board-img" src="{% static 'images/like.png' %}" alt="" width="20" height="20">
           {{article.num_good}}
         </td>
         <td class="tddate">{{article.pub_date|date:'m-d'}}</td>
@@ -62,10 +45,17 @@
       {% endfor %}
     </tbody>
   </table>
-
-  <div class="d-flex justify-content-end pt-2">
-    <button class="btn btn-success mx-3" id="post" onclick="location.href='{% url 'write' board_id=board_id %}' ">글쓰기</button>
-    <button class="btn btn-success mx-3" id="delete">삭제</button>
+  <div class="d-flex mt-3">
+      <select class="post_search border-primary col col-md-2">
+        <option>전체</option>
+        <option>제목</option>
+        <option>내용</option>
+        <option>글쓴이</option>
+        <option>제목+내용</option>
+      </select>
+      <input class="post_search border-primary col col-md-6" placeholder="제목을 입력하시오">
+      <button class="btn btn-primary col-md-1">검색</button>
+      <button class="btn btn-success mx-3" id="post" onclick="location.href='{% url 'write' board_id=board_id %}' ">글쓰기</button>
   </div>
   <nav class="text-center mt-3 container">
     <ul class="pagination justify-content-center">
@@ -84,17 +74,6 @@
       <li class="page-item"><a class="page-link" href="#">다음</a></li>
       <li class="page-item"><a class="page-link" href="#">끝</a></li>
     </ul>
-    <div class="row-justify-content-md-center mt-3">
-      <select class="post_search border-primary col col-md-2">
-        <option>전체</option>
-        <option>제목</option>
-        <option>내용</option>
-        <option>글쓴이</option>
-        <option>제목+내용</option>
-      </select>
-      <input class="post_search border-primary col col-md-6" placeholder="제목을 입력하시오">
-      <button class="btn btn-primary col-md-1">검색</button>
-    </div>
   </nav>
 </div>
 {% endblock %}
