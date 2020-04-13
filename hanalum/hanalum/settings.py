@@ -159,7 +159,7 @@ STATICFILES_DIRS = [
 
 # Media files - 업로드를 하는 URL과 디렉토리 설정
 MEDIA_URL = '/files/' #업로드할 경로
-MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads') #로컬 디렉토리 어디에 저장할 것인지
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #로컬 디렉토리 어디에 저장할 것인지
 
 #파일 업로드 최대 용량
 #FILE_UPLOAD_MAX_MEMORY_SIZE = '???'
