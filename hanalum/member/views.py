@@ -71,10 +71,11 @@ def agree(request):
 
 def memberinfo(request):
     if request.method == "POST":
-        form = CustomUserChangeForm(request.POST, instance=request.user)
+        form = CustomUserChangeForm(request.POST, request.FILES, instance=request.user)
+        print(request.FILES['avatar'])
         nickname_error = ""
 
-        if form.check_nickname(request.POST['nickname']) > 0:
+        if form.check_nickname(request.user.nickname, request.POST['nickname']) > 0:
             nickname_error = "이미 사용중인 닉네임입니다."
 
         if nickname_error == "":  # 닉네임과 이메일 모두 사용가능한경우
@@ -94,3 +95,14 @@ def memberinfo(request):
     else:
         form = CustomUserChangeForm(instance=request.user)
         return render(request, 'memberinfo.html', {'form': form})
+
+def memberdelete(request):
+    if request.method == 'POST':
+        user = auth.authenticate(request, username=request.user.email, password=request.POST['password'])
+
+        if user is not None: # 맞은 경우
+            user.delete()
+            return render(request, 'login.html')
+
+        else:
+            return redirect('memberinfo')

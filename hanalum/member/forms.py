@@ -92,7 +92,7 @@ class CustomUserChangeForm(UserChangeForm):
         model = User
         fields = ['avatar', 'nickname', 'password1', 'password2']
         widgets = {
-            'avatar': forms.FileInput(attrs={'class': 'form-control', 'placeholder': '입력하세요'}),
+            'avatar': forms.FileInput(attrs={'class': 'custom-file-input'}),
             'nickname': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '입력하세요'}),
         }
         labels = {
@@ -113,7 +113,9 @@ class CustomUserChangeForm(UserChangeForm):
             return "비밀번호가 일치하지 않습니다."
         return ""
 
-    def check_nickname(self, _nickname):
+    def check_nickname(self, user_nickname, _nickname):
+        if user_nickname == _nickname:
+            return 0
         return User.objects.filter(nickname=_nickname).count()
 
     def save(self, commit=True):

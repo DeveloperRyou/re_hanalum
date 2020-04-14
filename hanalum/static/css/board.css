@@ -41,7 +41,9 @@
 }
 .prof_img {
     float:left;
-    margin-right:6px
+    margin-right:6px;
+    width: 30px;
+    height: 30px;
 }
 
 /* 게시글 정의 */
@@ -66,7 +68,7 @@
     margin-left: 0.3rem;
 }*/
 
-/* 검색 */
+/* 검색, 글쓰기 */
 
 .post_search {
     border-width: 2px;

@@ -20,8 +20,16 @@
       <div class="row">
         <nav class="sidebar shadow-sm slide-anim">
           <div class="profile">
-            <img class="profile-image" src="{% static 'images/no-profile.png' %}" alt="">
-            <div class="nickname"> {{user}} </div> <br>
+            <a href="{% url 'memberinfo' %}">
+            {% if user.avatar %}
+            <img class="profile-image" src="/media/{{user.avatar}}">
+            {% else %}
+            <img class="profile-image" src="{% static 'images/no-profile.png' %}">
+            {% endif %}
+            </a>
+            <div class="nickname">
+                {{user}}
+            </div>
           </div>
           <div class="category-box">
             <ul class="categories">
@@ -99,5 +107,7 @@
             }
         }
     </script>
+
+
 </body>
 {% endblock %}

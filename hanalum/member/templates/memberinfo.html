@@ -16,8 +16,8 @@
 	</ul>
 
 	<div id="tab-1" class="tab-content current container memberinfo">
-      <form method = "POST" action = "{% url 'memberinfo' %}" class="form-register">
-    {% csrf_token %}
+      <form method = "POST" action = "{% url 'memberinfo' %}" class="form-register" enctype="multipart/form-data">
+      {% csrf_token %}
       <div class="mb-3">
         <label for="id_email">이메일</label>
         <input type="text" value="{{user.email}}" class="form-control" id="id_email" disabled>
@@ -32,7 +32,10 @@
       </div>
       <div class="mb-3">
         <label for="{{form.avatar.id_for_label}}">{{form.avatar.label}}</label>
-        {{form.avatar}}
+        <div class="custom-file">
+          {{form.avatar}}
+          <label class="custom-file-label" for="customFile">{{form.avatar.label}}</label>
+        </div>
       </div>
       <div class="mb-3">
         <label for="{{form.nickname.id_for_label}}">{{form.nickname.label}}</label>
@@ -55,15 +58,14 @@
       <button class="btn btn-primary btn-lg btn-block" type="submit">회원정보 수정</button>
       </form>
 	</div>
-	<div id="tab-2" class="tab-content delete">
-      <form method = "POST" action = "{% url 'memberdelete' %}" >
+	<div id="tab-2" class="tab-content container memberdelete">
+      <form method = "POST" action = "{% url 'memberdelete' %}" class="form-register">
         {% csrf_token %}
         <p>탈퇴를 원하신다면 현재 비밀번호를 입력해주세요.</p>
-        <div class="pwd">
-          <input name="pw_del" id="password" type="password" class= "form-control" placeholder="비밀번호를 입력하세요">
-            <i class="fa fa-eye fa-lg"></i>
+        <div class="row-delete mb-3">
+          <input name="password" id="password" type="password" class="form-control" placeholder="비밀번호를 입력하세요">
+          <button class="btn btn-primary btn-lg btn-delete" type="submit">회원탈퇴</button>
         </div>
-        <a href="{% url 'memberdelete' %}"> <button class="btn btn-primary btn-lg member-delete" type="submit" value="회원탈퇴">회원탈퇴</button></a>
       </form>
 	</div>
   </div>
@@ -96,6 +98,14 @@
         }
     });
   });
+  </script>
+
+  <script>
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function() {
+      var fileName = $(this).val().split("\\").pop();
+      $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
   </script>
 
 
