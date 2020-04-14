@@ -31,7 +31,11 @@
       <tr>
         <td class="tdtitle"><a href="{% url 'article' article_id=article.pk %}">{{article}}</a></td>
         <td class="tdprof">
-          <img class="prof_img" src="{% static 'images/no-profile.png' %}" alt="" width="30" height="30">
+          {% if article.pub_user.avatar %}
+          <img class="prof_img" src="/media/{{article.pub_user.avatar}}">
+          {% else %}
+          <img class="prof_img" src="{% static 'images/no-profile.png' %}">
+          {% endif %}
           {{article.pub_user}}
         </td>
         <td class="tdview">

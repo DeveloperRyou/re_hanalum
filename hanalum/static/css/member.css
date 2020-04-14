@@ -63,7 +63,11 @@ a:hover {
 
 /* 정보수정, 탈퇴페이지 */
 .memberinfo .form-control{
-    float:right;
+    float: right;
+    width: 80%;
+}
+.memberinfo .custom-file{
+    float: right;
     width: 80%;
 }
 .memberdelete p{

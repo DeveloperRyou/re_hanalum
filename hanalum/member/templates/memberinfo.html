@@ -16,7 +16,7 @@
 	</ul>
 
 	<div id="tab-1" class="tab-content current container memberinfo">
-      <form method = "POST" action = "{% url 'memberinfo' %}" class="form-register">
+      <form method = "POST" action = "{% url 'memberinfo' %}" class="form-register" enctype="multipart/form-data">
       {% csrf_token %}
       <div class="mb-3">
         <label for="id_email">이메일</label>
@@ -32,7 +32,10 @@
       </div>
       <div class="mb-3">
         <label for="{{form.avatar.id_for_label}}">{{form.avatar.label}}</label>
-        {{form.avatar}}
+        <div class="custom-file">
+          {{form.avatar}}
+          <label class="custom-file-label" for="customFile">{{form.avatar.label}}</label>
+        </div>
       </div>
       <div class="mb-3">
         <label for="{{form.nickname.id_for_label}}">{{form.nickname.label}}</label>
@@ -95,6 +98,14 @@
         }
     });
   });
+  </script>
+
+  <script>
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function() {
+      var fileName = $(this).val().split("\\").pop();
+      $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
   </script>
 
 

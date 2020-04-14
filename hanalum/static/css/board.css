@@ -41,7 +41,9 @@
 }
 .prof_img {
     float:left;
-    margin-right:6px
+    margin-right:6px;
+    width: 30px;
+    height: 30px;
 }
 
 /* 게시글 정의 */

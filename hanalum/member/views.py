@@ -71,10 +71,11 @@ def agree(request):
 
 def memberinfo(request):
     if request.method == "POST":
-        form = CustomUserChangeForm(request.POST, instance=request.user)
+        form = CustomUserChangeForm(request.POST, request.FILES, instance=request.user)
+        print(request.FILES['avatar'])
         nickname_error = ""
 
-        if form.check_nickname(request.POST['nickname']) > 0:
+        if form.check_nickname(request.user.nickname, request.POST['nickname']) > 0:
             nickname_error = "이미 사용중인 닉네임입니다."
 
         if nickname_error == "":  # 닉네임과 이메일 모두 사용가능한경우
