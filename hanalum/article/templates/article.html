@@ -8,9 +8,9 @@
 
 {% block content %}
   <div class="my-3 p-3 bg-white rounded shadow-sm">
-    <h6 class="pb-2 mb-0 border-bottom border-gray">{{article.title}}</h6>
-    <div class="media text-muted pt-3">
-      <div class="media-body pb-3 mb-0 small lh-125">
+    <h4 class="pb-2 mb-0 border-bottom border-gray">{{article.title}}</h4>
+    <div class="media pt-3 main-text">
+      <div class="media-body pb-3 mb-0 lh-125">
         {{article.content | safe }}
       </div>
     </div>
@@ -62,7 +62,7 @@
     <h6 class="pb-2 pt-3">댓글</h6>
 
     <div class="media border pb-3 mb-4">
-      <img src="img_avatar3.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+      <img src="{% static 'images/no-profile.png' %}" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
       <div class="media-body">
         <h4>John Doe <small><i>Posted on February 19, 2016</i></small></h4>
         <p>Lorem ipsum...</p>
@@ -73,8 +73,9 @@
 
     <div class="media pb-2">
       <div class="media-body">
-        <form action="">
-          <textarea class="form-control mb-2" placeholder="내용을 입력하세요."></textarea>
+        <form action="{% url 'comment' article_id=article.pk %}" method="POST">
+          {% csrf_token %}
+          {{ form }}
           <input type="submit" value="등록" class="btn btn-success float-right">
         </form>
       </div>

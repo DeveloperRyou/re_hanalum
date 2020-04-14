@@ -13,15 +13,16 @@ def login(request):
             if user:
                 return redirect('main')
             else:
-                form = UserLoginForm()
-                return render(request, 'login.html', {'form': form, 'login_is_failed': True})
+                statement = form.user_statement()
+                return render(request, 'login.html', {'form': form, 'login_is_failed': statement['incorrect'], 'need_authentication': statement['uncertified_email']})
         else:
             return redirect('login')
     else:
         if request.user.is_authenticated:
             return redirect('main')
         form = UserLoginForm()
-        return render(request, 'login.html', {'form':form})
+        return render(request, 'login.html', {'form': form})
+
 
 def logout(request):
     auth.logout(request)

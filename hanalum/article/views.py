@@ -1,18 +1,33 @@
 from django.shortcuts import render
 from .forms import ArticleCreationForm
+from .forms import CommentForm
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Article
+from .models import Comment
+"""from .models import Like"""
 from board.models import Board
 
 
-# Create your views here.
+# 디버깅용 ip get code
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
 
 """@login_required"""
 def article(request, article_id):
     article_detail = get_object_or_404(Article, pk=article_id)
+    form = CommentForm()
+    ip = get_client_ip(request)
+    print(ip)
+    print(request.user)
     print(article_detail)
-    return render(request, 'article.html', {'article': article_detail})
+
+    return render(request, 'article.html', {'article': article_detail, 'form': form})
 
 
 def write(request, board_id):
@@ -29,17 +44,40 @@ def write(request, board_id):
         form = ArticleCreationForm()
         return render(request, 'write.html', {'form': form})
 
+def article_like(request, pk):
+    article = get_object_or_404(Article,pk=pk)
+    user = User.objects.get(username=request.user)
+    if article.likes.filter(id = user.id).exits():
+        article.likes.remove(user)
+    else:
+        article.likes.add(user)
+    return HttpResponse(str(article.total_likes()))
 
 def like(request):
-    user = Like.user
+    post = Post.objects.get(pk=pk)
     value = Like.num_good
-    if  value == 0:
-        value = 1
-    else: # 기존값이 -1 (비추천) or 1(추천)
-        if value == 1: #추천을 이미 했으면서 또 할때
-                value = 0 #추천취소
-    return render(request, 'article.html', {'value':value})
+    article_like, article_like_created = article.like_set.get_or_create(user=request.user)
 
-'''def comment(request):
-    user = Comment.user
-'''    
+    if not post_like_created:
+        article_like.delete()
+        message = "좋아요 취소"
+    else:
+        message = "좋아요"
+
+    context = {'like_count': article.like_count,
+               'message': message,
+               'nickname': request.user.profile.nickname}
+    return HttpResponse(json.dumps(context), content_type="application/json")
+
+def comment(request, article_id):
+    if request.method == "POST":
+        article = get_object_or_404(article, pk=article_id)
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            form.save(commit=False)
+            comment.article = article
+            comment.writer = request.user
+            form.save()
+    else:
+        pass
+      

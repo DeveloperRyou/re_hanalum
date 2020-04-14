@@ -5,9 +5,9 @@
 {% load extratags %}
 {% load static %}
 
-<body data-gr-c-s-loaded="true">
+<body data-gr-c-s-loaded="true" onresize="check_size()">
     <nav class="navbar navbar-color fixed-top flex-md-nowrap p-0">
-      <a href="{% url 'main' %}"> <img class="img-title" src="/static/images/title.png" alt=""> </a>
+      <a href="{% url 'main' %}"> <img class="img-title" src="{% static 'images/title.png' %}" alt=""> </a>
       <ul class="navbar-nav px-3" style="padding-bottom:5px; padding-top:5px; ">
         <li class="nav-item text-nowrap">
           <a class="nav-link logout" href="{% url 'logout' %}"><strong>로그아웃</strong></a>
@@ -18,33 +18,34 @@
 
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-md-2 d-none d-md-block sidebar shadow-sm slide-anim">
-          <div class="sidebar col-md-2 slide-anim">
-            <div class="profile">
-              <img class="img-unnamed" src="/static/images/unnamed.jpg" alt="">
-              <div class="nickname"> {{user}} </div> <br>
+        <nav class="sidebar shadow-sm slide-anim">
+          <div class="profile">
+            <a href="{% url 'memberinfo' %}">
+            {% if user.avatar %}
+            <img class="profile-image" src="/media/{{user.avatar}}">
+            {% else %}
+            <img class="profile-image" src="{% static 'images/no-profile.png' %}">
+            {% endif %}
+            </a>
+            <div class="nickname">
+                {{user}}
             </div>
-            <div>
-              <ul style="padding: 15px;">
-                {% for each_category in category %}
-                    <li class="menu">
-                        <div>{{each_category}}</div>
-                        <ul class="hide">
-                            {% for each_unit in unit %}
-                                {% if each_unit.upper_category == each_category %}
-                                    <li>{{each_unit}}</li>
-                                {% endif %}
-                            {% endfor %}
-                        </ul>
-                    </li>
-                {% endfor %}
-              </ul>
-            </div>
-            <h6 class="sidebar-heading d-flex justify-content-left align-items-center px-3 mt-4 mb-1 text-muted">
-              <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
-                <span data-feather="plus-circle"></span>
-              </a>
-            </h6>
+          </div>
+          <div class="category-box">
+            <ul class="categories">
+              {% for each_category in category %}
+                <li class="category" id="flip">
+                    <div class="no-drag">{{each_category}}</div>
+                    <ul class="boards hide">
+                        {% for each_unit in unit %}
+                            {% if each_unit.upper_category == each_category %}
+                                <li class="board no-drag"><a href="{{each_unit.menu_url}}">{{each_unit}}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </li>
+              {% endfor %}
+            </ul>
           </div>
         </nav>
 
@@ -52,7 +53,7 @@
           <i class="fa fa-outdent slider" aria-hidden="true"></i>
         </div>
 
-        <main role="main" class="col-md-10 ml-sm-auto col-lg-10 px-4 slide-anim">
+        <main role="main" class="px-4 slide-anim">
             <div class="content">
                 {% block content %}
                 {% endblock %}
@@ -61,24 +62,24 @@
       </div>
     </div>
 
+    <!--메뉴오픈-->
     <script type="text/javascript">
+        $(document).ready(function(){
+            $("#flip>div").click(function(){
+                var submenu = $(this).next("ul");
 
-    $(document).ready(function(){
-        $(".menu>div").click(function(){
-            var submenu = $(this).next("ul");
-
-            if( submenu.is(":visible") ){
-                submenu.slideUp();
-            }else{
-                submenu.slideDown();
-            }
+                if( submenu.is(":visible") ){
+                    submenu.slideUp();
+                }else{
+                    submenu.slideDown();
+                }
+            });
         });
-    });
     </script>
-    <script>
-      $(function(){
-        var duration = 300;
 
+    <!--메뉴 좌측으로 넣었다 빼기-->
+    <script type="text/javascript">
+      $(function(){
         var side = $('.sidebar');
         var side_bt = $('.side-button');
         var main = $('main');
@@ -89,8 +90,24 @@
           main.toggleClass('side-hide');
         });
       });
-
     </script>
+
+    <!--브라우저 크기 줄어들었을때-->
+    <script>
+        function check_size() {
+            var side = $('.sidebar');
+            var side_bt = $('.side-button');
+            var main = $('main');
+
+            var w = window.innerWidth;
+            if(w < 768){
+                side.addClass('side-hide');
+                side_bt.addClass('side-hide');
+                main.addClass('side-hide');
+            }
+        }
+    </script>
+
 
 </body>
 {% endblock %}
