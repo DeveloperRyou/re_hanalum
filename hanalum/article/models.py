@@ -3,6 +3,7 @@ from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 from member.models import User
 from board.models import Board
+from django.utils import timezone
 from hanalum import settings
 import os
 
@@ -35,6 +36,16 @@ class Article(models.Model):
         verbose_name='Num_comment',
         default=0,
     )
+    """like_user_set = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        blank=True,
+        related_name='like_user_set',
+        through='Like',
+    )
+    likes = models.ManyToManyField(
+        User,
+        verbose_name='likes',
+    )"""
     num_good = models.IntegerField(
         verbose_name='Num_good',
         default=0,
@@ -47,19 +58,19 @@ class Article(models.Model):
         verbose_name='File_1',
         blank=True,
         null=True,
-        upload_to="files/%Y/%m/%d"
+        upload_to="files/%Y/%m/%d/"
     )
     file_2 = models.FileField(
-        verbose_name='File_1',
+        verbose_name='File_2',
         blank=True,
         null=True,
-        upload_to="files/%Y/%m/%d"
+        upload_to="files/%Y/%m/%d/"
     )
     file_3 = models.FileField(
-        verbose_name='File_1',
+        verbose_name='File_3',
         blank=True,
         null=True,
-        upload_to="files/%Y/%m/%d"
+        upload_to="files/%Y/%m/%d/"
     )
 
     def __str__(self):
@@ -74,6 +85,11 @@ class Article(models.Model):
             pass
         super(Article, self).delete(*args, **kwargs)  # 원래의 delete 함수를 실행
 
+    """
+    def total_likes(self):
+        return self.likes.count()"""
+ 
+"""
 class Like(models.Model):
     user = models.ForeignKey(
         User,
@@ -86,22 +102,31 @@ class Like(models.Model):
     num_good = models.IntegerField(
         verbose_name='Num_good',
         default=0,
-    ) # 값이 -1이면 비추, 1이면 추
+    ) # 값이 -1이면 비추, 1이면 추"""
     
-class comment(models.Model):
-    user = models.ForeignKey(
+class Comment(models.Model):
+    writer = models.ForeignKey(
         User,
         on_delete=models.CASCADE
     ) # 댓글 달 user 정보
-    article_type = models.ForeignKey(
+    article = models.ForeignKey(
         Article,
         on_delete=models.CASCADE
     ) # 댓글 달릴 article 정보
-    content = models.CharField(
+    content = models.TextField(
         verbose_name='Content',
+        blank=True,
         max_length=2000,
     ) #댓글 내용
     authority = models.IntegerField(
         verbose_name='Authority',
         default=0,
     ) #댓글 읽기 권한
+    created_at = models.DateTimeField(
+        verbose_name='Created',
+        auto_now_add=True,
+    ) #생성 날짜
+    updated_at = models.DateTimeField(
+        verbose_name='Updated',
+        auto_now=True,
+    ) #수정 날짜

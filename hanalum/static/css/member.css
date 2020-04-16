@@ -43,7 +43,6 @@ a:hover {
 
 /* 정보동의, 회원가입페이지 */
 .form-register {
-  width: 80%;
   max-width: 800px;
   padding: 15px;
   margin: auto;
@@ -64,9 +63,10 @@ a:hover {
 
 /* 정보수정, 탈퇴페이지 */
 .memberinfo .form-control{
-    float:right;
+    float: right;
     width: 80%;
 }
+<<<<<<< HEAD
 .memberinfomenu p{
     display: inline-block;
 }
@@ -100,6 +100,26 @@ body{
 	margin-top: 100px;
 	font-family: 'Trebuchet MS', serif;
 	line-height: 1.6
+=======
+.memberinfo .custom-file{
+    float: right;
+    width: 80%;
+}
+.memberdelete p{
+    text-align: center;
+}
+.memberdelete .row-delete{
+    display: table;
+    width: 100%;
+}
+.memberdelete .form-control{
+    float: left;
+    width: 80%;
+}
+.memberdelete .btn-delete{
+    float: right;
+    font-size: 15px;
+>>>>>>> e2b794d03a7ff71096d960a4535bdce0ac42c82c
 }
 .container{
 	width: 100%;
@@ -117,18 +137,30 @@ ul.tabs li{
 	padding: 10px 15px;
 	cursor: pointer;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> e2b794d03a7ff71096d960a4535bdce0ac42c82c
 ul.tabs li.current{
 	background: #ededed;
 	color: #222;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> e2b794d03a7ff71096d960a4535bdce0ac42c82c
 .tab-content{
 	display: none;
 	background: #ededed;
 	padding: 15px;
 }
+<<<<<<< HEAD
 
 .tab-content.current{
 	display: inherit;
 }
+=======
+.tab-content.current{
+	display: inherit;
+}
+>>>>>>> e2b794d03a7ff71096d960a4535bdce0ac42c82c

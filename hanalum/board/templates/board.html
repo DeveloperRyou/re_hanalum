@@ -19,42 +19,29 @@
   <table class="post_table">
     <thead>
       <tr>
-        <th style="vertical-align:middle; width:58%;">게시글 제목</th>
-        <th style="vertical-align:middle; width:14%">글쓴이</th>
-        <th style="width:9%;">조회
-          <div class="order_arrow">
-            <a href="#" style="grid-row:1/2">▲</a>
-            <a href="#" style="grid-row:2/3">▼</a>
-          </div>
-        </th>
-        <th style="width:11%;">좋아요
-          <div class="order_arrow">
-            <a href="#" style="grid-row:1/2">▲</a>
-            <a href="#" style="grid-row:2/3">▼</a>
-          </div>
-        </th>
-        <th style="width:8%;">날짜
-          <div class="order_arrow">
-            <a href="#" style="grid-row:1/2">▲</a>
-            <a href="#" style="grid-row:2/3">▼</a>
-          </div>
-        </th>
-            </tr>
+        <th class="thtitle py-2">게시글 제목</th>
+        <th class="thprof py-2">글쓴이</th>
+        <th class="thview py-2">조회</th>
+        <th class="thlike py-2">추천</th>
+        <th class="thdate py-2">날짜</th>
+      </tr>
     </thead>
     <tbody>
       {% for article in articles %}
       <tr>
         <td class="tdtitle"><a href="{% url 'article' article_id=article.pk %}">{{article}}</a></td>
         <td class="tdprof">
-          <img class="prof-img" src="{% static 'images/person.png' %}" alt="" width="30" height="30">
+          {% if article.pub_user.avatar %}
+          <img class="prof_img" src="/media/{{article.pub_user.avatar}}">
+          {% else %}
+          <img class="prof_img" src="{% static 'images/no-profile.png' %}">
+          {% endif %}
           {{article.pub_user}}
         </td>
         <td class="tdview">
-          <img class="board-img" src="{% static 'images/eye.png' %}" alt="" width="20" height="20">
           {{article.num_view}}
         </td>
         <td class="tdlike">
-          <img class="board-img" src="{% static 'images/like.png' %}" alt="" width="20" height="20">
           {{article.num_good}}
         </td>
         <td class="tddate">{{article.pub_date|date:'m-d'}}</td>
@@ -62,39 +49,41 @@
       {% endfor %}
     </tbody>
   </table>
-
-  <div class="d-flex justify-content-end pt-2">
-    <button class="btn btn-success mx-3" id="post" onclick="location.href='{% url 'write' board_id=board_id %}' ">글쓰기</button>
-    <button class="btn btn-success mx-3" id="delete">삭제</button>
-  </div>
-  <nav class="text-center mt-3 container">
-    <ul class="pagination justify-content-center">
-      <li class="page-item disabled"><a class="page-link"href="#">처음</a></li>
-      <li class="page-item disabled"><a class="page-link"href="#">이전</a></li>
-      <li class="page-item active"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item"><a class="page-link" href="#">4</a></li>
-      <li class="page-item"><a class="page-link" href="#">5</a></li>
-      <li class="page-item"><a class="page-link" href="#">6</a></li>
-      <li class="page-item"><a class="page-link" href="#">7</a></li>
-      <li class="page-item"><a class="page-link" href="#">8</a></li>
-      <li class="page-item"><a class="page-link" href="#">9</a></li>
-      <li class="page-item"><a class="page-link" href="#">10</a></li>
-      <li class="page-item"><a class="page-link" href="#">다음</a></li>
-      <li class="page-item"><a class="page-link" href="#">끝</a></li>
-    </ul>
-    <div class="row-justify-content-md-center mt-3">
-      <select class="post_search border-primary col col-md-2">
+  <div class="d-flex mt-3">
+      <select class="post_search border-primary col-2">
         <option>전체</option>
         <option>제목</option>
         <option>내용</option>
         <option>글쓴이</option>
         <option>제목+내용</option>
       </select>
-      <input class="post_search border-primary col col-md-6" placeholder="제목을 입력하시오">
-      <button class="btn btn-primary col-md-1">검색</button>
-    </div>
+      <input class="post_search border-primary col-6" placeholder="제목을 입력하시오">
+      <button class="btn btn-primary col-2">검색</button>
+      <button class="btn btn-success col-2" id="post" onclick="location.href='{% url 'write' board_id=board_id %}' ">글쓰기</button>
+  </div>
+  <nav class="text-center mt-3 container">
+    <ul class="pagination justify-content-center">
+      <li id="li_previous" class="page-item"><a class="page-link" href="{% url 'board' board_id=board_id page=start %}">이전</a></li>
+      <li id="li_{{start|add:1}}" class="page-item"><a class="page-link" href="{% url 'board' board_id=board_id page=start|add:1 %}">{{start|add:1}}</a></li>
+      <li id="li_{{start|add:2}}" class="page-item"><a class="page-link" href="{% url 'board' board_id=board_id page=start|add:2 %}">{{start|add:2}}</a></li>
+      <li id="li_{{start|add:3}}" class="page-item"><a class="page-link" href="{% url 'board' board_id=board_id page=start|add:3 %}">{{start|add:3}}</a></li>
+      <li id="li_{{start|add:4}}" class="page-item"><a class="page-link" href="{% url 'board' board_id=board_id page=start|add:4 %}">{{start|add:4}}</a></li>
+      <li id="li_{{start|add:5}}" class="page-item"><a class="page-link" href="{% url 'board' board_id=board_id page=start|add:5 %}">{{start|add:5}}</a></li>
+      <li id="li_{{start|add:6}}" class="page-item"><a class="page-link" href="{% url 'board' board_id=board_id page=start|add:6 %}">{{start|add:6}}</a></li>
+      <li id="li_{{start|add:7}}" class="page-item"><a class="page-link" href="{% url 'board' board_id=board_id page=start|add:7 %}">{{start|add:7}}</a></li>
+      <li id="li_{{start|add:8}}" class="page-item"><a class="page-link" href="{% url 'board' board_id=board_id page=start|add:8 %}">{{start|add:8}}</a></li>
+      <li id="li_{{start|add:9}}" class="page-item"><a class="page-link" href="{% url 'board' board_id=board_id page=start|add:9 %}">{{start|add:9}}</a></li>
+      <li id="li_{{start|add:10}}" class="page-item"><a class="page-link" href="{% url 'board' board_id=board_id page=start|add:10 %}">{{start|add:10}}</a></li>
+      <li id="li_next" class="page-item"><a class="page-link" href="{% url 'board' board_id=board_id page=start|add:11 %}">다음</a></li>
+    </ul>
   </nav>
 </div>
+<script type="text/javascript">
+  var current_li = $('#li_{{page}}');
+  current_li.addClass('active');
+
+  if({{start}}==0){
+    $('#li_previous').addClass('disabled');
+  }
+</script>
 {% endblock %}
