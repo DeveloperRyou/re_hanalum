@@ -135,16 +135,36 @@
   border-radius: 0 5px 5px 0;
 }
 
-/* if Sidebar hide */
+/* if Sidebar clicked */
 
-.sidebar.side-hide{
+.sidebar.side-clicked{
     left:-250px;
 }
-.side-button.side-hide{
+.side-button.side-clicked{
     left:0px;
 }
-main.side-hide{
+main.side-clicked{
     margin-left: 0;
+}
+
+/* mobile */
+
+@media (max-width: 768px) {
+    .sidebar{
+        left:-250px;
+    }
+    .sidebar.side-clicked{
+        left:0px;
+    }
+    .side-button{
+        left:0px;
+    }
+    .side-button:hover{
+      margin-left:-30px;
+    }
+    .side-button.side-clicked{
+        left:250px;
+    }
 }
 
 /* 상단바 (navbar) */

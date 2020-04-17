@@ -62,9 +62,16 @@
       </div>
     </div>
 
-    <!--메뉴오픈-->
+
     <script type="text/javascript">
+         // 전역변수
+         var side = $('.sidebar');
+         var side_bt = $('.side-button');
+         var main = $('main');
+
+        // 사이트 화면 새로고침 시
         $(document).ready(function(){
+            // 메뉴오픈
             $("#flip>div").click(function(){
                 var submenu = $(this).next("ul");
 
@@ -74,40 +81,15 @@
                     submenu.slideDown();
                 }
             });
+
+            // 메뉴 좌측으로 넣기
+            $('.slider').click(function(){
+                side.toggleClass('side-clicked');
+                side_bt.toggleClass('side-clicked');
+                main.toggleClass('side-clicked');
+            });
         });
     </script>
-
-    <!--메뉴 좌측으로 넣었다 빼기-->
-    <script type="text/javascript">
-      $(function(){
-        var side = $('.sidebar');
-        var side_bt = $('.side-button');
-        var main = $('main');
-
-        $('.slider').click(function(){
-          side.toggleClass('side-hide');
-          side_bt.toggleClass('side-hide');
-          main.toggleClass('side-hide');
-        });
-      });
-    </script>
-
-    <!--브라우저 크기 줄어들었을때-->
-    <script>
-        function check_size() {
-            var side = $('.sidebar');
-            var side_bt = $('.side-button');
-            var main = $('main');
-
-            var w = window.innerWidth;
-            if(w < 768){
-                side.addClass('side-hide');
-                side_bt.addClass('side-hide');
-                main.addClass('side-hide');
-            }
-        }
-    </script>
-
 
 </body>
 {% endblock %}
