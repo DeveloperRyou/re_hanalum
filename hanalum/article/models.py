@@ -55,19 +55,19 @@ class Article(models.Model):
         verbose_name='File_1',
         blank=True,
         null=True,
-        upload_to="files/%Y/%m/%d"
+        upload_to="files/%Y/%m/%d/"
     )
     file_2 = models.FileField(
-        verbose_name='File_1',
+        verbose_name='File_2',
         blank=True,
         null=True,
-        upload_to="files/%Y/%m/%d"
+        upload_to="files/%Y/%m/%d/"
     )
     file_3 = models.FileField(
-        verbose_name='File_1',
+        verbose_name='File_3',
         blank=True,
         null=True,
-        upload_to="files/%Y/%m/%d"
+        upload_to="files/%Y/%m/%d/"
     )
 
     def __str__(self):

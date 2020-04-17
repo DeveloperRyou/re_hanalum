@@ -43,7 +43,6 @@ a:hover {
 
 /* 정보동의, 회원가입페이지 */
 .form-register {
-  width: 80%;
   max-width: 800px;
   padding: 15px;
   margin: auto;
@@ -56,8 +55,61 @@ a:hover {
     color: red;
 }
 .form-register .white_background{
-  padding: 5px;
-  margin: auto;
-  background-color: #f8f9fa;
-  border-radius: 5px;
- }
+    padding: 5px;
+    margin: auto;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+/* 정보수정, 탈퇴페이지 */
+.memberinfo .form-control{
+    float: right;
+    width: 80%;
+}
+.memberinfo .custom-file{
+    float: right;
+    width: 80%;
+}
+.memberdelete p{
+    text-align: center;
+}
+.memberdelete .row-delete{
+    display: table;
+    width: 100%;
+}
+.memberdelete .form-control{
+    float: left;
+    width: 80%;
+}
+.memberdelete .btn-delete{
+    float: right;
+    font-size: 15px;
+}
+.container{
+	width: 100%;
+	margin: 0 auto;
+}
+ul.tabs{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+ul.tabs li{
+	background: none;
+	color: #222;
+	display: inline-block;
+	padding: 10px 15px;
+	cursor: pointer;
+}
+ul.tabs li.current{
+	background: #ededed;
+	color: #222;
+}
+.tab-content{
+	display: none;
+	background: #ededed;
+	padding: 15px;
+}
+.tab-content.current{
+	display: inherit;
+}

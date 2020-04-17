@@ -3,60 +3,7 @@
     max-height: 65;
 }
 
-.box {
-    padding-left: 1rem;
-}
-
-.board_title {
-    width: 60%;
-    float:left;
-    padding-bottom:1rem;
-    padding-top:1rem
-}
-
-.board_prof {
-    width: 13%;
-    float: left;
-    padding-bottom:1rem;
-    padding-top:1rem;
-}
-.board_view {
-    width: 9%;
-    float: left;
-    padding-bottom:1rem;
-    padding-top:1rem;
-}
-.board_like {
-    width: 9%;
-    float: left;
-    padding-bottom:1rem;
-    padding-top:1rem;
-}
-.board_date {
-    width: 9%;
-    float: left;
-    padding-bottom:1rem;
-    padding-top:1rem;
-}
-
-.alc {
-    text-align: left;
-    height:100%;
-    padding-bottom:10px;
-    padding-top:10px;
-}
-
-.prof-img {
-    float:left;
-    margin-right:6px
-}
-.board-img {
-    float:left;
-    margin-top:5;
-    margin-bottom:5;
-    margin-right: 6px
-}
-
+/* 테이블 */
 .post_table {
     text-align:center;
     vertical-align:middle;
@@ -65,24 +12,48 @@
     color: #000;
     background-color: #FFF;
 }
-    .post_table th, .post_table td {
+
+.post_table th, .post_table td {
     padding: 0.5rem 1rem;
     vertical-align: middle;
 }
-.post_table thead th {
-    vertical-align: bottom;
+
+.post_table thead{
     border-bottom: 0.2px solid #000;
 }
+
+/* 게시글 목록 너비 정의 */
+.thtitle {
+    width: auto;
+}
+.thprof {
+    width: 130px;
+}
+.thview {
+    width: 70px;
+}
+.thlike {
+    width: 70px;
+
+}
+.thdate {
+    width: 70px;
+}
+.prof_img {
+    float:left;
+    margin-right:6px;
+    width: 30px;
+    height: 30px;
+}
+
+/* 게시글 정의 */
 .tdtitle {
     text-align:left;
 }
 .tdprof {
     line-height:30px;
 }
-.tdlike {
-    line-height:20px;
-    padding:auto;
-}
+/*
 .order_arrow {
     font-size: 0.6rem;
     display: inline-grid;
@@ -95,7 +66,10 @@
 .pagingbox > a {
     font-size: 1rem;
     margin-left: 0.3rem;
-}
+}*/
+
+/* 검색, 글쓰기 */
+
 .post_search {
     border-width: 2px;
     display: inline-block;
@@ -105,6 +79,7 @@
     line-height: 1.5;
     border-radius: 5px;
 }
+
 .post_search:focus {
     outline:none;
 }
