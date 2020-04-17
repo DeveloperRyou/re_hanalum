@@ -36,16 +36,13 @@ class Article(models.Model):
         verbose_name='Num_comment',
         default=0,
     )
-    """like_user_set = models.ManyToManyField(
+    like_user_set = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
         blank=True,
         related_name='like_user_set',
         through='Like',
-    )"""
-    likes = models.ManyToManyField(
-        User,
-        verbose_name='likes',
     )
+
     num_good = models.IntegerField(
         verbose_name='Num_good',
         default=0,
@@ -83,27 +80,22 @@ class Article(models.Model):
             os.remove(os.path.join(settings.MEDIA_ROOT, self.file_3.path))
         except:
             pass
-        super(Article, self).delete(*args, **kwargs)  # 원래의 delete 함수를 실행
+        super(Articlearticle._id, self).delete(*args, **kwargs)  # 원래의 delete 함수를 실행
 
-
-    def total_likes(self):
-        return self.likes.count()
+    @property
+    def like_count(self):
+        return self.like_user_set.count()
  
-"""
+
 class Like(models.Model):
     user = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE
-    ) # 추천 할 user 정보
-    article_type = models.ForeignKey(
-        Article,
-        on_delete=models.CASCADE
-    ) # 추천 받을 article 정보
-    num_good = models.IntegerField(
-        verbose_name='Num_good',
-        default=0,
-    ) # 값이 -1이면 비추, 1이면 추"""
-    
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE)
+    article = models.ForeignKey(Article,
+                                on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
 class Comment(models.Model):
     writer = models.ForeignKey(
         User,
@@ -130,3 +122,4 @@ class Comment(models.Model):
         verbose_name='Updated',
         auto_now=True,
     ) #수정 날짜
+

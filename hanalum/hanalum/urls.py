@@ -33,7 +33,7 @@ urlpatterns = [
     path('main/', main.views.main, name='main'),
 
     path('article/<int:article_id>', article.views.article, name='article'),
-    path('like/', article.views.like, name='like'),
+    path('like/', article.views.article_like, name='article_like'),
     path('write/<str:board_id>', article.views.write, name='write'),
     path('article/<int:article_id>', article.views.comment, name='comment'),
 
@@ -47,5 +47,4 @@ urlpatterns = [
     path('cafeteria/', widget.views.cafeteria, name='widget'),
     path('acadnotice/', widget.views.acadnotice, name='widget'),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    path('like/', article.views.article_like, name='article_like'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

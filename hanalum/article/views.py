@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render
 from .forms import ArticleCreationForm
 from .forms import CommentForm
@@ -5,9 +6,10 @@ from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Article
 from .models import Comment
-"""from .models import Like"""
+from .models import Like
 from board.models import Board
-
+from django.views.decorators.http import require_POST
+from django.http import HttpResponse
 
 # 디버깅용 ip get code
 def get_client_ip(request):
@@ -18,7 +20,7 @@ def get_client_ip(request):
         ip = request.META.get('REMOTE_ADDR')
     return ip
 
-"""@login_required"""
+@login_required
 def article(request, article_id):
     article_detail = get_object_or_404(Article, pk=article_id)
     form = CommentForm()
@@ -44,17 +46,25 @@ def write(request, board_id):
         form = ArticleCreationForm()
         return render(request, 'write.html', {'form': form})
 
-def article_like(request, pk):
-    article = get_object_or_404(Article,pk=pk)
-    user = User.objects.get(username=request.user)
-    if article.likes.filter(id = user.id).exits():
-        article.likes.remove(user)
+
+def article_like(request):
+    print("hello")
+    pk = request.POST.get('pk', None)
+    article = get_object_or_404(Article, pk=pk)
+    article_like, article_like_created = article.like_set.get_or_create(user=request.user)
+    if not article_like_created:
+        article_like.delete()
+        message = "추천 취소"
     else:
-        article.likes.add(user)
-    return HttpResponse(str(article.total_likes()))
+        message = "추천"
+
+    context = {'like_count':article.like_count,
+               'message': message}
+
+    return HttpResponse(json.dumps(context), content_type="application/json")
 
 
-    def comment(request, article_id):
+def comment(request, article_id):
     if request.method == "POST":
         article = get_object_or_404(article, pk=article_id)
         form = CommentForm(request.POST)
