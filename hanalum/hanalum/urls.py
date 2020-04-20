@@ -35,13 +35,14 @@ urlpatterns = [
     path('logout/', login.views.logout, name='logout'),
     path('main/', main.views.main, name='main'),
 
-    path('article/<int:article_id>/', article.views.article, name='article'),
-    path('like/', article.views.like, name='like'),
-    path('write/<str:board_id>/', article.views.write, name='write'),
-    path('article/<int:article_id>/', article.views.comment, name='comment'),
-
+    path('article/<int:article_id>', article.views.article, name='article'),
+    path('like/', article.views.article_like, name='article_like'),
+    path('write/<str:board_id>', article.views.write, name='write'),
+    path('article/<int:article_id>', article.views.comment, name='comment'),
+  
     path(r'^upload/', login_required(views_ckeditor.upload), name='ckeditor_upload'),
     path(r'^browse/', never_cache(login_required(views_ckeditor.browse)), name='ckeditor_browse'),
+
 
     path('register/', member.views.register, name='register'),
     path('memberinfo/', member.views.memberinfo, name='memberinfo'),
@@ -60,6 +61,5 @@ urlpatterns = [
     path('calendar/', widget.views.calendar, name='widget'),
     path('cafeteria/', widget.views.cafeteria, name='widget'),
     path('acadnotice/', widget.views.acadnotice, name='widget'),
-
-    path('like/', article.views.article_like, name='article_like'),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
