@@ -62,7 +62,6 @@ def activate(request, uidb64, token):
         return redirect("login")
     else:
         return redirect("login")
-    return
 
 
 def agree(request):
@@ -72,7 +71,6 @@ def agree(request):
 def memberinfo(request):
     if request.method == "POST":
         form = CustomUserChangeForm(request.POST, request.FILES, instance=request.user)
-        print(request.FILES['avatar'])
         nickname_error = ""
 
         if form.check_nickname(request.user.nickname, request.POST['nickname']) > 0:
@@ -96,13 +94,14 @@ def memberinfo(request):
         form = CustomUserChangeForm(instance=request.user)
         return render(request, 'memberinfo.html', {'form': form})
 
+
 def memberdelete(request):
     if request.method == 'POST':
         user = auth.authenticate(request, username=request.user.email, password=request.POST['password'])
 
         if user is not None: # 맞은 경우
             user.delete()
-            return render(request, 'login.html')
+            return redirect('login')
 
         else:
             return redirect('memberinfo')

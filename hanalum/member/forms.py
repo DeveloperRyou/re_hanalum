@@ -13,7 +13,7 @@ from django.utils.encoding import force_bytes
 class UserCreationForm(forms.ModelForm):
     password1 = forms.CharField(label='비밀번호', widget=forms.PasswordInput(
         attrs={'class': 'form-control', 'placeholder': '영문 + 숫자로 8자 이상'}))
-    password2 = forms.CharField(label='비밀번호 재확인', widget=forms.PasswordInput(
+    password2 = forms.CharField(label='비밀번호 확인', widget=forms.PasswordInput(
         attrs={'class': 'form-control', 'placeholder': '영문 + 숫자로 8자 이상'}))
 
     class Meta:
@@ -85,7 +85,7 @@ class CustomUserChangeForm(UserChangeForm):
     password = None
     password1 = forms.CharField(label='비밀번호', widget=forms.PasswordInput(
         attrs={'class': 'form-control', 'placeholder': '영문 + 숫자로 8자 이상'}))
-    password2 = forms.CharField(label='비밀번호 재확인', widget=forms.PasswordInput(
+    password2 = forms.CharField(label='비밀번호 확인', widget=forms.PasswordInput(
         attrs={'class': 'form-control', 'placeholder': '영문 + 숫자로 8자 이상'}))
 
     class Meta:
