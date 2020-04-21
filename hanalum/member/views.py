@@ -2,9 +2,6 @@ from django.shortcuts import render
 from .forms import UserCreationForm, CustomUserChangeForm
 from django.shortcuts import redirect
 from django.contrib.auth import update_session_auth_hash
-<<<<<<< HEAD
-from django.contrib import auth
-=======
 from .models import User
 from django.contrib import auth
 from login.forms import UserLoginForm
@@ -17,7 +14,6 @@ from django.core.mail import EmailMessage
 from .tokens import account_activation_token
 from django.utils.encoding import force_bytes, force_text
 
->>>>>>> e2b794d03a7ff71096d960a4535bdce0ac42c82c
 
 # Create your views here.
 def register(request):
@@ -66,7 +62,6 @@ def activate(request, uidb64, token):
         return redirect("login")
     else:
         return redirect("login")
-    return
 
 
 def agree(request):
@@ -76,7 +71,6 @@ def agree(request):
 def memberinfo(request):
     if request.method == "POST":
         form = CustomUserChangeForm(request.POST, request.FILES, instance=request.user)
-        print(request.FILES['avatar'])
         nickname_error = ""
 
         if form.check_nickname(request.user.nickname, request.POST['nickname']) > 0:
@@ -100,24 +94,14 @@ def memberinfo(request):
         form = CustomUserChangeForm(instance=request.user)
         return render(request, 'memberinfo.html', {'form': form})
 
-<<<<<<< HEAD
 
-def memberdelete(request):
-    if request.method == 'POST':
-        user = auth.authenticate(request, username=request.POST.get('email', ''), password=request.POST.get('password', ''))
-=======
 def memberdelete(request):
     if request.method == 'POST':
         user = auth.authenticate(request, username=request.user.email, password=request.POST['password'])
->>>>>>> e2b794d03a7ff71096d960a4535bdce0ac42c82c
 
         if user is not None: # 맞은 경우
             user.delete()
-            return render(request, 'login.html')
+            return redirect('login')
 
         else:
-<<<<<<< HEAD
-            return redirect('/')
-=======
             return redirect('memberinfo')
->>>>>>> e2b794d03a7ff71096d960a4535bdce0ac42c82c

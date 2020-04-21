@@ -20,7 +20,7 @@ a:hover {
   max-width: 330px;
   padding: 15px;
   margin: auto;
-  background-color: #ffffffc0;
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 20px;
 }
 .form-signin .form-control {
@@ -46,11 +46,11 @@ a:hover {
   max-width: 800px;
   padding: 15px;
   margin: auto;
-  background-color: #ffffffc0;
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 20px;
 }
 .form-register .register_error {
-    font-size: 13px;
+    font-size: 0.7rem;
     display: inline-block;
     color: red;
 }
@@ -60,107 +60,3 @@ a:hover {
     background-color: #f8f9fa;
     border-radius: 5px;
 }
-
-/* 정보수정, 탈퇴페이지 */
-.memberinfo .form-control{
-    float: right;
-    width: 80%;
-}
-<<<<<<< HEAD
-.memberinfomenu p{
-    display: inline-block;
-}
-
-.member-delete{
-    display: inline-block;
-    margin-top: 10px;
-    margin-left: 20px;
-}
-div .pwd{
-    position: relative;
-    padding: 20px;
-}
-div.pwd input{
-    width: 300px;
-    height: 30px;
-    background-color: white;
-    border: 0;
-    color: black;
-    text-indent: 10px;
-}
-div .pwd i{
-    position: absolute;
-    left: 28%;
-    top: 27px;
-    color: orange;
-    cursor: pointer;
-}
-###
-body{
-	margin-top: 100px;
-	font-family: 'Trebuchet MS', serif;
-	line-height: 1.6
-=======
-.memberinfo .custom-file{
-    float: right;
-    width: 80%;
-}
-.memberdelete p{
-    text-align: center;
-}
-.memberdelete .row-delete{
-    display: table;
-    width: 100%;
-}
-.memberdelete .form-control{
-    float: left;
-    width: 80%;
-}
-.memberdelete .btn-delete{
-    float: right;
-    font-size: 15px;
->>>>>>> e2b794d03a7ff71096d960a4535bdce0ac42c82c
-}
-.container{
-	width: 100%;
-	margin: 0 auto;
-}
-ul.tabs{
-	margin: 0px;
-	padding: 0px;
-	list-style: none;
-}
-ul.tabs li{
-	background: none;
-	color: #222;
-	display: inline-block;
-	padding: 10px 15px;
-	cursor: pointer;
-}
-<<<<<<< HEAD
-
-=======
->>>>>>> e2b794d03a7ff71096d960a4535bdce0ac42c82c
-ul.tabs li.current{
-	background: #ededed;
-	color: #222;
-}
-<<<<<<< HEAD
-
-=======
->>>>>>> e2b794d03a7ff71096d960a4535bdce0ac42c82c
-.tab-content{
-	display: none;
-	background: #ededed;
-	padding: 15px;
-}
-<<<<<<< HEAD
-
-.tab-content.current{
-	display: inherit;
-}
-=======
-.tab-content.current{
-	display: inherit;
-}
->>>>>>> e2b794d03a7ff71096d960a4535bdce0ac42c82c

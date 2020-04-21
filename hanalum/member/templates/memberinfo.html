@@ -3,89 +3,85 @@
 {% load static %}
 
 {% block css %}
-<link href="{% static 'css/member.css' %}" rel="stylesheet">
-<link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+<link href="{% static 'css/memberinfo.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
-  <div class="container">
+<ul class="tabs container">
+    <li class="tab-link current" data-tab="tab-1">회원정보 수정</li>
+    <li class="tab-link" data-tab="tab-2">회원탈퇴</li>
+</ul>
 
-	<ul class="tabs">
-		<li class="tab-link current" data-tab="tab-1">회원정보 수정</li>
-		<li class="tab-link" data-tab="tab-2">회원탈퇴</li>
-	</ul>
-
-	<div id="tab-1" class="tab-content current container memberinfo">
-<<<<<<< HEAD
-      <form method = "POST" action = "{% url 'memberinfo' %}" class="form-register">
-    {% csrf_token %}
-=======
-      <form method = "POST" action = "{% url 'memberinfo' %}" class="form-register" enctype="multipart/form-data">
-      {% csrf_token %}
->>>>>>> e2b794d03a7ff71096d960a4535bdce0ac42c82c
-      <div class="mb-3">
-        <label for="id_email">이메일</label>
-        <input type="text" value="{{user.email}}" class="form-control" id="id_email" disabled>
-      </div>
-      <div class="mb-3">
-        <label for="{{form.password1.id_for_label}}">{{form.password1.label}}</label>
-        {{form.password1}}
-      </div>
-      <div class="mb-3">
-        <label for="{{form.password2.id_for_label}}">{{form.password2.label}}</label>
-        {{form.password2}}
-      </div>
-      <div class="mb-3">
-        <label for="{{form.avatar.id_for_label}}">{{form.avatar.label}}</label>
-        <div class="custom-file">
-          {{form.avatar}}
-          <label class="custom-file-label" for="customFile">{{form.avatar.label}}</label>
-        </div>
-      </div>
-      <div class="mb-3">
-        <label for="{{form.nickname.id_for_label}}">{{form.nickname.label}}</label>
-        {{form.nickname}}
-        <div class="register_error ml-3 mb-2">{{nickname_error}}</div>
-      </div>
-      <div class="mb-3">
-        <label for="id_realname">실명</label>
-        <input type="text" value="{{user.realname}}" class="form-control" id="id_realname" disabled>
-      </div>
-      <div class="mb-3">
-        <label for="id_gender">성별</label>
-        <input type="text" value="{{user.get_gender_display}}" class="form-control" id="id_gender" disabled>
-      </div>
-      <div class="mb-3">
-        <label for="id_admission_year">입학년도</label>
-        <input type="text" value="{{user.admission_year}}" class="form-control" id="id_admission_year" disabled>
-      </div>
-      <hr>
-      <button class="btn btn-primary btn-lg btn-block" type="submit">회원정보 수정</button>
-      </form>
-	</div>
-<<<<<<< HEAD
-	<div id="tab-2" class="tab-content delete">
-      <form method = "POST" action = "{% url 'memberdelete' %}" >
-        {% csrf_token %}
-        <p>탈퇴를 원하신다면 현재 비밀번호를 입력해주세요.</p>
-        <div class="pwd">
-          <input name="pw_del" id="password" type="password" class= "form-control" placeholder="비밀번호를 입력하세요">
-            <i class="fa fa-eye fa-lg"></i>
-        </div>
-        <a href="{% url 'memberdelete' %}"> <button class="btn btn-primary btn-lg member-delete" type="submit" value="회원탈퇴">회원탈퇴</button></a>
-=======
-	<div id="tab-2" class="tab-content container memberdelete">
-      <form method = "POST" action = "{% url 'memberdelete' %}" class="form-register">
-        {% csrf_token %}
-        <p>탈퇴를 원하신다면 현재 비밀번호를 입력해주세요.</p>
-        <div class="row-delete mb-3">
-          <input name="password" id="password" type="password" class="form-control" placeholder="비밀번호를 입력하세요">
-          <button class="btn btn-primary btn-lg btn-delete" type="submit">회원탈퇴</button>
-        </div>
->>>>>>> e2b794d03a7ff71096d960a4535bdce0ac42c82c
-      </form>
-	</div>
+<div id="tab-1" class="tab-content current container memberinfo">
+  <form method = "POST" action = "{% url 'memberinfo' %}" class="form-register" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="d-flex mb-3">
+    <div class="col-xl-2 col-md-3 col-5 pt-2 px-1">
+      <label for="id_email">이메일</label>
+    </div>
+    <input type="text" value="{{user.email}}" class="form-control" id="id_email" disabled>
   </div>
+  <div class="d-flex mb-3">
+    <div class="col-xl-2 col-md-3 col-5 pt-2 px-1">
+      <label for="{{form.password1.id_for_label}}">{{form.password1.label}}</label>
+    </div>
+    {{form.password1}}
+  </div>
+  <div class="d-flex mb-3">
+    <div class="col-xl-2 col-md-3 col-5 pt-2 px-1">
+      <label for="{{form.password2.id_for_label}}">{{form.password2.label}}</label>
+    </div>
+    {{form.password2}}
+  </div>
+  <div class="d-flex mb-3">
+    <div class="col-xl-2 col-md-3 col-5 pt-2 px-1">
+      <label for="{{form.avatar.id_for_label}}">{{form.avatar.label}}</label>
+    </div>
+    <div class="custom-file">
+      {{form.avatar}}
+      <label class="custom-file-label" for="customFile">{{form.avatar.label}}</label>
+    </div>
+  </div>
+  <div class="d-flex mb-3">
+    <div class="col-xl-2 col-md-3 col-5 pt-2 px-1">
+      <label for="{{form.nickname.id_for_label}}">{{form.nickname.label}}</label>
+      <div class="register_error">{{nickname_error}}</div>
+    </div>
+    {{form.nickname}}
+  </div>
+  <div class="d-flex mb-3">
+    <div class="col-xl-2 col-md-3 col-5 pt-2 px-1">
+      <label for="id_realname">실명</label>
+    </div>
+    <input type="text" value="{{user.realname}}" class="form-control" id="id_realname" disabled>
+  </div>
+  <div class="d-flex mb-3">
+    <div class="col-xl-2 col-md-3 col-5 pt-2 px-1">
+      <label for="id_gender">성별</label>
+    </div>
+    <input type="text" value="{{user.get_gender_display}}" class="form-control" id="id_gender" disabled>
+  </div>
+  <div class="d-flex mb-3">
+    <div class="col-xl-2 col-md-3 col-5 pt-2 px-1">
+      <label for="id_admission_year">입학년도</label>
+    </div>
+    <input type="text" value="{{user.admission_year}}" class="form-control" id="id_admission_year" disabled>
+  </div>
+  <hr>
+  <button class="btn btn-primary btn-lg btn-block" type="submit">회원정보 수정</button>
+  </form>
+</div>
+<div id="tab-2" class="tab-content container memberdelete">
+  <form method = "POST" action = "{% url 'memberdelete' %}" class="form-register">
+    {% csrf_token %}
+    <p>탈퇴를 원하신다면 현재 비밀번호를 입력해주세요.</p>
+    <hr>
+    <div class="row-delete mb-3">
+      <input name="password" id="password" type="password" class="form-control" placeholder="비밀번호를 입력하세요">
+      <button class="btn btn-primary btn-lg btn-delete" type="submit">회원탈퇴</button>
+    </div>
+  </form>
+</div>
 
   <script>
   $(document).ready(function(){
@@ -117,8 +113,6 @@
   });
   </script>
 
-<<<<<<< HEAD
-=======
   <script>
     // Add the following code if you want the name of the file appear on select
     $(".custom-file-input").on("change", function() {
@@ -127,7 +121,6 @@
     });
   </script>
 
->>>>>>> e2b794d03a7ff71096d960a4535bdce0ac42c82c
 
 
 {% endblock %}
