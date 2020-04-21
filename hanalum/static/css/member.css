@@ -50,7 +50,7 @@ a:hover {
   border-radius: 20px;
 }
 .form-register .register_error {
-    font-size: 13px;
+    font-size: 0.7rem;
     display: inline-block;
     color: red;
 }

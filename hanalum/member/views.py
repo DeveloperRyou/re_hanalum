@@ -62,7 +62,6 @@ def activate(request, uidb64, token):
         return redirect("login")
     else:
         return redirect("login")
-    return
 
 
 def agree(request):
@@ -72,7 +71,6 @@ def agree(request):
 def memberinfo(request):
     if request.method == "POST":
         form = CustomUserChangeForm(request.POST, request.FILES, instance=request.user)
-        print(request.FILES['avatar'])
         nickname_error = ""
 
         if form.check_nickname(request.user.nickname, request.POST['nickname']) > 0:
