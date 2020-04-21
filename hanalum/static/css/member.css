@@ -20,7 +20,7 @@ a:hover {
   max-width: 330px;
   padding: 15px;
   margin: auto;
-  background-color: #ffffffc0;
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 20px;
 }
 .form-signin .form-control {
@@ -46,7 +46,7 @@ a:hover {
   max-width: 800px;
   padding: 15px;
   margin: auto;
-  background-color: #ffffffc0;
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 20px;
 }
 .form-register .register_error {
