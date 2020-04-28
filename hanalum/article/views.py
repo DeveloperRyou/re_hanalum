@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Article
 from .models import Comment
 from .models import Like
+from .models import Dislike
 from board.models import Board
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse
@@ -48,17 +49,40 @@ def write(request, board_id):
 
 
 def article_like(request):
-    print("hello")
     pk = request.POST.get('pk', None)
     article = get_object_or_404(Article, pk=pk)
-    article_like, article_like_created = article.like_set.get_or_create(user=request.user)
-    if not article_like_created:
-        article_like.delete()
-        message = "추천 취소"
+
+    if article.dislike_set.count() != 0 :
+        message = "이미 비추천한 게시글입니다."
     else:
-        message = "추천"
+        article_like, article_like_created = article.like_set.get_or_create(user=request.user)
+
+        if not article_like_created:
+            article_like.delete()
+            message = "추천 취소"
+        else:
+            message = "추천"
 
     context = {'like_count':article.like_count,
+               'message': message}
+    return HttpResponse(json.dumps(context), content_type="application/json")
+
+def article_dislike(request):
+    pk = request.POST.get('pk', None)
+    article = get_object_or_404(Article, pk=pk)
+
+    if article.like_set.count() != 0:
+        message = "이미 추천한 게시글입니다."
+    else:
+        article_dislike, article_dislike_created = article.dislike_set.get_or_create(user=request.user)
+
+        if not article_dislike_created:
+            article_dislike.delete()
+            message = "비추천 취소"
+        else:
+            message = "비추천"
+
+    context = {'dislike_count':article.dislike_count,
                'message': message}
 
     return HttpResponse(json.dumps(context), content_type="application/json")

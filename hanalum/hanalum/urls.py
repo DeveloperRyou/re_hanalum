@@ -26,7 +26,7 @@ from django.conf.urls.static import static
 from django.conf.urls import include
 from django.contrib.auth.decorators import login_required
 from ckeditor_uploader import views as views_ckeditor
-from django.views.decorators.cache import never_cache
+from django.views.decorators.cache import never_cache 
 
 
 urlpatterns = [
@@ -37,6 +37,7 @@ urlpatterns = [
 
     path('article/<int:article_id>', article.views.article, name='article'),
     path('like/', article.views.article_like, name='article_like'),
+    path('dislike/', article.views.article_dislike, name = 'article_dislike'),
     path('write/<str:board_id>', article.views.write, name='write'),
     path('article/<int:article_id>', article.views.comment, name='comment'),
   

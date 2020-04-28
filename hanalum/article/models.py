@@ -43,6 +43,13 @@ class Article(models.Model):
         through='Like',
     )
 
+    dislike_user_set = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        blank=True,
+        related_name='dislike_user_set',
+        through='Dislike',
+    )
+
     num_good = models.IntegerField(
         verbose_name='Num_good',
         default=0,
@@ -85,9 +92,20 @@ class Article(models.Model):
     @property
     def like_count(self):
         return self.like_user_set.count()
- 
+    @property
+    def dislike_count(self):
+        return self.dislike_user_set.count()
 
 class Like(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE)
+    article = models.ForeignKey(Article,
+                                on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+class Dislike(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE)
