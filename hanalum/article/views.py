@@ -83,7 +83,7 @@ def article_dislike(request):
             message = "비추천"
 
     context = {'dislike_count':article.dislike_count,
-               'messages': message}
+               'message': message}
 
     return HttpResponse(json.dumps(context), content_type="application/json")
 

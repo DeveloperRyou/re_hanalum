@@ -19,7 +19,7 @@ class LikeAdmin(admin.ModelAdmin):
 admin.site.register(Like, LikeAdmin)
 
 class DislikeAdmin(admin.ModelAdmin):
-    list_display = ['user', 'article']
+    list_display = ['user', 'article'] 
 
 admin.site.register(Dislike, DislikeAdmin)
 
