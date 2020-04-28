@@ -51,12 +51,8 @@ urlpatterns = [
 
     path('memberdelete/', member.views.memberdelete, name='memberdelete'),
 
-<<<<<<< HEAD
-    path('board/<str:board_id>', board.views.board, name='board'),
-=======
     path('board/<str:board_id>/', board.views.board, name='board'),
     path('board/<str:board_id>/<int:page>/', board.views.board, name='board'),
->>>>>>> e2b794d03a7ff71096d960a4535bdce0ac42c82c
 
     path('calendar/', widget.views.calendar, name='widget'),
     path('cafeteria/', widget.views.cafeteria, name='widget'),
