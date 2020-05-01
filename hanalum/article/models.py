@@ -28,21 +28,18 @@ class Article(models.Model):
     content = RichTextUploadingField(
         verbose_name='Content',
     )
+
     num_view = models.IntegerField(
         verbose_name='Num_view',
         default=0,
     )
-    num_comment = models.IntegerField(
-        verbose_name='Num_comment',
-        default=0,
-    )
+
     like_user_set = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
         blank=True,
         related_name='like_user_set',
         through='Like',
     )
-
     dislike_user_set = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
         blank=True,
@@ -50,14 +47,6 @@ class Article(models.Model):
         through='Dislike',
     )
 
-    num_good = models.IntegerField(
-        verbose_name='Num_good',
-        default=0,
-    )
-    num_bad = models.IntegerField(
-        verbose_name='Num_bad',
-        default=0,
-    )
     file_1 = models.FileField(
         verbose_name='File_1',
         blank=True,

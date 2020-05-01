@@ -2,15 +2,11 @@ import json
 from django.shortcuts import render
 from .forms import ArticleCreationForm
 from .forms import CommentForm
-from django.urls import reverse_lazy
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Article
-from .models import Comment
-from .models import Like
-from .models import Dislike
+import datetime
 from board.models import Board
-from django.views.decorators.http import require_POST
 from django.http import HttpResponse
 
 # 디버깅용 ip get code
@@ -25,6 +21,7 @@ def get_client_ip(request):
 @login_required
 def article(request, article_id):
     article_detail = get_object_or_404(Article, pk=article_id)
+
     try:
         article_detail.like_set.get(user=request.user)
         user_liked = 1
@@ -52,7 +49,25 @@ def article(request, article_id):
         return redirect('/article/'+str(article_id))
     else:
         pass
-    return render(request, 'article.html', {'article': article_detail, 'form': form, 'user_liked': user_liked, 'user_disliked': user_disliked})
+    response = render(request, 'article.html', {'article': article_detail, 'form': form, 'user_liked': user_liked, 'user_disliked': user_disliked})
+
+    cookie_name = 'watched'
+    tomorrow = datetime.datetime.replace(datetime.datetime.now(), hour=23, minute=59, second=0)
+    expires = datetime.datetime.strftime(tomorrow, "%a, %d-%b-%Y %H:%M:%S GMT")
+    if request.COOKIES.get(cookie_name) is not None:
+        cookies = request.COOKIES.get(cookie_name)
+        cookies_list = cookies.split('|')
+        if str(article_id) not in cookies_list:
+            response.set_cookie(cookie_name, cookies + f'|{article_id}', expires=expires)
+            article_detail.num_view = article_detail.num_view + 1
+            article_detail.save()
+    else:
+        response.set_cookie(cookie_name, article_id, expires=expires)
+        article_detail.num_view = article_detail.num_view + 1
+        article_detail.save()
+
+    return response
+
 
 
 def write(request, board_id):
