@@ -8,62 +8,67 @@
 
 {% block content%}
 
-<div class="d-flex align-items-center p-3 my-3 text-white-50 bg-blue rounded shadow-sm">
-  <img class="mr-3" src="{% static 'images/board.png' %}" alt="" width="48" height="48">
-  <div class="lh-100 mb-0">
-    <h4 class="mb-0 text-white lh-100">{{board}}</h4>
-  </div>
+<div class="d-flex align-items-center p-3 bg-blue rounded shadow-sm">
+  <h5 class="m-auto mb-0 text-center text-white lh-100">{{board}}</h5>
 </div>
 
-<div class="my-3 p-3 bg-white rounded shadow-sm">
-  <table class="post_table">
-    <thead>
-      <tr>
-        <th class="thtitle py-2">게시글 제목</th>
-        <th class="thprof py-2">글쓴이</th>
-        <th class="thview py-2">조회</th>
-        <th class="thlike py-2">추천</th>
-        <th class="thdate py-2">날짜</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for article in articles %}
-      <tr>
-        <td class="tdtitle"><a href="{% url 'article' article_id=article.pk %}">{{article}}</a></td>
-        <td class="tdprof">
+<div class="my-3 px-3 py-2 bg-white rounded shadow-sm">
+  <div class="post_table">
+    <div class="table_th">
+      <div class="mobile_top">
+        <span class="col-title py-2">게시글 제목</span>
+      </div>
+      <div class="mobile_bottom">
+        <span class="col-prof py-2">글쓴이</span>
+        <span class="col-view py-2">조회</span>
+        <span class="col-like py-2">추천</span>
+        <span class="col-date py-2">날짜</span>
+      </div>
+    </div>
+    {% for article in articles %}
+    <div class="table_td">
+      <div class="mobile_top">
+        <div class="col-title"><a href="{% url 'article' article_id=article.pk %}">{{article}}</a></div>
+      </div>
+      <div class="mobile_bottom">
+        <div class="col-prof">
           {% if article.pub_user.avatar %}
           <img class="prof_img" src="/media/{{article.pub_user.avatar}}">
           {% else %}
           <img class="prof_img" src="{% static 'images/no-profile.png' %}">
           {% endif %}
           {{article.pub_user}}
-        </td>
-        <td class="tdview">
+        </div>
+        <div class="col-view">
           {{article.num_view}}
-        </td>
-        <td class="tdlike">
-          {{article.num_good}}
-        </td>
-        <td class="tddate">{{article.pub_date|date:'m-d'}}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  <div class="d-flex mt-3">
-      <select class="post_search border-primary col-2">
-        <option>전체</option>
-        <option>제목</option>
-        <option>내용</option>
-        <option>글쓴이</option>
-        <option>제목+내용</option>
-      </select>
-      <input class="post_search border-primary col-6" placeholder="제목을 입력하시오">
-      <button class="btn btn-primary col-2">검색</button>
-      <button class="btn btn-success col-2" id="post" onclick="location.href='{% url 'write' board_id=board_id %}' ">글쓰기</button>
+        </div>
+        <div class="col-like">
+          {{article.like_count}}
+        </div>
+        <div class="col-date">{{article.pub_date|date:'m-d'}}</div>
+      </div>
+    </div>
+    {% endfor %}
   </div>
-  <nav class="text-center mt-3 container">
+  <div class="bottom_bar">
+      <div class="write mt-3">
+        <button class="btn btn-success" id="post" onclick="location.href='{% url 'write' board_id=board_id %}' ">글쓰기</button>
+      </div>
+      <div class="search mt-3">
+        <select class="post_search search_select border-primary">
+          <option>전체</option>
+          <option>제목</option>
+          <option>내용</option>
+          <option>글쓴이</option>
+          <option>제목+내용</option>
+        </select>
+        <input class="post_search search_input border-primary mx-1">
+        <button class="btn btn-primary">검색</button>
+      </div>
+  </div>
+  <nav class="page text-center mt-3 container">
     <ul class="pagination justify-content-center">
-      <li id="li_previous" class="page-item"><a class="page-link" href="{% url 'board' board_id=board_id page=start %}">이전</a></li>
+      <li id="li_previous" class="page-item"><a class="page-link" href="{% url 'board' board_id=board_id page=start %}"><</a></li>
       <li id="li_{{start|add:1}}" class="page-item"><a class="page-link" href="{% url 'board' board_id=board_id page=start|add:1 %}">{{start|add:1}}</a></li>
       <li id="li_{{start|add:2}}" class="page-item"><a class="page-link" href="{% url 'board' board_id=board_id page=start|add:2 %}">{{start|add:2}}</a></li>
       <li id="li_{{start|add:3}}" class="page-item"><a class="page-link" href="{% url 'board' board_id=board_id page=start|add:3 %}">{{start|add:3}}</a></li>
@@ -74,16 +79,53 @@
       <li id="li_{{start|add:8}}" class="page-item"><a class="page-link" href="{% url 'board' board_id=board_id page=start|add:8 %}">{{start|add:8}}</a></li>
       <li id="li_{{start|add:9}}" class="page-item"><a class="page-link" href="{% url 'board' board_id=board_id page=start|add:9 %}">{{start|add:9}}</a></li>
       <li id="li_{{start|add:10}}" class="page-item"><a class="page-link" href="{% url 'board' board_id=board_id page=start|add:10 %}">{{start|add:10}}</a></li>
-      <li id="li_next" class="page-item"><a class="page-link" href="{% url 'board' board_id=board_id page=start|add:11 %}">다음</a></li>
+      <li id="li_next" class="page-item"><a class="page-link" href="{% url 'board' board_id=board_id page=start|add:11 %}">></a></li>
+    </ul>
+  </nav>
+  <nav class="mobile_page text-center mt-3 container">
+    <ul class="pagination justify-content-center">
+      <li id="mobile_li_previous" class="page-item"><a class="page-link" href="{% url 'board' board_id=board_id page=mobile_start %}"><</a></li>
+      <li id="mobile_li_{{mobile_start|add:1}}" class="page-item"><a class="page-link" href="{% url 'board' board_id=board_id page=mobile_start|add:1 %}">{{mobile_start|add:1}}</a></li>
+      <li id="mobile_li_{{mobile_start|add:2}}" class="page-item"><a class="page-link" href="{% url 'board' board_id=board_id page=mobile_start|add:2 %}">{{mobile_start|add:2}}</a></li>
+      <li id="mobile_li_{{mobile_start|add:3}}" class="page-item"><a class="page-link" href="{% url 'board' board_id=board_id page=mobile_start|add:3 %}">{{mobile_start|add:3}}</a></li>
+      <li id="mobile_li_{{mobile_start|add:4}}" class="page-item"><a class="page-link" href="{% url 'board' board_id=board_id page=mobile_start|add:4 %}">{{mobile_start|add:4}}</a></li>
+      <li id="mobile_li_{{mobile_start|add:5}}" class="page-item"><a class="page-link" href="{% url 'board' board_id=board_id page=mobile_start|add:5 %}">{{mobile_start|add:5}}</a></li>
+      <li id="mobile_li_next" class="page-item"><a class="page-link" href="{% url 'board' board_id=board_id page=mobile_start|add:11 %}">></a></li>
     </ul>
   </nav>
 </div>
 <script type="text/javascript">
+  var current_li_num = {{page}}
   var current_li = $('#li_{{page}}');
+  var current_mobile_li = $('#mobile_li_{{page}}');
   current_li.addClass('active');
+  current_mobile_li.addClass('active');
 
   if({{start}}==0){
     $('#li_previous').addClass('disabled');
+    $('#mobile_li_previous').addClass('disabled');
   }
+
+  for(var i={{board_count}}+1;i<=(parseInt(({{board_count}}-1)/10)+1)*10;i++){
+    $('#li_'+i.toString()).addClass('d-none');
+    $('#mobile_li_'+i.toString()).addClass('d-none');
+  }
+
+  if((parseInt(({{board_count}}-1)/10)+1)*10-current_li_num<10) $('#li_next').addClass('disabled');
+
+  if((parseInt(({{board_count}}-1)/5)+1)*5-current_li_num<5) $('#mobile_li_next').addClass('disabled');
+
+  function check_size() {
+    var w = window.innerWidth;
+    if (w<576){
+      $('.page').addClass('d-none');
+      $('.mobile_page').removeClass('d-none');
+    }
+    else{
+      $('.page').removeClass('d-none');
+      $('.mobile_page').addClass('d-none');
+    }
+  }
+  check_size()
 </script>
 {% endblock %}

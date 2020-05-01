@@ -28,29 +28,25 @@ class Article(models.Model):
     content = RichTextUploadingField(
         verbose_name='Content',
     )
+
     num_view = models.IntegerField(
         verbose_name='Num_view',
         default=0,
     )
-    num_comment = models.IntegerField(
-        verbose_name='Num_comment',
-        default=0,
-    )
+
     like_user_set = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
         blank=True,
         related_name='like_user_set',
         through='Like',
     )
+    dislike_user_set = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        blank=True,
+        related_name='dislike_user_set',
+        through='Dislike',
+    )
 
-    num_good = models.IntegerField(
-        verbose_name='Num_good',
-        default=0,
-    )
-    num_bad = models.IntegerField(
-        verbose_name='Num_bad',
-        default=0,
-    )
     file_1 = models.FileField(
         verbose_name='File_1',
         blank=True,
@@ -85,9 +81,20 @@ class Article(models.Model):
     @property
     def like_count(self):
         return self.like_user_set.count()
- 
+    @property
+    def dislike_count(self):
+        return self.dislike_user_set.count()
 
 class Like(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE)
+    article = models.ForeignKey(Article,
+                                on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+class Dislike(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE)
@@ -103,6 +110,7 @@ class Comment(models.Model):
     ) # 댓글 달 user 정보
     article = models.ForeignKey(
         Article,
+        related_name='comments',
         on_delete=models.CASCADE
     ) # 댓글 달릴 article 정보
     content = models.TextField(
@@ -122,4 +130,3 @@ class Comment(models.Model):
         verbose_name='Updated',
         auto_now=True,
     ) #수정 날짜
-

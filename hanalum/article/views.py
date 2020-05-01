@@ -5,10 +5,8 @@ from .forms import CommentForm
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Article
-from .models import Comment
-from .models import Like
+import datetime
 from board.models import Board
-from django.views.decorators.http import require_POST
 from django.http import HttpResponse
 
 # 디버깅용 ip get code
@@ -23,13 +21,53 @@ def get_client_ip(request):
 @login_required
 def article(request, article_id):
     article_detail = get_object_or_404(Article, pk=article_id)
+
+    try:
+        article_detail.like_set.get(user=request.user)
+        user_liked = 1
+    except:
+        user_liked = 0
+
+    try:
+        article_detail.dislike_set.get(user=request.user)
+        user_disliked = 1
+    except:
+        user_disliked = 0
+
     form = CommentForm()
     ip = get_client_ip(request)
     print(ip)
     print(request.user)
     print(article_detail)
 
-    return render(request, 'article.html', {'article': article_detail, 'form': form})
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        form.instance.article = article_detail
+        form.instance.writer = request.user
+        if form.is_valid():
+            form.save()
+        return redirect('/article/'+str(article_id))
+    else:
+        pass
+    response = render(request, 'article.html', {'article': article_detail, 'form': form, 'user_liked': user_liked, 'user_disliked': user_disliked})
+
+    cookie_name = 'watched'
+    tomorrow = datetime.datetime.replace(datetime.datetime.now(), hour=23, minute=59, second=0)
+    expires = datetime.datetime.strftime(tomorrow, "%a, %d-%b-%Y %H:%M:%S GMT")
+    if request.COOKIES.get(cookie_name) is not None:
+        cookies = request.COOKIES.get(cookie_name)
+        cookies_list = cookies.split('|')
+        if str(article_id) not in cookies_list:
+            response.set_cookie(cookie_name, cookies + f'|{article_id}', expires=expires)
+            article_detail.num_view = article_detail.num_view + 1
+            article_detail.save()
+    else:
+        response.set_cookie(cookie_name, article_id, expires=expires)
+        article_detail.num_view = article_detail.num_view + 1
+        article_detail.save()
+
+    return response
+
 
 
 def write(request, board_id):
@@ -48,31 +86,47 @@ def write(request, board_id):
 
 
 def article_like(request):
-    print("hello")
     pk = request.POST.get('pk', None)
-    article = get_object_or_404(Article, pk=pk)
-    article_like, article_like_created = article.like_set.get_or_create(user=request.user)
-    if not article_like_created:
-        article_like.delete()
-        message = "추천 취소"
-    else:
-        message = "추천"
+    article_info = get_object_or_404(Article, pk=pk)
+    is_failed = 0
 
-    context = {'like_count':article.like_count,
-               'message': message}
+    try:
+        article_info.dislike_set.get(user=request.user)  # 비추천 되어 있는지 검사
+        message = "이미 비추천한 게시글입니다."
+        is_failed = 1
+    except:
+        article_like_get, article_like_created = article_info.like_set.get_or_create(user=request.user)
 
+        if not article_like_created:
+            article_like_get.delete()
+            message = "추천 취소"
+        else:
+            message = "추천"
+
+    context = {'like_count':article_info.like_count,
+               'message': message, 'is_failed': is_failed}
     return HttpResponse(json.dumps(context), content_type="application/json")
 
 
-def comment(request, article_id):
-    if request.method == "POST":
-        article = get_object_or_404(article, pk=article_id)
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            form.save(commit=False)
-            comment.article = article
-            comment.writer = request.user
-            form.save()
-    else:
-        pass
-      
+def article_dislike(request):
+    pk = request.POST.get('pk', None)
+    article_info = get_object_or_404(Article, pk=pk)
+    is_failed = 0
+
+    try:
+        article_info.like_set.get(user=request.user) # 추천 되어 있는지 검사
+        message = "이미 추천한 게시글입니다."
+        is_failed = 1
+    except:
+        article_dislike_get, article_dislike_created = article_info.dislike_set.get_or_create(user=request.user)
+
+        if not article_dislike_created:
+            article_dislike_get.delete()
+            message = "비추천 취소"
+        else:
+            message = "비추천"
+
+    context = {'dislike_count':article_info.dislike_count,
+               'message': message, 'is_failed': is_failed}
+
+    return HttpResponse(json.dumps(context), content_type="application/json")
