@@ -128,23 +128,29 @@
 
     <h6 class="pb-2 pt-3">댓글</h6>
     {% for comment in article.comments.all %}
-      <div class="media border pb-3 mb-4">
-        <img src="{% static 'images/no-profile.png' %}" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+      <div class="media border pb-2 mb-2 comment">
+        {% if article.pub_user.avatar %}
+          <img src="/media/{{article.pub_user.avatar}}">
+        {% else %}
+          <img src="{% static 'images/no-profile.png' %}">
+        {% endif %}
         <div class="media-body">
-          <h4>{{ comment.writer.nickname }}<small><i>{{ comment.created_at }}</i></small></h4>
-          <p>{{ comment.content }}</p>
+          <div class="top-content">
+            <h5>{{ comment.writer.nickname }}</h5>
+            <p class="created_at">{{ comment.created_at | date:'m-d H:i' }}</p>
+          </div>
+          <p class="content">{{ comment.content }}</p>
         </div>
       </div>
     {% empty %}
       <p>아직 댓글이 없습니다.</p>
     {% endfor %}
-    <h6 class="pb-2 pt-3 mt-3 border-top border-gray">댓글 작성</h6>
 
     <div class="media pb-2">
-      <div class="media-body">
+      <div class="media-body comment">
         <form action="" method="POST">
           {% csrf_token %}
-          {{ form }}
+          {{ form.content }}
           <input type="submit" value="등록" class="btn btn-success float-right">
         </form>
       </div>

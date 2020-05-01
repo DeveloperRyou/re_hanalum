@@ -42,12 +42,14 @@ def article(request, article_id):
     print(ip)
     print(request.user)
     print(article_detail)
+
     if request.method == "POST":
         form = CommentForm(request.POST)
         form.instance.article = article_detail
         form.instance.writer = request.user
         if form.is_valid():
             form.save()
+        return redirect('/article/'+str(article_id))
     else:
         pass
     return render(request, 'article.html', {'article': article_detail, 'form': form, 'user_liked': user_liked, 'user_disliked': user_disliked})

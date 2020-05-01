@@ -30,7 +30,7 @@ main .lh-150 {
     max-width: 100%;
     height: auto;
 }
-/* 버튼 */
+/* 추천, 비추천 버튼 */
 .like, .dislike{
     border-radius:5px;
     border:2px #000 solid;
@@ -42,4 +42,32 @@ main .lh-150 {
     line-height:2rem;
     display: inline-block;
     margin:0;
+}
+/* 댓글 */
+.comment{
+    word-break: break-word;
+}
+.comment textarea {
+    height: 5rem;
+}
+.comment img{
+    margin: 0.7rem 0.7rem 0 0.7rem;
+    width: 3rem;
+}
+.comment p{
+    margin: 0;
+    padding: 0;
+}
+
+.comment .top-content{
+    padding-top:0.5rem;
+}
+.comment h5{
+    display: inline-block;
+}
+.comment .created_at{
+    float: right;
+    display: inline-block;
+    font-size: 0.8rem;
+    margin-right:1rem;
 }
