@@ -12,7 +12,7 @@
   <h5 class="m-auto mb-0 text-center text-white lh-100">{{board}}</h5>
 </div>
 
-<div class="my-3 p-3 bg-white rounded shadow-sm">
+<div class="my-3 px-3 py-2 bg-white rounded shadow-sm">
   <div class="post_table">
     <div class="table_th">
       <div class="mobile_top">
@@ -25,8 +25,8 @@
         <span class="col-date py-2">날짜</span>
       </div>
     </div>
+    {% for article in articles %}
     <div class="table_td">
-      {% for article in articles %}
       <div class="mobile_top">
         <div class="col-title"><a href="{% url 'article' article_id=article.pk %}">{{article}}</a></div>
       </div>
@@ -47,8 +47,8 @@
         </div>
         <div class="col-date">{{article.pub_date|date:'m-d'}}</div>
       </div>
-      {% endfor %}
     </div>
+    {% endfor %}
   </div>
   <div class="bottom_bar">
       <div class="write mt-3">

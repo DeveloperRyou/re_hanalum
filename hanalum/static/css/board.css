@@ -13,13 +13,15 @@
 }
 
 .post_table .table_th, .post_table .table_td {
-    padding: 0.6rem 0.3rem;
+    padding: 0.7rem 0.3rem;
+    border-bottom: 0.5px #cccccc solid;
     vertical-align: middle;
     display: flex;
     width: 100%;
 }
 
 .post_table .table_th{
+    padding: 0.4rem 0.3rem;
     border-bottom: 0.2px solid #000;
 }
 
@@ -50,10 +52,10 @@
 .table_td .col-title {
     text-align:left;
 }
+/*
 .table_td .col-prof {
     line-height:30px;
 }
-/*
 .order_arrow {
     font-size: 0.6rem;
     display: inline-grid;
