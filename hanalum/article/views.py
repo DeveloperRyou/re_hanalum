@@ -2,6 +2,7 @@ import json
 from django.shortcuts import render
 from .forms import ArticleCreationForm
 from .forms import CommentForm
+from django.urls import reverse_lazy
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Article
@@ -29,7 +30,14 @@ def article(request, article_id):
     print(ip)
     print(request.user)
     print(article_detail)
-
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        form.instance.article = article_detail
+        form.instance.writer = request.user
+        if form.is_valid():
+            form.save()
+    else:
+        pass
     return render(request, 'article.html', {'article': article_detail, 'form': form})
 
 
@@ -86,17 +94,3 @@ def article_dislike(request):
                'message': message}
 
     return HttpResponse(json.dumps(context), content_type="application/json")
-
-
-def comment(request, article_id):
-    if request.method == "POST":
-        article = get_object_or_404(article, pk=article_id)
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            form.save(commit=False)
-            comment.article = article
-            comment.writer = request.user
-            form.save()
-    else:
-        pass
-      

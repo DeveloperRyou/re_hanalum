@@ -115,20 +115,22 @@
     </div>
 
     <h6 class="pb-2 pt-3">댓글</h6>
-
-    <div class="media border pb-3 mb-4">
-      <img src="{% static 'images/no-profile.png' %}" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
-      <div class="media-body">
-        <h4>John Doe <small><i>Posted on February 19, 2016</i></small></h4>
-        <p>Lorem ipsum...</p>
+    {% for comment in article.comments.all %}
+      <div class="media border pb-3 mb-4">
+        <img src="{% static 'images/no-profile.png' %}" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+        <div class="media-body">
+          <h4>{{ comment.writer.nickname }}<small><i>{{ comment.created_at }}</i></small></h4>
+          <p>{{ comment.content }}</p>
+        </div>
       </div>
-    </div>
-
+    {% empty %}
+      <p>아직 댓글이 없습니다.</p>
+    {% endfor %}
     <h6 class="pb-2 pt-3 mt-3 border-top border-gray">댓글 작성</h6>
 
     <div class="media pb-2">
       <div class="media-body">
-        <form action="{% url 'comment' article_id=article.pk %}" method="POST">
+        <form action="" method="POST">
           {% csrf_token %}
           {{ form }}
           <input type="submit" value="등록" class="btn btn-success float-right">

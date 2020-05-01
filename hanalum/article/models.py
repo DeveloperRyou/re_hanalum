@@ -121,6 +121,7 @@ class Comment(models.Model):
     ) # 댓글 달 user 정보
     article = models.ForeignKey(
         Article,
+        related_name='comments',
         on_delete=models.CASCADE
     ) # 댓글 달릴 article 정보
     content = models.TextField(
@@ -140,4 +141,3 @@ class Comment(models.Model):
         verbose_name='Updated',
         auto_now=True,
     ) #수정 날짜
-
