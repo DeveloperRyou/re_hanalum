@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.urls import re_path
 import login.views
 import article.views
 import member.views
@@ -39,10 +40,9 @@ urlpatterns = [
     path('like/', article.views.article_like, name='article_like'),
     path('dislike/', article.views.article_dislike, name = 'article_dislike'),
     path('write/<str:board_id>', article.views.write, name='write'),
-    path('article/<int:article_id>', article.views.comment, name='comment'),
   
-    path(r'^upload/', login_required(views_ckeditor.upload), name='ckeditor_upload'),
-    path(r'^browse/', never_cache(login_required(views_ckeditor.browse)), name='ckeditor_browse'),
+    re_path(r'^upload/', login_required(views_ckeditor.upload), name='ckeditor_upload'),
+    re_path(r'^browse/', never_cache(login_required(views_ckeditor.browse)), name='ckeditor_browse'),
 
 
     path('register/', member.views.register, name='register'),
