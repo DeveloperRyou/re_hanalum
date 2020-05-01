@@ -49,62 +49,74 @@
     </div>
 
     <div class="media-body d-flex justify-content-center">
-      <li>
-      <input type="button" class="btn btn-primary like", name = "{{article.pk}}", value="추천", id="pk">
-      <p id="count-{{ article.id }}">{{ article.like_count}}개</p>
-      </li>
-      <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <div class="like btn mx-2">
+        <i class="fas fa-heart d-none"></i>
+        <i class="far fa-heart"></i>
+        <p id="like-count-{{ article.id }}">{{ article.like_count}}</p>
+        <p>추천</p>
+      </div>
+      <div class="dislike btn mx-2">
+        <i class="fas fa-heart-broken d-none"></i>
+        <img class="far" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik0zNjEsMTYuMDAxYy0zLjQxOCwwLTYuODcxLDAuMTE3LTEwLjI2NCwwLjM0NmMtMC4xMDIsMC4wMDctMC4xOTksMC4wMjctMC4zLDAuMDM2ICAgIGMtMy45NzgsMC4zNDgtNy42NDgsMi4yNjgtMTAuMjA1LDUuMzQxYy0wLjA2MywwLjA3NS0wLjEzMiwwLjE0Mi0wLjE5MywwLjIxOEwyNDQuMjg3LDE0MS42MyAgICBjLTQuNzc1LDUuOTY5LTQuMjk4LDE0LjU3MywxLjEwNiwxOS45NzdsNzkuMzk0LDc5LjM5NGwtNzkuMzk0LDc5LjM5NGMtMi44MTMsMi44MTMtNC4zOTQsNi42MjgtNC4zOTQsMTAuNjA2djU3LjU2NiAgICBsLTI3LjgzOC04My41MTRsNTMuNDQ1LTUzLjQ0NWM1Ljg1OC01Ljg1OCw1Ljg1OC0xNS4zNTUsMC0yMS4yMTNsLTgxLjcxOC04MS43MTlsNTIuOC04OC4wMDEgICAgYzQuMDAzLTYuNjgsMi4yNDktMTUuNDMzLTQuMjctMTkuOTkzYy0wLjEyOS0wLjA5LTAuMjQ2LTAuMTg5LTAuMzc5LTAuMjc2QzIwOC42NDMsMjQuNDM5LDE4MC4yNzQsMTYuMDAxLDE1MSwxNi4wMDEgICAgYy04My4yNjIsMC0xNTEsNjcuMjktMTUxLDE1MGMwLDM3LjU0NCwxMy45MzksNzMuNDczLDM5LjI3NSwxMDEuMTk1bDIwNS40NTUsMjIzLjcxYzAuMDA1LDAuMDA2LDAuMDEsMC4wMTEsMC4wMTYsMC4wMTcgICAgbDAuMjA3LDAuMjI1YzAuMDM2LDAuMDM5LDAuMDc3LDAuMDczLDAuMTE0LDAuMTEyYzUuNzg5LDYuMTU3LDE1LjYyOCw2LjQxLDIxLjY3NywwLjE5OGMwLjA5My0wLjA5NSwwLjE4OS0wLjE4NywwLjI3OS0wLjI4NSAgICBjMC4wMDgtMC4wMDksMC4wMTgtMC4wMTYsMC4wMjYtMC4wMjVMNDcyLjc1LDI2Ny4xNjlDNDk4LjA2MSwyMzkuNDc0LDUxMiwyMDMuNTQ1LDUxMiwxNjYuMDAxICAgIEM1MTIsODMuMjksNDQ0LjI2MiwxNi4wMDEsMzYxLDE2LjAwMXogTTYxLjM5NSwyNDYuOTNDNDEuMTUsMjI0Ljc3NywzMCwxOTYuMDM2LDMwLDE2Ni4wMDFjMC02Ni4xNjgsNTQuMjgtMTIwLDEyMS0xMjAgICAgYzE4LjU2NywwLDM2LjY2NSw0LjI1NCw1My4wODcsMTIuMzY4bC01MC45NDksODQuOTE1Yy0zLjU0Miw1LjkwMi0yLjYxMSwxMy40NTcsMi4yNTYsMTguMzI0bDc5LjM5Myw3OS4zOTRsLTQ5LjM5Myw0OS4zOTQgICAgYy00LjAxOCw0LjAxNy01LjQyLDkuOTYtMy42MjQsMTUuMzVsMzcuODA3LDExMy40MjJMNjEuMzk1LDI0Ni45M3ogTTQ1MC42MjksMjQ2LjkwMUwyNzEsNDQyLjQ5MlYzMzcuMjE0bDg1LjYwNi04NS42MDcgICAgYzUuODU4LTUuODU4LDUuODU4LTE1LjM1NSwwLTIxLjIxM0wyNzYuMSwxNDkuODg3bDgzLjA4Ni0xMDMuODU2YzAuNjA1LTAuMDA5LDEuMjExLTAuMDMxLDEuODE1LTAuMDMxICAgIGM2Ni43MiwwLDEyMSw1My44MzIsMTIxLDEyMEM0ODIsMTk2LjAzNyw0NzAuODUxLDIyNC43NzcsNDUwLjYyOSwyNDYuOTAxeiIgZmlsbD0iIzAwMDAwMCIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" style="width:1rem;"/>
+        <p id="dislike-count-{{ article.id }}">{{ article.dislike_count}}</p>
+        <p>비추천</p>
+      </div>
+
       <script type="text/javascript">
+      function change_type (self) {
+        $(self+" > .fas").toggleClass("d-none");
+        $(self+" > .far").toggleClass("d-none");
+      }
+
+      if({{user_liked}}) change_type(".like");
+      if({{user_disliked}}) change_type(".dislike");
+
       $(".like").click(function(){
-        var pk = $(this).attr('name')
+        var pk = {{article.pk}};
         $.ajax({ // .like 버튼을 클릭하면 <새로고침> 없이 ajax로 서버와 통신하겠다.
-          type: "POST", // 데이터를 전송하는 방법을 지정
-          url: "{% url 'article_like' %}", // 통신할 url을 지정
-          data: {'pk': pk, 'csrfmiddlewaretoken': '{{ csrf_token }}'}, // 서버로 데이터 전송시 옵션
-          dataType: "json", // 서버측에서 전송한 데이터를 어떤 형식의 데이터로서 해석할 것인가를 지정, 없으면 알아서 판단
-      // 서버측에서 전송한 Response 데이터 형식 (json)
-      //{'like_count': article.like_count, 'message': message }
+          type: "POST",
+          url: "{% url 'article_like' %}",
+          data: {'pk': pk, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+          dataType: "json",
+
+          // 서버측에서 전송한 Response 데이터 처리
           success: function(response){ // 통신 성공시 - 동적으로 좋아요 갯수 변경, 유저 목록 변경
             alert(response.message);
-            $("#count-"+pk).html(response.like_count+"개");
-            var users = $("#like-user-"+pk).text();
+            $("#like-count-"+pk).html(response.like_count);
+            if(response.is_failed!=true) change_type(".like");
           },
-          error: function(request, status, error){ // 통신 실패시 - 로그인 페이지 리다이렉트
+
+          error: function(request, status, error){ // 통신 실패시
             alert("로그인이 필요합니다.")
             window.location.replace(""+pk)
-        //  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+            //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
           },
         });
       });
-    </script>
-      <li>
-      <input type="button" class="btn btn-outline-primary dislike", name = "{{article.pk}}", value="비추천", id="pk">
-      <p id="count-{{ article.id }}">{{ article.dislike_count}}개</p>
-      </li>
-      <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-      <script type="text/javascript">
+
       $(".dislike").click(function(){
-        var pk = $(this).attr('name')
-        $.ajax({ // .like 버튼을 클릭하면 <새로고침> 없이 ajax로 서버와 통신하겠다.
-          type: "POST", // 데이터를 전송하는 방법을 지정
-          url: "{% url 'article_dislike' %}", // 통신할 url을 지정
-          data: {'pk': pk, 'csrfmiddlewaretoken': '{{ csrf_token }}'}, // 서버로 데이터 전송시 옵션
-          dataType: "json", // 서버측에서 전송한 데이터를 어떤 형식의 데이터로서 해석할 것인가를 지정, 없으면 알아서 판단
-      // 서버측에서 전송한 Response 데이터 형식 (json)
-      //{'dislike_count': article.dislike_count, 'message': message }
+        var pk = {{article.pk}};
+        $.ajax({ // .dislike 버튼을 클릭하면 <새로고침> 없이 ajax로 서버와 통신하겠다.
+          type: "POST",
+          url: "{% url 'article_dislike' %}",
+          data: {'pk': pk, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+          dataType: "json",
+
+          // 서버측에서 전송한 Response 데이터 처리
           success: function(response){ // 통신 성공시 - 동적으로 좋아요 갯수 변경, 유저 목록 변경
-            alert(response.messages);
-            $("#count-"+pk).html(response.dislike_count+"개");
-            var users = $("#dislike-user-"+pk).text();
+            alert(response.message);
+            $("#dislike-count-"+pk).html(response.dislike_count);
+            if(response.is_failed!=true) change_type(".dislike");
           },
-          error: function(request, status, error){ // 통신 실패시 - 로그인 페이지 리다이렉트
-            alert("로그인이 필요합니다.비추천")
+
+          error: function(request, status, error){ // 통신 실패시
+            alert("로그인이 필요합니다.")
             window.location.replace(""+pk)
-        //  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+            //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
           },
         });
       });
-    </script>
+      </script>
     </div>
 
 
