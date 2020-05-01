@@ -6,10 +6,37 @@
 <link href="{% static 'css/main.css' %}" rel="stylesheet">
 {% endblock %}
 
-{% block content%}
+{% block content %}
+<div class="left" >
+    <div class="petition"> <!-- #청원 게시판 hot -->
+    </div>
+    <div class="free"> <!-- #자유 게시판 hot -->
+    </div>
+    <div class="calender"> <!-- #달력 -->
+    </div>
+</div>
 
-<div class="widget-space">
-  <!-- 메인 화면에 띄울 내용 -->
+<div class="right">
+    <div class="white-board"> <!--#화이트 보드 사진 -->
+        {% include 'main2.html' %}
+
+    </div>
+    <div class="whefoo">
+        <div class="schoolfood"> <!--급식-->
+
+        </div>
+        <div class="wheather"> <!--날씨-->
+
+        </div>
+    </div>
+    <div class="youtube"> <!--유튜브-->
+        <div class="y1">
+        </div>
+        <div class="y2">
+        </div>
+        <div class="y3">
+        </div>
+    </div>
 </div>
 
 
