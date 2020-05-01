@@ -13,4 +13,5 @@ def board(request, board_id, page=1):
     articles = Article.objects.filter(board_type=board_detail).order_by('-pub_date')[page_start:page_start+PAGE_SIZE]
 
     return render(request, 'board.html', {'board': board_detail, 'board_id': board_id, 'articles': articles,
-                                          'board_count': board_count, 'start': (page-1)//10*10, 'page': page})
+                                          'board_count': board_count//10+1, 'start': (page-1)//10*10,
+                                          'mobile_start': (page-1)//5*5, 'page': page})
