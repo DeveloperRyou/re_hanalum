@@ -97,6 +97,9 @@
     float: left;
     display: flex;
 }
+.search form{
+    display: flex;
+}
 .search .search_select{
     width: 35%;
 }
