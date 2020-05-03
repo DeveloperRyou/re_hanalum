@@ -7,8 +7,23 @@
 {% endblock %}
 
 {% block content %}
-  <div class="my-3 p-3 bg-white rounded shadow-sm">
-    <h4 class="pb-2 mb-0 border-bottom border-gray">{{article.title}}</h4>
+  <div class="mb-3 p-3 bg-white rounded shadow-sm">
+    <h4 class="pb-2 mb-0">{{article.title}}</h4>
+    <div class="article_info border-top border-bottom border-gray">
+      <div class="col-prof">
+        {% if article.pub_user.avatar %}
+        <img class="prof_img" src="/media/{{article.pub_user.avatar}}">
+        {% else %}
+        <img class="prof_img" src="{% static 'images/no-profile.png' %}">
+        {% endif %}
+        {{article.pub_user}}
+      </div>
+      <div class="col-info">
+        <div class="col-view"><i class="fa fa-eye"></i>{{article.num_view}}</div>
+        <div class="col-like"><i class="fas fa-heart" aria-hidden="true"></i>{{article.like_count}}</div>
+        <div class="col-date"><i class="fa fa-clock-o"></i>{{article.pub_date|date:'m-d'}}</div>
+      </div>
+    </div>
     <div class="media pt-3 main-text">
       <div class="media-body pb-3 mb-0 lh-125">
         {{article.content | safe }}
@@ -119,11 +134,12 @@
       </script>
     </div>
 
-
-    <div class="d-block text-right pb-3 border-bottom border-gray">
-      <a href="#">수정</a>
-      <a href="#">삭제</a>
-    </div>
+    {% if user == article.pub_user %}
+      <div class="d-block text-right pb-3 mt-2 border-bottom border-gray">
+        <a href="#">수정</a>
+        <a href="#">삭제</a>
+      </div>
+    {% endif %}
 
     <h6 class="pb-2 pt-3">댓글</h6>
     {% for comment in article.comments.all %}
@@ -136,7 +152,13 @@
         <div class="media-body">
           <div class="top-content">
             <h5>{{ comment.writer.nickname }}</h5>
-            <p class="created_at">{{ comment.created_at | date:'m-d H:i' }}</p>
+            <p class="side_info">{{ comment.created_at | date:'m-d H:i' }}</p>
+            {% if user == comment.writer %}
+              <div class="side_info pr-3">
+                <a href="#">수정</a>
+                <a href="#">삭제</a>
+              </div>
+            {% endif %}
           </div>
           <p class="content">{{ comment.content }}</p>
         </div>
