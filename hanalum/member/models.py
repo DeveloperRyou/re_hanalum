@@ -37,12 +37,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     nickname = models.CharField(
         verbose_name='Nickname',
-        max_length=30,
+        max_length=10,
         unique=True,
     )
     realname = models.CharField(
         verbose_name='Realname',
-        max_length=30,
+        max_length=10,
     )
     GENDER_CHOICES = (
         ('M', '남'),
