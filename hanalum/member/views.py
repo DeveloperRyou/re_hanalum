@@ -19,15 +19,13 @@ from django.utils.encoding import force_bytes, force_text
 def register(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
-        nickname_error = ""
+        nickname_error = form.check_nickname(request.POST['nickname'])  # None일 경우 사용 가능함
         email_error = ""
 
-        if form.check_nickname(request.POST['nickname']) > 0:
-            nickname_error = "이미 사용중인 닉네임입니다."
         if form.check_email(request.POST['email']) > 0:
             email_error = "이미 등록된 이메일입니다."
 
-        if nickname_error == "" and email_error == "":  # 닉네임과 이메일 모두 사용가능한경우
+        if nickname_error is None and email_error == "":  # 닉네임과 이메일 모두 사용가능한경우
             if form.is_valid():
                 is_error = form.check_password()
                 realname_error = form.check_realname(request.POST['realname'])
@@ -71,12 +69,9 @@ def agree(request):
 def memberinfo(request):
     if request.method == "POST":
         form = CustomUserChangeForm(request.POST, request.FILES, instance=request.user)
-        nickname_error = ""
+        nickname_error = form.check_nickname(request.POST['nickname'], request.user.nickname)
 
-        if form.check_nickname(request.user.nickname, request.POST['nickname']) > 0:
-            nickname_error = "이미 사용중인 닉네임입니다."
-
-        if nickname_error == "":  # 닉네임과 이메일 모두 사용가능한경우
+        if nickname_error is None:  # 닉네임 사용가능한경우
             if form.is_valid():
                 is_error = form.check_password()
                 if is_error == "":

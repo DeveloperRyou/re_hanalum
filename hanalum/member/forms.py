@@ -10,7 +10,39 @@ from .tokens import account_activation_token
 from django.utils.encoding import force_bytes
 
 
-class UserCreationForm(forms.ModelForm):
+class CheckUserClass():
+    def check_password(self): # 비밀번호 확인
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+
+        p = re.compile("^\s*(?:\S\s*){8,16}$")  #  8~16개의 비 공백 문자가 포함된 문자열과 일치된다.
+        # 이전 정규식 : ^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$
+        is_match = p.match(password1)  # 여기에 비밀번호 정규식
+        if is_match is None:  # 비밀번호가 정규식에 매치되지 않음
+            return "비밀번호는 8자리 이상 16자리 이하로 만들어야합니다."
+
+        if password1 and password2 and password1 != password2:
+            return "비밀번호가 일치하지 않습니다."
+        return ""
+
+    def check_nickname(self, _nickname, user_nickname=None):  # _nickname : 생성할(변경할) 닉네임  # user_nickname : 기존 닉네임
+        if user_nickname is not None:  # CustomUserChangeForm에서 사용
+            if user_nickname == _nickname:  # 현재 닉네임이랑 같은경우
+                return  # 그대로 사용
+
+        if User.objects.filter(nickname=_nickname).count() > 0:  # 닉네임 중복인 경우
+            return "이미 사용중인 닉네임 입니다."
+
+        p = re.compile("^[a-zA-Z0-9가-힣]{1,10}$")  # 영문 & 숫자로 이루어진 길이 1~8 닉네임만 허용
+        is_match = p.match(_nickname)  # 여기에 비밀번호 정규식
+
+        if is_match is None:  # 비밀번호가 정규식에 매치되지 않음
+            return "닉네임은 한글 & 영문 & 숫자 조합으로 이루어져야합니다."
+        else:  # 닉네임 사용 가능
+            return
+
+
+class UserCreationForm(forms.ModelForm, CheckUserClass):
     password1 = forms.CharField(label='비밀번호', widget=forms.PasswordInput(
         attrs={'class': 'form-control', 'placeholder': '영문 + 숫자로 8자 이상'}))
     password2 = forms.CharField(label='비밀번호 확인', widget=forms.PasswordInput(
@@ -34,19 +66,6 @@ class UserCreationForm(forms.ModelForm):
             'admission_year': '입학년도',
         }
 
-    def check_password(self): # 비밀번호 확인
-        password1 = self.cleaned_data.get("password1")
-        password2 = self.cleaned_data.get("password2")
-
-        p = re.compile("^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$")
-        is_match = p.match(password1)  # 여기에 비밀번호 정규식
-        if is_match is None:  # 비밀번호가 정규식에 매치되지 않음
-            return "비밀번호는 8자리 이상 소문자+숫자"
-
-        if password1 and password2 and password1 != password2:
-            return "비밀번호가 일치하지 않습니다."
-        return ""
-
     def check_realname(self, _realname): # 실명확인
         p = re.compile("^[가-힣]+$")
         is_match = p.match(_realname)
@@ -56,9 +75,6 @@ class UserCreationForm(forms.ModelForm):
 
     def check_email(self, _email):
         return User.objects.filter(email=_email).count()
-
-    def check_nickname(self, _nickname):
-        return User.objects.filter(nickname=_nickname).count()
 
     def save(self, current_site, mail_to, commit=True):
         # 비밀번호를 해시 상태로 저장
@@ -81,7 +97,7 @@ class UserCreationForm(forms.ModelForm):
         return user
 
 
-class CustomUserChangeForm(UserChangeForm):
+class CustomUserChangeForm(UserChangeForm, CheckUserClass):
     password = None
     password1 = forms.CharField(label='비밀번호', widget=forms.PasswordInput(
         attrs={'class': 'form-control', 'placeholder': '영문 + 숫자로 8자 이상'}))
@@ -99,24 +115,6 @@ class CustomUserChangeForm(UserChangeForm):
             'avatar': '프로필',
             'nickname': '닉네임',
         }
-
-    def check_password(self): # 비밀번호 확인
-        password1 = self.cleaned_data.get("password1")
-        password2 = self.cleaned_data.get("password2")
-
-        p = re.compile("^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$")
-        is_match = p.match(password1)  # 여기에 비밀번호 정규식
-        if is_match is None:  # 비밀번호가 정규식에 매치되지 않음
-            return "비밀번호는 8자리 이상 소문자+숫자"
-
-        if password1 and password2 and password1 != password2:
-            return "비밀번호가 일치하지 않습니다."
-        return ""
-
-    def check_nickname(self, user_nickname, _nickname):
-        if user_nickname == _nickname:
-            return 0
-        return User.objects.filter(nickname=_nickname).count()
 
     def save(self, commit=True):
         # 비밀번호를 해시 상태로 저장
