@@ -32,6 +32,9 @@
 .col-prof {
     width: 140px;
 }
+.col-info{
+    display:flex;
+}
 .col-view {
     width: 60px;
 }
@@ -42,6 +45,7 @@
     width: 80px;
 }
 .prof_img {
+    border-radius: 50%;
     float:left;
     margin-right:6px;
     width: 30px;
@@ -148,10 +152,13 @@
     }
     .col-prof {
         text-align: left;
-        width: 50%;
+        width: 100%;
     }
     .table_td .col-prof {
         line-height:16px;
+    }
+    .col-info{
+        display:flex;
     }
     .col-view {
         width: 60px;
@@ -176,9 +183,10 @@
         margin-left: 0.4rem;
     }
     .col-date {
-        width: 60px;
+        width: 40px;
     }
     .prof_img{
+        border-radius: 50%;
         width: 16px;
         height: 16px;
     }

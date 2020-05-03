@@ -39,13 +39,11 @@
           {% endif %}
           {{article.pub_user}}
         </div>
-        <div class="col-view">
-          {{article.num_view}}
+        <div class="col-info">
+          <div class="col-view">{{article.num_view}}</div>
+          <div class="col-like">{{article.like_count}}</div>
+          <div class="col-date">{{article.pub_date|date:'m-d'}}</div>
         </div>
-        <div class="col-like">
-          {{article.like_count}}
-        </div>
-        <div class="col-date">{{article.pub_date|date:'m-d'}}</div>
       </div>
     </div>
     {% endfor %}

@@ -26,7 +26,7 @@
 .sidebar .profile-image {
     width: 50px;
     height: 50px;
-    border-radius: 70%;
+    border-radius: 50%;
     overflow: hidden;
     object-fit: cover;
     margin-bottom: 5px;

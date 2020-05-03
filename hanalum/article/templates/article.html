@@ -123,13 +123,12 @@
     <div class="d-block text-right pb-3 border-bottom border-gray">
       <a href="#">수정</a>
       <a href="#">삭제</a>
-      <a href="#">목록으로</a>
     </div>
 
     <h6 class="pb-2 pt-3">댓글</h6>
     {% for comment in article.comments.all %}
       <div class="media border pb-2 mb-2 comment">
-        {% if article.pub_user.avatar %}
+        {% if comment.writer.avatar %}
           <img src="/media/{{article.pub_user.avatar}}">
         {% else %}
           <img src="{% static 'images/no-profile.png' %}">
