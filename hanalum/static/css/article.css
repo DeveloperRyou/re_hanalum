@@ -20,6 +20,11 @@ main .lh-150 {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
+
+.submit {
+    display: flow-root;
+}
+
 .input-group-append a {
     display: block;
     width: 100%;

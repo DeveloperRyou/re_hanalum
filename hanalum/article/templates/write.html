@@ -11,8 +11,12 @@
     <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.media }}
-        {{ form.title }}
-        {{ form.content }}
+        <div class="mb-3">
+            {{ form.title }}
+        </div>
+        <div class="mb-3">
+            {{ form.content }}
+        </div>
         <div class="custom-file mb-3">
             {{ form.file_1 }}
             <label class="custom-file-label" for="customFile">Choose file</label>
@@ -25,8 +29,9 @@
             {{ form.file_3 }}
             <label class="custom-file-label" for="customFile">Choose file</label>
         </div>
-
-        <input type="submit" class="btn btn-primary" value="작성"/>
+        <div class="submit">
+            <input type="submit" class="btn btn-primary float-right" value="작성"/>
+        </div>
     </form>
     <script>
     // Add the following code if you want the name of the file appear on select
