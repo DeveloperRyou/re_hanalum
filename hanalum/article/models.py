@@ -76,7 +76,7 @@ class Article(models.Model):
             os.remove(os.path.join(settings.MEDIA_ROOT, self.file_3.path))
         except:
             pass
-        super(Articlearticle._id, self).delete(*args, **kwargs)  # 원래의 delete 함수를 실행
+        super(Article, self).delete(*args, **kwargs)  # 원래의 delete 함수를 실행
 
     @property
     def like_count(self):

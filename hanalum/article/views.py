@@ -4,8 +4,9 @@ from .forms import ArticleCreationForm
 from .forms import CommentForm
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import Article
 import datetime
+from .models import Article
+from .models import Comment
 from board.models import Board
 from django.http import HttpResponse
 
@@ -68,6 +69,23 @@ def article(request, article_id):
 
     return response
 
+
+def article_delete(request, article_id):
+    article_detail = get_object_or_404(Article, pk=article_id)
+    board_id = article_detail.board_type.board_id
+    if request.user == article_detail.pub_user:
+        article_detail.delete()
+
+    return redirect('/board/'+board_id)
+
+
+def comment_delete(request, comment_id):
+    comment_detail = get_object_or_404(Comment, pk=comment_id)
+    article_id = comment_detail.article.pk
+    if request.user == comment_detail.writer:
+        comment_detail.delete()
+
+    return redirect('/article/'+str(article_id))
 
 
 def write(request, board_id):

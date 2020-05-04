@@ -137,7 +137,7 @@
     {% if user == article.pub_user %}
       <div class="d-block text-right pb-3 mt-2 border-bottom border-gray">
         <a href="#">수정</a>
-        <a href="#">삭제</a>
+        <a href="{% url 'article_delete' article_id=article.pk %}">삭제</a>
       </div>
     {% endif %}
 
@@ -156,7 +156,7 @@
             {% if user == comment.writer %}
               <div class="side_info pr-3">
                 <a href="#">수정</a>
-                <a href="#">삭제</a>
+                <a href="{% url 'comment_delete' comment_id=comment.pk %}">삭제</a>
               </div>
             {% endif %}
           </div>
