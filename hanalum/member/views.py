@@ -19,13 +19,10 @@ from django.utils.encoding import force_bytes, force_text
 def register(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
-        nickname_error = form.check_nickname(request.POST['nickname'])  # None일 경우 사용 가능함
-        email_error = ""
+        nickname_error = form.check_nickname(request.POST['nickname'])  # "" 일 경우 사용 가능함
+        email_error = form.check_email(request.POST['email'])
 
-        if form.check_email(request.POST['email']) > 0:
-            email_error = "이미 등록된 이메일입니다."
-
-        if nickname_error is None and email_error == "":  # 닉네임과 이메일 모두 사용가능한경우
+        if nickname_error == "" and email_error == "":  # 닉네임과 이메일 모두 사용가능한경우
             if form.is_valid():
                 is_error = form.check_password()
                 realname_error = form.check_realname(request.POST['realname'])

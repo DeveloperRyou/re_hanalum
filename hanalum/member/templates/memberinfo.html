@@ -27,12 +27,13 @@
     </div>
     {{form.password1}}
   </div>
-  <div class="d-flex mb-3">
+  <div class="d-flex">
     <div class="col-xl-2 col-md-3 col-5 pt-2 px-1">
       <label for="{{form.password2.id_for_label}}">{{form.password2.label}}</label>
     </div>
     {{form.password2}}
   </div>
+  <div class="register_error mb-3">{{password2_error}}</div>
   <div class="d-flex mb-3">
     <div class="col-xl-2 col-md-3 col-5 pt-2 px-1">
       <label for="{{form.avatar.id_for_label}}">{{form.avatar.label}}</label>
@@ -42,13 +43,13 @@
       <label class="custom-file-label" for="customFile">{{form.avatar.label}}</label>
     </div>
   </div>
-  <div class="d-flex mb-3">
+  <div class="d-flex">
     <div class="col-xl-2 col-md-3 col-5 pt-2 px-1">
       <label for="{{form.nickname.id_for_label}}">{{form.nickname.label}}</label>
-      <div class="register_error">{{nickname_error}}</div>
     </div>
     {{form.nickname}}
   </div>
+  <div class="register_error mb-3">{{nickname_error}}</div>
   <div class="d-flex mb-3">
     <div class="col-xl-2 col-md-3 col-5 pt-2 px-1">
       <label for="id_realname">실명</label>

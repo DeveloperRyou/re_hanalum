@@ -39,7 +39,20 @@ class CheckUserClass():
         if is_match is None:  # 비밀번호가 정규식에 매치되지 않음
             return "닉네임은 한글 & 영문 & 숫자 조합으로 이루어져야합니다."
         else:  # 닉네임 사용 가능
-            return
+            return ""
+
+    def check_realname(self, _realname): # 실명확인
+        p = re.compile("^[가-힣]+$")
+        is_match = p.match(_realname)
+        if is_match is None:
+            return "한글 실명을 입력하세요."
+        return ""
+
+    def check_email(self, _email):
+        if User.objects.filter(email=_email).count() > 0:
+            return "이미 등록된 이메일입니다."
+        else:
+            return ""
 
 
 class UserCreationForm(forms.ModelForm, CheckUserClass):
@@ -66,15 +79,6 @@ class UserCreationForm(forms.ModelForm, CheckUserClass):
             'admission_year': '입학년도',
         }
 
-    def check_realname(self, _realname): # 실명확인
-        p = re.compile("^[가-힣]+$")
-        is_match = p.match(_realname)
-        if is_match is None:
-            return "한글 실명을 입력하세요."
-        return ""
-
-    def check_email(self, _email):
-        return User.objects.filter(email=_email).count()
 
     def save(self, current_site, mail_to, commit=True):
         # 비밀번호를 해시 상태로 저장

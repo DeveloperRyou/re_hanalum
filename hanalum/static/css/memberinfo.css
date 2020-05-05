@@ -1,7 +1,6 @@
 /* 정보수정, 탈퇴페이지 */
 .memberinfo .register_error{
     font-size: 0.7rem;
-    display: inline-block;
     color: red;
 }
 .memberdelete p{
