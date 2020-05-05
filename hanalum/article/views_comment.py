@@ -8,10 +8,8 @@ from .models import Comment
 def comment_write(request, article_id):
     article_detail = get_object_or_404(Article, pk=article_id)
     form = CommentCreationForm(request.POST)
-    form.instance.article = article_detail
-    form.instance.writer = request.user
     if form.is_valid():
-        form.save()
+        form.save(pub_user=request.user, article_type=article_detail)
     return redirect('/article/'+str(article_id))
 
 

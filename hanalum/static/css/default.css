@@ -56,8 +56,8 @@ main{
 }
 
 .main-text {
-    font-size: 20px;
-    color: #4b4b4b;
+    font-size: 1rem;
+    color: #000000;
 }
 
 [role="main"] {
