@@ -169,9 +169,9 @@
 
     <div class="media pb-2">
       <div class="media-body comment">
-        <form action="" method="POST">
+        <form action="{% url 'comment_write' article_id=article.pk %}" method="POST">
           {% csrf_token %}
-          {{ form.content }}
+          {{ comment_form.content }}
           <input type="submit" value="등록" class="btn btn-success float-right">
         </form>
       </div>

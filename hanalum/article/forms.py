@@ -25,7 +25,7 @@ class ArticleCreationForm(forms.ModelForm):
         article.save()
         return article.pk
 
-class CommentForm(forms.ModelForm):
+class CommentCreationForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['content',]

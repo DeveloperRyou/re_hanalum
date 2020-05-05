@@ -18,6 +18,7 @@ from django.urls import path
 from django.urls import re_path
 import login.views
 import article.views
+import article.views_comment
 import member.views
 import board.views
 import widget.views
@@ -37,22 +38,24 @@ urlpatterns = [
     path('main/', main.views.main, name='main'),
 
     path('article/<int:article_id>', article.views.article, name='article'),
+    path('article_write/<str:board_id>', article.views.article_write, name='article_write'),
     path('article_delete/<int:article_id>', article.views.article_delete, name='article_delete'),
-    path('comment_delete/<int:comment_id>', article.views.comment_delete, name='comment_delete'),
 
     path('like/', article.views.article_like, name='article_like'),
     path('dislike/', article.views.article_dislike, name = 'article_dislike'),
-    path('write/<str:board_id>', article.views.write, name='write'),
+
+    path('comment_write/<int:article_id>', article.views_comment.comment_write, name='comment_write'),
+    path('comment_delete/<int:comment_id>', article.views_comment.comment_delete, name='comment_delete'),
   
     re_path(r'^upload/', login_required(views_ckeditor.upload), name='ckeditor_upload'),
     re_path(r'^browse/', never_cache(login_required(views_ckeditor.browse)), name='ckeditor_browse'),
 
 
     path('register/', member.views.register, name='register'),
-    path('memberinfo/', member.views.memberinfo, name='memberinfo'),
     path('agree/', member.views.agree, name='agree'),
     path('activate/<str:uidb64>/<str:token>/', member.views.activate, name="activate"),
 
+    path('memberinfo/', member.views.memberinfo, name='memberinfo'),
     path('memberdelete/', member.views.memberdelete, name='memberdelete'),
 
     path('board/<str:board_id>/', board.views.board, name='board'),
