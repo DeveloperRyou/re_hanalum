@@ -25,7 +25,8 @@ class ArticleCreationForm(forms.ModelForm):
         article.save()
         return article.pk
 
-class CommentForm(forms.ModelForm):
+
+class CommentCreationForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['content',]
@@ -35,3 +36,11 @@ class CommentForm(forms.ModelForm):
         labels = {
             'content': '댓글 작성'
         }
+
+    def save(self, **kwargs):
+        # 비밀번호를 해시 상태로 저장
+        comment = super().save(commit=False)
+        comment.article_type = kwargs.get('article_type')
+        comment.pub_user = kwargs.get('pub_user')
+        comment.save()
+        return comment.pk

@@ -3,7 +3,6 @@ from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 from member.models import User
 from board.models import Board
-from django.utils import timezone
 from hanalum import settings
 import os
 
@@ -17,9 +16,13 @@ class Article(models.Model):
         User,
         on_delete=models.CASCADE
     )
-    pub_date = models.DateTimeField(
-        verbose_name='Pub_date',
+    created_at = models.DateTimeField(
+        verbose_name='Created',
         auto_now_add=True,
+    )
+    updated_at = models.DateTimeField(
+        verbose_name='Updated',
+        auto_now=True,
     )
     title = models.CharField(
         verbose_name='Title',
@@ -76,7 +79,7 @@ class Article(models.Model):
             os.remove(os.path.join(settings.MEDIA_ROOT, self.file_3.path))
         except:
             pass
-        super(Articlearticle._id, self).delete(*args, **kwargs)  # 원래의 delete 함수를 실행
+        super(Article, self).delete(*args, **kwargs)  # 원래의 delete 함수를 실행
 
     @property
     def like_count(self):
@@ -87,7 +90,7 @@ class Article(models.Model):
 
 class Like(models.Model):
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
+        User,
         on_delete=models.CASCADE)
     article = models.ForeignKey(Article,
                                 on_delete=models.CASCADE)
@@ -96,7 +99,7 @@ class Like(models.Model):
 
 class Dislike(models.Model):
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
+        User,
         on_delete=models.CASCADE)
     article = models.ForeignKey(Article,
                                 on_delete=models.CASCADE)
@@ -104,11 +107,11 @@ class Dislike(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 class Comment(models.Model):
-    writer = models.ForeignKey(
+    pub_user = models.ForeignKey(
         User,
         on_delete=models.CASCADE
     ) # 댓글 달 user 정보
-    article = models.ForeignKey(
+    article_type = models.ForeignKey(
         Article,
         related_name='comments',
         on_delete=models.CASCADE

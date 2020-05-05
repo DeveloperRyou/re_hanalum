@@ -1,56 +1,38 @@
 import json
 from django.shortcuts import render
 from .forms import ArticleCreationForm
-from .forms import CommentForm
+from .forms import CommentCreationForm
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import Article
 import datetime
+from .models import Article
 from board.models import Board
 from django.http import HttpResponse
 
-# 디버깅용 ip get code
-def get_client_ip(request):
-    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(',')[0]
-    else:
-        ip = request.META.get('REMOTE_ADDR')
-    return ip
 
 @login_required
 def article(request, article_id):
     article_detail = get_object_or_404(Article, pk=article_id)
+    comment_form = CommentCreationForm()
 
+    # user가 추천을 눌렀는지 검사
     try:
         article_detail.like_set.get(user=request.user)
         user_liked = 1
     except:
         user_liked = 0
 
+    # user가 비추천을 눌렀는지 검사
     try:
         article_detail.dislike_set.get(user=request.user)
         user_disliked = 1
     except:
         user_disliked = 0
 
-    form = CommentForm()
-    ip = get_client_ip(request)
-    print(ip)
-    print(request.user)
-    print(article_detail)
+    response = render(request, 'article.html', {'article': article_detail, 'comment_form': comment_form,
+                                                'user_liked': user_liked, 'user_disliked': user_disliked})
 
-    if request.method == "POST":
-        form = CommentForm(request.POST)
-        form.instance.article = article_detail
-        form.instance.writer = request.user
-        if form.is_valid():
-            form.save()
-        return redirect('/article/'+str(article_id))
-    else:
-        pass
-    response = render(request, 'article.html', {'article': article_detail, 'form': form, 'user_liked': user_liked, 'user_disliked': user_disliked})
-
+    # 조회수 증가 코드
     cookie_name = 'watched'
     tomorrow = datetime.datetime.replace(datetime.datetime.now(), hour=23, minute=59, second=0)
     expires = datetime.datetime.strftime(tomorrow, "%a, %d-%b-%Y %H:%M:%S GMT")
@@ -69,8 +51,8 @@ def article(request, article_id):
     return response
 
 
-
-def write(request, board_id):
+@login_required
+def article_write(request, board_id):
     if request.method == "POST":
         form = ArticleCreationForm(request.POST, request.FILES)
         if form.is_valid():
@@ -85,7 +67,38 @@ def write(request, board_id):
         return render(request, 'write.html', {'form': form})
 
 
-def article_like(request):
+@login_required
+def article_update(request, article_id):
+    article_detail = get_object_or_404(Article, pk=article_id)
+
+    if request.user == article_detail.pub_user:
+        if request.method == "POST":
+            form = ArticleCreationForm(request.POST, request.FILES, instance=article_detail)
+            if form.is_valid():
+                #유저가 게시판에 등록할수 있는지 검사 필요
+                board_type = article_detail.board_type
+                pk = form.save(pub_user=request.user, board_type=board_type)
+                return redirect('/article/'+str(pk))
+            else:
+                return render(request, 'write.html', {'form': form})
+        else:
+            form = ArticleCreationForm(instance=article_detail)
+            return render(request, 'write.html', {'form': form})
+    else:
+        return redirect('/article/' + str(article_detail.pk))
+
+@login_required
+def article_delete(request, article_id):
+    article_detail = get_object_or_404(Article, pk=article_id)
+    board_id = article_detail.board_type.board_id
+    if request.user == article_detail.pub_user:
+        article_detail.delete()
+
+    return redirect('/board/'+board_id)
+
+
+@login_required
+def article_like(request): #게시글 추천
     pk = request.POST.get('pk', None)
     article_info = get_object_or_404(Article, pk=pk)
     is_failed = 0
@@ -108,7 +121,8 @@ def article_like(request):
     return HttpResponse(json.dumps(context), content_type="application/json")
 
 
-def article_dislike(request):
+@login_required
+def article_dislike(request): #게시글 비추천
     pk = request.POST.get('pk', None)
     article_info = get_object_or_404(Article, pk=pk)
     is_failed = 0
