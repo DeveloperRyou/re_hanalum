@@ -39,12 +39,14 @@ urlpatterns = [
 
     path('article/<int:article_id>', article.views.article, name='article'),
     path('article_write/<str:board_id>', article.views.article_write, name='article_write'),
+    path('article_update/<int:article_id>', article.views.article_update, name='article_update'),
     path('article_delete/<int:article_id>', article.views.article_delete, name='article_delete'),
 
     path('like/', article.views.article_like, name='article_like'),
     path('dislike/', article.views.article_dislike, name = 'article_dislike'),
 
     path('comment_write/<int:article_id>', article.views_comment.comment_write, name='comment_write'),
+    path('comment_update/<int:comment_id>', article.views_comment.comment_update, name='comment_update'),
     path('comment_delete/<int:comment_id>', article.views_comment.comment_delete, name='comment_delete'),
   
     re_path(r'^upload/', login_required(views_ckeditor.upload), name='ckeditor_upload'),

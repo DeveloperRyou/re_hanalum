@@ -51,6 +51,7 @@ def article(request, article_id):
     return response
 
 
+@login_required
 def article_write(request, board_id):
     if request.method == "POST":
         form = ArticleCreationForm(request.POST, request.FILES)
@@ -66,6 +67,27 @@ def article_write(request, board_id):
         return render(request, 'write.html', {'form': form})
 
 
+@login_required
+def article_update(request, article_id):
+    article_detail = get_object_or_404(Article, pk=article_id)
+
+    if request.user == article_detail.pub_user:
+        if request.method == "POST":
+            form = ArticleCreationForm(request.POST, request.FILES, instance=article_detail)
+            if form.is_valid():
+                #유저가 게시판에 등록할수 있는지 검사 필요
+                board_type = article_detail.board_type
+                pk = form.save(pub_user=request.user, board_type=board_type)
+                return redirect('/article/'+str(pk))
+            else:
+                return render(request, 'write.html', {'form': form})
+        else:
+            form = ArticleCreationForm(instance=article_detail)
+            return render(request, 'write.html', {'form': form})
+    else:
+        return redirect('/article/' + str(article_detail.pk))
+
+@login_required
 def article_delete(request, article_id):
     article_detail = get_object_or_404(Article, pk=article_id)
     board_id = article_detail.board_type.board_id
@@ -75,6 +97,7 @@ def article_delete(request, article_id):
     return redirect('/board/'+board_id)
 
 
+@login_required
 def article_like(request): #게시글 추천
     pk = request.POST.get('pk', None)
     article_info = get_object_or_404(Article, pk=pk)
@@ -98,6 +121,7 @@ def article_like(request): #게시글 추천
     return HttpResponse(json.dumps(context), content_type="application/json")
 
 
+@login_required
 def article_dislike(request): #게시글 비추천
     pk = request.POST.get('pk', None)
     article_info = get_object_or_404(Article, pk=pk)
