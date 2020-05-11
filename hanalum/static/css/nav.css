@@ -89,6 +89,12 @@
     color: white;
 }
 
+/* SNS 링크 */
+.snslink{
+
+}
+
+/* 사이드 바 사이드에 붙어있게 하기 */
 .sidebar-sticky {
     position: relative;
     top: 0;

@@ -1,0 +1,8 @@
+/* youtube html 관련 css */
+.y-block{
+    background: white;
+    border: 1px solid red;
+    width: 32%;
+    height: 150px;
+    display: inline-block;
+}

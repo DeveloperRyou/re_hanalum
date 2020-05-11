@@ -91,24 +91,3 @@ body {
     display: inline-block;
     width: 100%;
 }
-.y1{
-    background: white;
-    border: 1px solid red;
-    width: 32%;
-    height: 150px;
-    display: inline-block;
-}
-.y2{
-    background: white;
-    border: 1px solid green;
-    width: 32%;
-    height: 150px;
-    display: inline-block;
-}
-.y3{
-    background: white;
-    border: 1px solid blue;
-    width: 32%;
-    height: 150px;
-    display: inline-block;
-}
