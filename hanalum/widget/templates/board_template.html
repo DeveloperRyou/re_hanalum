@@ -1,0 +1,15 @@
+{% load static %}
+
+<link href="{% static 'css/widget_board_template.css' %}" rel="stylesheet">
+
+<div class="board_title p-2">
+    <h3>
+        {% block board_title %}
+        {% endblock %}
+    </h3>
+</div>
+
+<div class="board_content mt-3 ml-4">
+    {% block board_content %}
+    {% endblock %}
+</div>
