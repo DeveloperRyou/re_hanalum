@@ -1,0 +1,11 @@
+{% extends "board_template.html" %}
+
+{% block board_title %}
+청원게시판 HOT
+{% endblock %}
+
+{% block board_content %}
+    {% for article in board_petition %}
+        <p>{{article}}</p>
+    {% endfor %}
+{% endblock %}

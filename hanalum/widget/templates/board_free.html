@@ -1,0 +1,11 @@
+{% extends "board_template.html" %}
+
+{% block board_title %}
+자유게시판 HOT
+{% endblock %}
+
+{% block board_content %}
+    {% for article in board_free %}
+        <p>{{article}}</p>
+    {% endfor %}
+{% endblock %}

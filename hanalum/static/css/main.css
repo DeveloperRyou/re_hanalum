@@ -48,8 +48,8 @@ body {
 }
 
 .petition{
-    background: gray;
-    height: 180px;
+    background: white;
+    height: 200px;
     width: 100%;
     display: inline-block;
 }
@@ -61,13 +61,13 @@ body {
     display: inline-block;
 }
 
-.whefoo{
+.weafoo{
     width: 100%;
     display: inline-block;
     margin-top: 4px;
 }
 
-.wheather{
+.weather{
     background: white;
     width: 49%;
     height: 210px;
@@ -80,6 +80,7 @@ body {
     height: 210px;
     display: inline-block;
 }
+
 .calender{
     background: rgba(0,123,255,.5);
     width: 100%;
@@ -90,25 +91,4 @@ body {
 .youtube{
     display: inline-block;
     width: 100%;
-}
-.y1{
-    background: white;
-    border: 1px solid red;
-    width: 32%;
-    height: 150px;
-    display: inline-block;
-}
-.y2{
-    background: white;
-    border: 1px solid green;
-    width: 32%;
-    height: 150px;
-    display: inline-block;
-}
-.y3{
-    background: white;
-    border: 1px solid blue;
-    width: 32%;
-    height: 150px;
-    display: inline-block;
 }

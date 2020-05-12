@@ -8,33 +8,30 @@
 
 {% block content %}
 <div class="left" >
-    <div class="petition"> <!-- #청원 게시판 hot -->
+    <div class="petition mb-3"> <!-- #청원 게시판 hot -->
+        {% include 'board_petition.html' %}
     </div>
-    <div class="free"> <!-- #자유 게시판 hot -->
+    <div class="free mb-3"> <!-- #자유 게시판 hot -->
+        {% include 'board_free.html' %}
     </div>
-    <div class="calender"> <!-- #달력 -->
+    <div class="calender mb-3"> <!-- #달력 -->
     </div>
 </div>
 
 <div class="right">
-    <div class="white-board"> <!--#화이트 보드 사진 -->
-        {% include 'main2.html' %}
+    <div class="white-board mb-3"> <!--#화이트 보드 사진 -->
+        {% include 'whiteboard.html' %}
     </div>
-    <div class="whefoo">
+    <div class="weafoo mb-3">
+        <div class="weather"> <!--날씨-->
+            {% include 'weather.html' %}
+        </div>
         <div class="schoolfood"> <!--급식-->
-
-        </div>
-        <div class="wheather"> <!--날씨-->
-
+            schoolfood
         </div>
     </div>
-    <div class="youtube"> <!--유튜브-->
-        <div class="y1">
-        </div>
-        <div class="y2">
-        </div>
-        <div class="y3">
-        </div>
+    <div class="youtube mb-3"> <!--유튜브-->
+        {% include 'youtube.html' %}
     </div>
 </div>
 
