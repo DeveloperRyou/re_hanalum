@@ -24,7 +24,10 @@ class Weather:
             if ch.isdigit():
                 present_temp += ch
         present_state = bs.select('div.w_now2 div.fl>em>strong')[0].text
-        present_compare = int(float(bs.select('div.w_now2 div.fl>p>span.temp>strong')[0].text))
+        try:
+            present_compare = int(float(bs.select('div.w_now2 div.fl>p>span.temp>strong')[0].text))
+        except:
+            present_compare = 0
         present_air = bs.select('div.w_now2 div.fl>p>a>span>em')[0].text
 
         future_img = bs.select('p.icon>img')[2]['src']
