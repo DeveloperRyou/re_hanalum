@@ -1,11 +1,11 @@
 .cafeteria{
     display:inline-block;
-    width: 500px;
-    height: 400px;
+    width: 100%;
+    height: 100%;
 }
 .cafeteria .content-box {
     float: left;
-    background-color:#ffffff;
+    background-color: #FFF;
     width: 100%;
     height: 70%;
     border-radius: 0px 0px 5px 5px;
@@ -20,10 +20,9 @@
 .cafeteria .food-box {
     width: 33.333%;
     float: left;
-    padding-top: 20px;
+    margin-top: 0.7rem;
 }
-
-
+/* 화살표 */
 .pointer-boxl {
     float: left;
     color: #f8f8f8;
@@ -44,28 +43,31 @@
 .pointer-boxr:hover{
     color:#f8f8f86e
 }
+/* text */
+.cafeteria p{
+    margin: 0;
+}
 .top-text {
     text-align: center;
-    font-size: 30px;
+    font-size: 1rem;
     color: #ffffff;
     font-weight: 500;
-    padding-top: 30px;
-    margin-bottom: auto;
+    padding-top: 0.7rem;
 }
 .day-text {
     text-align: center;
-    font-size: 18px;
+    font-size: 0.8rem;
     color: #ffffff;
     font-weight: 400;
 }
 .food-time {
     text-align: center;
-    font-size: 20px;
+    font-size: 1rem;
     color: #5ce191;
     font-weight: 700;
 }
 .food-menu {
     text-align: center;
     display: grid;
-    line-height:2em;
+    line-height: 1rem;
 }
