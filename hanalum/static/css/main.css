@@ -75,6 +75,7 @@ body {
 }
 
 .schoolfood{
+    margin-left: auto;
     background: white;
     width: 49%;
     height: 210px;

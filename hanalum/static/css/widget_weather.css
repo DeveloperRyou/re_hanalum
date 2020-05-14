@@ -1,0 +1,7 @@
+.today{
+    display:flex;
+}
+.today .weather_describe{
+    margin:0;
+    width: 60%;
+}

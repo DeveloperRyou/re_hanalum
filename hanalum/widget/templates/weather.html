@@ -12,8 +12,24 @@ future_temp
 future_state
 future_percentage
 -->
+
+<link href="{% static 'css/widget_weather.css' %}" rel="stylesheet">
+
 <div>
-  <img src="{{weather.present_img}}" alt="">
-  {{weather.present_temp}}
+  <div class="today">
+    <img src="{{weather.present_img}}" alt="">
+    <div class="weather_describe">
+      <p>{{weather.present_temp}}</p>
+      <p>{{weather.present_state}}</p>
+      <p>어제와 비교해서 {{weather.present_compare}}</p>
+      <p>미세먼지: {{weather.present_air}}</p>
+    </div>
+  </div>
+  <div class="tomorrow">
+    <img src="{{weather.future_img}}" alt="">
+    {{weather.future_temp}}
+    {{weather.future_state}}
+    {{weather.future_percentage}}
+  </div>
 </div>
 
