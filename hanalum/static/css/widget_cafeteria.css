@@ -69,5 +69,6 @@
 .food-menu {
     text-align: center;
     display: grid;
-    line-height: 1rem;
+    line-height: 0.7rem;
+    font-size: 0.6rem;
 }

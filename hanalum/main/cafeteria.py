@@ -19,15 +19,19 @@ def cafeteria_parser():
     bs = BeautifulSoup(html, "html.parser")
 
     cafeteria_list = [None, None, None]
+
     title_list = ["조식", "중식", "석식"]
+    menu_list = [None, None, None]
     try:
         menus = bs.select('div.menuName span')
-        # 조, 중, 석식
         for i in range(3):
-            menu = menus[i].text.split()
-            cafeteria_object = Cafeteria(title_list[i], menu)
-            cafeteria_list[i] = cafeteria_object
+            menu_list[i] = menus[i].text.split()
     except:
         pass
+
+    # 조, 중, 석식
+    for i in range(3):
+        cafeteria_object = Cafeteria(title_list[i], menu_list[i])
+        cafeteria_list[i] = cafeteria_object
 
     return cafeteria_list

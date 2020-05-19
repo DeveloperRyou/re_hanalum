@@ -21,8 +21,10 @@ def youtube_parser():
     img_tag = bs.select('div.yt-lockup-thumbnail img')
 
     youtube_list = [None, None, None]
-    for i in range(3):
-        youtube_object = Youtube(a_tag[i]['title'], a_tag[i]['href'], img_tag[i]['src'])
-        youtube_list[i] = youtube_object
-
+    try:
+        for i in range(3):
+            youtube_object = Youtube(a_tag[i]['title'], a_tag[i]['href'], img_tag[i]['src'])
+            youtube_list[i] = youtube_object
+    except:
+        pass
     return youtube_list
