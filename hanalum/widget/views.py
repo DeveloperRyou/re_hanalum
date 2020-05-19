@@ -12,3 +12,6 @@ def cafeteria(request):
 
 def acadnotice(request):
     return render(request, 'acadnotice.html')
+
+def weekcalendar(request):
+    return render(request, 'weekcalendar.html')
