@@ -49,16 +49,18 @@ body {
 
 .petition{
     background: white;
-    height: 200px;
+    height: 180px;
     width: 100%;
     display: inline-block;
+    border-radius: 7px;
 }
 
 .free{
     background: white;
-    height: 200px;
+    height: 180px;
     width: 100%;
     display: inline-block;
+    border-radius: 7px;
 }
 
 .weafoo{
