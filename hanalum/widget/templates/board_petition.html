@@ -1,0 +1,22 @@
+{% extends "board_template.html" %}
+
+
+{% block board_title %}
+    <div class="board_title petition-title">
+        <a href="{% url 'board' board_id='petition' %}">청원게시판 HOT</a>
+    </div>
+{% endblock %}
+
+
+{% block board_content %}
+    {% for article in board_petition %}
+        <div class="main_board_content">
+            <div class="board_content_title">
+                <a href="{% url 'article' article_id=article.pk %}">{{article}}</a>
+            </div>
+            <div class="board_content_date">
+                {{article.created_at.month}}.{{article.created_at.day}}
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

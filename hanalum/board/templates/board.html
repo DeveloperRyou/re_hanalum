@@ -8,7 +8,7 @@
 
 {% block content%}
 
-<div class="d-flex align-items-center p-3 bg-blue rounded shadow-sm">
+<div class="d-flex align-items-center p-3 bg-blue rounded shadow-sm {{board.board_id}}">
   <h5 class="m-auto mb-0 text-center text-white lh-100">{{board}}</h5>
 </div>
 
@@ -28,7 +28,11 @@
     {% for article in articles %}
     <div class="table_td">
       <div class="mobile_top">
-        <div class="col-title"><a href="{% url 'article' article_id=article.pk %}">{{article}}</a></div>
+        <div class="col-title">
+          <div class="ellipsis-title">
+            <a href="{% url 'article' article_id=article.pk %}">{{article}}</a>
+          </div>
+        </div>
       </div>
       <div class="mobile_bottom">
         <div class="col-prof">

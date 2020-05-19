@@ -1,0 +1,12 @@
+{% load static %}
+
+<link href="{% static 'css/widget_youtube.css' %}" rel="stylesheet">
+
+{% for youtube_object in youtube_list %}
+<div class="y-block">
+    <p>{{youtube_object.title}}</p>
+    {{youtube_object.href}}
+    <a href="{{youtube_object.href}}"></a>
+    <img src="{{youtube_object.img_src}}" alt="">
+</div>
+{% endfor %}

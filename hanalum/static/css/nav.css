@@ -7,7 +7,7 @@
     bottom: 0;
     left: 0;
     z-index: 100; /* Behind the navbar */
-    padding: 50px 0 0; /* Height of navbar */
+    padding: 43px 0 0; /* Height of navbar */
     background: #ffffff;
 }
 
@@ -40,6 +40,23 @@
     font-size: 20px;
     font-family: sans-serif;
     font-weight: lighter;
+}
+
+.sidebar .navbar-nav{
+    flex-direction: row;
+}
+
+.sidebar .nav-item {
+    width: 90px;
+}
+
+.sidebar .nav-item .nav-link{
+    color: white;
+    background-color: #3f7eff;
+    text-align:center;
+    border-radius:10px;
+    font-size:16px;
+    margin:0;
 }
 
 .sidebar .category-box .categories {
@@ -89,6 +106,12 @@
     color: white;
 }
 
+/* SNS 링크 */
+.snslink{
+
+}
+
+/* 사이드 바 사이드에 붙어있게 하기 */
 .sidebar-sticky {
     position: relative;
     top: 0;
@@ -149,7 +172,7 @@ main.side-clicked{
 
 /* mobile */
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .sidebar{
         left:-250px;
     }
@@ -178,15 +201,6 @@ main.side-clicked{
 .navbar-color {
     background-color: #ffffff;
     border-bottom: 1px solid#e5e5e5;
-}
-
-.logout{
-    color: white;
-    background-color: #3f7eff;
-    width:90px;
-    text-align:center;
-    border-radius:10px;
-    font-size:16px;
 }
 
 .img-title {

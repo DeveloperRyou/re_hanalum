@@ -48,26 +48,28 @@ body {
 }
 
 .petition{
-    background: gray;
+    background: white;
     height: 180px;
     width: 100%;
     display: inline-block;
+    border-radius: 7px;
 }
 
 .free{
     background: white;
-    height: 200px;
+    height: 180px;
     width: 100%;
     display: inline-block;
+    border-radius: 7px;
 }
 
-.whefoo{
+.weafoo{
     width: 100%;
     display: inline-block;
     margin-top: 4px;
 }
 
-.wheather{
+.weather{
     background: white;
     width: 49%;
     height: 210px;
@@ -75,11 +77,13 @@ body {
 }
 
 .schoolfood{
+    margin-left: auto;
     background: white;
     width: 49%;
     height: 210px;
     display: inline-block;
 }
+
 .calender{
     background: rgba(0,123,255,.5);
     width: 100%;
@@ -90,25 +94,4 @@ body {
 .youtube{
     display: inline-block;
     width: 100%;
-}
-.y1{
-    background: white;
-    border: 1px solid red;
-    width: 32%;
-    height: 150px;
-    display: inline-block;
-}
-.y2{
-    background: white;
-    border: 1px solid green;
-    width: 32%;
-    height: 150px;
-    display: inline-block;
-}
-.y3{
-    background: white;
-    border: 1px solid blue;
-    width: 32%;
-    height: 150px;
-    display: inline-block;
 }

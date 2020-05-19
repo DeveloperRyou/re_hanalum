@@ -9,11 +9,6 @@
     <nav class="navbar navbar-color fixed-top flex-md-nowrap p-0">
       <a href="{% url 'main' %}"> <img class="img-title" src="{% static 'images/title.png' %}" alt=""> </a>
       {% include 'acadnotice.html' %}
-      <ul class="navbar-nav px-3" style="padding-bottom:5px; padding-top:5px; ">
-        <li class="nav-item text-nowrap">
-          <a class="nav-link logout" href="{% url 'logout' %}"><strong>로그아웃</strong></a>
-        </li>
-      </ul>
     </nav>
 
 
@@ -21,15 +16,21 @@
       <div class="row">
         <nav class="sidebar shadow-sm slide-anim">
           <div class="profile">
-            <a href="{% url 'memberinfo' %}">
             {% if user.avatar %}
             <img class="profile-image" src="/media/{{user.avatar}}">
             {% else %}
             <img class="profile-image" src="{% static 'images/no-profile.png' %}">
             {% endif %}
-            </a>
             <div class="nickname">
                 {{user}}
+            </div>
+            <div class="navbar-nav py-1">
+              <div class="nav-item text-nowrap">
+                <a class="nav-link" href="{% url 'memberinfo' %}"><strong>회원정보</strong></a>
+              </div>
+              <div class="nav-item text-nowrap ml-auto">
+                <a class="nav-link" href="{% url 'logout' %}"><strong>로그아웃</strong></a>
+              </div>
             </div>
           </div>
           <div class="category-box">
@@ -47,6 +48,9 @@
                 </li>
               {% endfor %}
             </ul>
+            <div class="snslink">
+                {% include 'snslink.html' %}
+            </div>
           </div>
         </nav>
 
