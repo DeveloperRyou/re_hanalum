@@ -9,6 +9,8 @@ from board.models import Board
 # Create your views here.
 
 ARTICLE_NUM = 3
+
+
 def main(request):
     datetime_now = datetime.now(tz=timezone.utc)
     datetime_past = datetime_now + timedelta(days=-7)
@@ -26,5 +28,5 @@ def main(request):
     cafeteria_list = cafeteria_parser()
     # 유튜브 크롤링, 3개의 유튜브객체가 들어있는 리스트 반환
     youtube_list = youtube_parser()
-    return render(request, 'main.html', {'board_petition':board_petition, 'board_free':board_free,
-                                         'weather':weather, 'cafeteria_list':cafeteria_list, 'youtube_list':youtube_list})
+    return render(request, 'main.html', {'board_petition': board_petition, 'board_free': board_free,
+                                         'weather': weather, 'cafeteria_list': cafeteria_list, 'youtube_list': youtube_list})

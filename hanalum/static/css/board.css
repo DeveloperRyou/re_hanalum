@@ -1,7 +1,12 @@
 .bg-blue {
     background-color: #000000;
 }
-
+.free {
+    background-color: yellowgreen;
+}
+.petition {
+    background-color: skyblue;
+}
 /* 테이블 */
 .post_table {
     text-align:center;
@@ -50,6 +55,16 @@
     margin-right:6px;
     width: 30px;
     height: 30px;
+}
+
+.ellipsis-title {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 130px;
+}
+.ellipsis-title a {
+    color: black;
 }
 
 /* 게시글 정의 */

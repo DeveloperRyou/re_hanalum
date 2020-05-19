@@ -2,14 +2,10 @@
 
 <link href="{% static 'css/widget_board_template.css' %}" rel="stylesheet">
 
-<div class="board_title p-2">
-    <h3>
-        {% block board_title %}
-        {% endblock %}
-    </h3>
-</div>
+{% block board_title %}
+{% endblock %}
 
-<div class="board_content mt-3 ml-4">
+<div class="board_content mt-3 mx-4">
     {% block board_content %}
     {% endblock %}
 </div>

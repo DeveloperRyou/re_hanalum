@@ -65,7 +65,7 @@ main{
 }
 
 /* 반응형 디자인 (모바일버전) */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     [role="main"] {
         margin-left:0;
     }
