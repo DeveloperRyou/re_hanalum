@@ -1,7 +1,57 @@
-.today{
-    display:flex;
+.weather_tomorrow b, .weather_today b {
+    font-size: 1.3rem;   
 }
-.today .weather_describe{
+
+.weather {
+    border-radius: 7px 7px 7px 7px;
+}
+
+
+.weather_today {
+    display:flex;
     margin:0;
-    width: 60%;
+    border-bottom: 0.6rem solid #f5f5f5;
+}
+
+.weather_today .weather_describe img {
+    width: 40%;
+    float: left;
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+.weather_today .weather_describe {
+    margin:0;
+    width: 100%;
+
+}
+
+.weather_today .weather_describe .comment {
+    display: table;  
+    vertical-align: middle;    
+    width:60%;
+    height:100%;
+    margin:0;
+    padding:1rem;
+    padding-left: 0;
+    float: right;
+}
+
+.weather_today .weather_describe .comment p {
+    display:table-cell;
+    vertical-align:middle;
+    height:inherit; /*있으나 없으나*/
+}
+
+
+
+.weather_tomorrow {
+    height: 100%;      
+    line-height: 25px;
+    width: 100%;
+    text-align: center;
+    margin: 0.6em 0 0.6em 0;
+}
+.weather_tomorrow img {
+    vertical-align: middle;
 }
