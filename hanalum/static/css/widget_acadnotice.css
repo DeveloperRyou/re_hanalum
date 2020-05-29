@@ -1,16 +1,36 @@
 .noticetitle{
-    height: 2rem;
+    height: 1.8rem;
     text-align: center;
-    line-height: 2rem;
+    line-height: 1.6rem;
+    border-top-style: solid;
+    border-top-width: 0.1rem;
+    border-bottom-style: solid;
+    border-bottom-width: 0.1rem;
+    border-color: #3f7eff;
+    color:#3f7eff;
+    font-size:0.8rem;
+    max-width:10%;
 }
 .noticelist{
     list-style:none;
     margin:0;
-    height: 2rem;
-    text-align: center;
-    line-height: 2rem;
+    height: 1.8rem;
+    text-align: left;
+    line-height: 1.6rem;
     z-index:-1;
+    font-size:0.8rem;
 }
 .roll-area{
     overflow: hidden;
+    border-top-style: solid;
+    border-top-width: 0.1rem;
+    border-bottom-style: solid;
+    border-bottom-width: 0.1rem;
+    height: 1.8rem;
+    border-color: #b6b7bb;
+    width:30%;
+}
+
+.w-815{
+    width: 60%!important;
 }

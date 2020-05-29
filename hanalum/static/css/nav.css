@@ -29,34 +29,44 @@
     border-radius: 50%;
     overflow: hidden;
     object-fit: cover;
-    margin-bottom: 5px;
+    margin-left:5px;
+    margin-top:3px
 }
 
 .sidebar .nickname {
     width: 155px;
     display:inline-block;
-    margin: 8px;
+    margin-left: 7px;
     color:black;
-    font-size: 20px;
+    font-size: 18px;
     font-family: sans-serif;
     font-weight: lighter;
 }
 
 .sidebar .navbar-nav{
     flex-direction: row;
+    padding-left:0.5rem;
+
 }
 
 .sidebar .nav-item {
-    width: 90px;
+    width: 70px;
 }
 
 .sidebar .nav-item .nav-link{
-    color: white;
-    background-color: #3f7eff;
+    color: #9da6bb;
+    background-color: white;
+    border-style:solid;
+    border-color: #9da6bb;
     text-align:center;
-    border-radius:10px;
-    font-size:16px;
+    line-height:0.5rem;
+    border-radius:5px;
+    border-width:0.1rem;
+    font-size:12px;
     margin:0;
+    max-width:4rem;
+    max-height:2rem;
+    padding:7px;
 }
 
 .sidebar .category-box .categories {
@@ -88,7 +98,7 @@
 
 .sidebar .category .hide li {
     padding: 5px;
-    padding-left: 30px;
+    padding-left: 40px;
     font-size: 15px;
 }
 .sidebar .category .hide li a {
@@ -210,3 +220,7 @@ main.side-clicked{
     margin-left: 10px;
     display: block;
 }
+
+.etc{
+    margin-left:2px;
+    }
