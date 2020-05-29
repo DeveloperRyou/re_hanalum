@@ -16,11 +16,14 @@
       <div class="row">
         <nav class="sidebar shadow-sm slide-anim">
           <div class="profile">
+              <div id="profileimg" style = "float:left">
             {% if user.avatar %}
             <img class="profile-image" src="/media/{{user.avatar}}">
             {% else %}
             <img class="profile-image" src="{% static 'images/no-profile.png' %}">
             {% endif %}
+              </div>
+              <div class = "etc">
             <div class="nickname">
                 {{user}}
             </div>
@@ -28,9 +31,10 @@
               <div class="nav-item text-nowrap">
                 <a class="nav-link" href="{% url 'memberinfo' %}"><strong>회원정보</strong></a>
               </div>
-              <div class="nav-item text-nowrap ml-auto">
+              <div class="nav-item text-nowrap">
                 <a class="nav-link" href="{% url 'logout' %}"><strong>로그아웃</strong></a>
               </div>
+            </div>
             </div>
           </div>
           <div class="category-box">
