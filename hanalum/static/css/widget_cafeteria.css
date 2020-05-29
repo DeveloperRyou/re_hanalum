@@ -17,10 +17,29 @@
     border-radius: 5px 5px 0px 0px;
     position: relative;
 }
-.cafeteria .food-box {
-    width: 33.333%;
+.cafeteria .time-box {
+    height: 100%;
+    display: grid;
+}
+.cafeteria .foodtime-box {
+    cursor: pointer;
+    writing-mode: tb-rl;
+    font-size: 1rem;
+    color: #76eba4;
+    font-weight: 700;
+}
+.cafeteria .foodtime-box:hover {
+    color: #1da753;
+    font-weight: bold;
+}
+.cafeteria .foodtime-box.clicked {
+    color: #1da753;
+    font-weight: bold;
+}
+.cafeteria .foodtext-box {
+    width: 100%;
     float: left;
-    margin-top: 0.7rem;
+    display: grid;
 }
 /* 화살표 */
 .pointer-boxl {
@@ -60,15 +79,9 @@
     color: #ffffff;
     font-weight: 400;
 }
-.food-time {
-    text-align: center;
-    font-size: 1rem;
-    color: #5ce191;
-    font-weight: 700;
-}
 .food-menu {
     text-align: center;
     display: grid;
-    line-height: 0.7rem;
-    font-size: 0.6rem;
+    line-height: 1rem;
+    font-size: 0.8rem;
 }
