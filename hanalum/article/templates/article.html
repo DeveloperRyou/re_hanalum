@@ -77,13 +77,13 @@
         <p>비추천</p>
       </div>
     </div>
-
-    {% if user == article.pub_user %}
-      <div class="d-block text-right pb-3 mt-2 border-bottom border-gray">
-        <a href="{% url 'article_update' article_id=article.pk %}">수정</a>
-        <a href="{% url 'article_delete' article_id=article.pk %}">삭제</a>
+      <div class="d-block pb-3 mt-2 border-bottom border-gray">
+        <a class="text-left" href="{% url 'board' board_id=article.board_type.board_id %}">목록</a>
+        {% if user == article.pub_user %}
+          <a class="updatd_and_delete" href="{% url 'article_delete' article_id=article.pk %}">삭제</a>  
+          <a class="updatd_and_delete" href="{% url 'article_update' article_id=article.pk %}">수정</a>          
+        {% endif %}
       </div>
-    {% endif %}
 
     <h6 class="pb-2 pt-3">댓글</h6>
     {% for comment in article.comments.all %}
