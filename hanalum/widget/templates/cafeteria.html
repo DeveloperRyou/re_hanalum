@@ -14,18 +14,48 @@
     </label>
   </div>
 
-  <div class="content-box">
+  <div class="content-box d-flex">
+    <div class="time-box">
+      {% for cafeteria_object in cafeteria_list %}
+      <div class="m-auto">
+        <div class="foodtime-box {% if cafeteria_object.id == 'breakfast' %} clicked {% endif %}" id="foodtime-{{cafeteria_object.id}}">
+          {{cafeteria_object.title}}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
     {% for cafeteria_object in cafeteria_list %}
-    <div class="food-box">
-      <div class="border-bottom border-gray">
-        <p class="food-time">{{cafeteria_object.title}}</p>
+    <div class="foodtext-box {% if cafeteria_object.id != 'breakfast' %} d-none {% endif %}" id="foodtext-{{cafeteria_object.id}}">
+      {% for menu in cafeteria_object.menu %}
+      <div class="m-auto">
+        <span class="food-menu">{{menu}}</span>
       </div>
-      <div class="mt-2">
-        {% for menu in cafeteria_object.menu %}
-          <span class="food-menu">{{menu}}</span>
-        {% endfor %}
-      </div>
+      {% endfor %}
     </div>
     {% endfor %}
   </div>
 </div>
+
+<script type="text/javascript">
+var foodtime = $('.foodtime-box');
+var foodtext = $('.foodtext-box');
+
+$('#foodtime-breakfast').click(function(){
+    foodtime.removeClass("clicked");
+    $('#foodtime-breakfast').addClass("clicked");
+    foodtext.addClass("d-none");
+    $('#foodtext-breakfast').removeClass("d-none");
+});
+$('#foodtime-lunch').click(function(){
+    foodtime.removeClass("clicked");
+    $('#foodtime-lunch').addClass("clicked");
+    foodtext.addClass("d-none");
+    $('#foodtext-lunch').removeClass("d-none");
+});
+$('#foodtime-dinner').click(function(){
+    foodtime.removeClass("clicked");
+    $('#foodtime-dinner').addClass("clicked");
+    foodtext.addClass("d-none");
+    $('#foodtext-dinner').removeClass("d-none");
+});
+</script>
