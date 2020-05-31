@@ -59,13 +59,13 @@
     border-style:solid;
     border-color: #9da6bb;
     text-align:center;
-    line-height:0.5rem;
+    line-height:8px;
     border-radius:5px;
     border-width:0.1rem;
     font-size:12px;
     margin:0;
-    max-width:4rem;
-    max-height:2rem;
+    width:64px;
+    height:26px;
     padding:7px;
 }
 

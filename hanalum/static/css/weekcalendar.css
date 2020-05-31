@@ -1,4 +1,4 @@
-.container {
+.calendar .container {
     padding:10px;
     cursor: pointer;
     width: 100%;
@@ -6,12 +6,12 @@
     font-size:0.7rem;
     text-align: center;
 }
-.row {
+.calendar .row {
     padding: 0;
     margin: 0;
     width: 100%;
 }
-.schedule {
+.calendar .schedule {
     height: 100px;
     background:#FFF;
 }
