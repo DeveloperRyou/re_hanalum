@@ -31,7 +31,7 @@ def cafeteria_parser():
             menu_list[i] = menus[i].text.split()
     except:
         for i in range(3):
-            menu_list[i] = "급식 정보가 없습니다"
+            menu_list[i] = ["급식 정보가 없습니다"]
 
     # 조, 중, 석식
     for i in range(3):
