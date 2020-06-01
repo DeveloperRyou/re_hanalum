@@ -1,8 +1,12 @@
 .bg-blue {
-    background-color: #000179;
-    max-height: 65;
+    background-color: #000000;
 }
-
+.free {
+    background-color: yellowgreen;
+}
+.petition {
+    background-color: skyblue;
+}
 /* 테이블 */
 .post_table {
     text-align:center;
@@ -13,47 +17,64 @@
     background-color: #FFF;
 }
 
-.post_table th, .post_table td {
-    padding: 0.5rem 1rem;
+.post_table .table_th, .post_table .table_td {
+    padding: 0.7rem 0.3rem;
+    border-bottom: 0.5px #cccccc solid;
     vertical-align: middle;
+    display: flex;
+    width: 100%;
 }
 
-.post_table thead{
+.post_table .table_th{
+    padding: 0.4rem 0.3rem;
     border-bottom: 0.2px solid #000;
 }
 
 /* 게시글 목록 너비 정의 */
-.thtitle {
-    width: auto;
+.col-title {
+    width: 100%;
 }
-.thprof {
-    width: 130px;
+.col-prof {
+    width: 140px;
 }
-.thview {
-    width: 70px;
+.col-info{
+    display:flex;
 }
-.thlike {
-    width: 70px;
-
+.col-view {
+    width: 60px;
 }
-.thdate {
-    width: 70px;
+.col-like {
+    width: 60px;
+}
+.col-date {
+    width: 80px;
 }
 .prof_img {
+    border-radius: 50%;
     float:left;
     margin-right:6px;
     width: 30px;
     height: 30px;
 }
 
+.ellipsis-title {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 130px;
+}
+.ellipsis-title a {
+    color: black;
+}
+
 /* 게시글 정의 */
-.tdtitle {
+.table_td .col-title {
     text-align:left;
 }
-.tdprof {
+/*
+.table_td .col-prof {
     line-height:30px;
 }
-/*
 .order_arrow {
     font-size: 0.6rem;
     display: inline-grid;
@@ -68,8 +89,45 @@
     margin-left: 0.3rem;
 }*/
 
+/* 목록 */
+
+.page {
+    padding: 0;
+    font-size:0.85rem;
+}
+.mobile_page {
+    padding: 0;
+    font-size:1rem;
+}
+
+
 /* 검색, 글쓰기 */
 
+.bottom_bar{
+    display: flow-root;
+    font-size:0.85rem;
+}
+.bottom_bar button{
+    font-size:0.85rem;
+}
+.search{
+    width: 100%;
+    max-width: 350px;
+    float: left;
+    display: flex;
+}
+.search form{
+    display: flex;
+}
+.search .search_select{
+    width: 35%;
+}
+.search .search_input{
+    width: 48%;
+}
+.search button{
+    width: 17%;
+}
 .post_search {
     border-width: 2px;
     display: inline-block;
@@ -79,7 +137,72 @@
     line-height: 1.5;
     border-radius: 5px;
 }
-
 .post_search:focus {
     outline:none;
+}
+.write{
+    float: right;
+    display: inline-block;
+}
+
+
+.mobile_top {
+    width: 100%;
+    display: flex;
+}
+.mobile_bottom {
+    display: flex;
+}
+/* mobile */
+@media (max-width: 576px) {
+    .post_table .table_th{
+        display: none;
+    }
+    .post_table .table_td{
+        display: block;
+    }
+    .mobile_bottom{
+        font-size:0.8rem;
+        margin-top: 5px;
+    }
+    .col-prof {
+        text-align: left;
+        width: 100%;
+    }
+    .table_td .col-prof {
+        line-height:16px;
+    }
+    .col-info{
+        display:flex;
+    }
+    .col-view {
+        width: 60px;
+    }
+    .col-view::before{
+        content: "조회";
+        margin-right: 0.4rem;
+    }
+    .col-view::after{
+        content: "|";
+        margin-left: 0.4rem;
+    }
+    .col-like {
+        width: 60px;
+    }
+    .col-like::before{
+        content: "추천";
+        margin-right: 0.4rem;
+    }
+    .col-like::after{
+        content: "|";
+        margin-left: 0.4rem;
+    }
+    .col-date {
+        width: 40px;
+    }
+    .prof_img{
+        border-radius: 50%;
+        width: 16px;
+        height: 16px;
+    }
 }

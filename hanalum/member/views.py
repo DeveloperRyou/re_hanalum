@@ -19,13 +19,8 @@ from django.utils.encoding import force_bytes, force_text
 def register(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
-        nickname_error = ""
-        email_error = ""
-
-        if form.check_nickname(request.POST['nickname']) > 0:
-            nickname_error = "이미 사용중인 닉네임입니다."
-        if form.check_email(request.POST['email']) > 0:
-            email_error = "이미 등록된 이메일입니다."
+        nickname_error = form.check_nickname(request.POST['nickname'])  # "" 일 경우 사용 가능함
+        email_error = form.check_email(request.POST['email'])
 
         if nickname_error == "" and email_error == "":  # 닉네임과 이메일 모두 사용가능한경우
             if form.is_valid():
@@ -62,7 +57,6 @@ def activate(request, uidb64, token):
         return redirect("login")
     else:
         return redirect("login")
-    return
 
 
 def agree(request):
@@ -72,13 +66,9 @@ def agree(request):
 def memberinfo(request):
     if request.method == "POST":
         form = CustomUserChangeForm(request.POST, request.FILES, instance=request.user)
-        print(request.FILES['avatar'])
-        nickname_error = ""
+        nickname_error = form.check_nickname(request.POST['nickname'], request.user.nickname)
 
-        if form.check_nickname(request.user.nickname, request.POST['nickname']) > 0:
-            nickname_error = "이미 사용중인 닉네임입니다."
-
-        if nickname_error == "":  # 닉네임과 이메일 모두 사용가능한경우
+        if nickname_error is None:  # 닉네임 사용가능한경우
             if form.is_valid():
                 is_error = form.check_password()
                 if is_error == "":
@@ -96,13 +86,14 @@ def memberinfo(request):
         form = CustomUserChangeForm(instance=request.user)
         return render(request, 'memberinfo.html', {'form': form})
 
+
 def memberdelete(request):
     if request.method == 'POST':
         user = auth.authenticate(request, username=request.user.email, password=request.POST['password'])
 
         if user is not None: # 맞은 경우
             user.delete()
-            return render(request, 'login.html')
+            return redirect('login')
 
         else:
             return redirect('memberinfo')

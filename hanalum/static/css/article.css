@@ -8,14 +8,59 @@ main .lh-150 {
     line-height: 1.5;
 }
 
+/* 글쓴이 정보 */
+.article_info{
+    line-height: 2.5rem;
+    display: flex;
+    background-color: #f5f5f5;
+}
+.article_info i::after{
+    content: " ";
+    margin-left: 0.4rem;
+}
+.col-prof {
+    width: 100%;
+}
+.col-info{
+    display: flex;
+    text-align: center;
+}
+.col-view {
+    width: 60px;
+}
+.col-like {
+    width: 60px;
+}
+.col-date {
+    width: 100px;
+}
+.prof_img {
+    margin: 5px 5px 5px 10px;
+    border-radius: 50%;
+    float:left;
+    width: 30px;
+    height: 30px;
+}
+/* mobile */
+@media (max-width: 576px) {
+    .col-view {
+        width: 50px;
+    }
+    .col-like {
+        width: 50px;
+    }
+    .col-date {
+        width: 70px;
+    }
+}
+
+/* 게시글 */
 .django-ckeditor-widget {
     width:100%;
 }
-
 .form-control:disabled, .form-control[readonly] {
     background-color: white;
 }
-
 .input-group-append .input-group-text {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
@@ -25,8 +70,60 @@ main .lh-150 {
     width: 100%;
     height: 100%
 }
-
 .media-body img {
     max-width: 100%;
     height: auto;
+}
+.submit {
+    display: flow-root;
+}
+
+/* 추천, 비추천 버튼 */
+.like, .dislike{
+    border-radius:5px;
+    border:2px #000 solid;
+    font-weight: 700;
+    width: 4.8rem;
+    height: 4.8rem;
+}
+.like p, .dislike p{
+    line-height:2rem;
+    display: inline-block;
+    margin:0;
+}
+/* 댓글 */
+.comment{
+    word-break: break-word;
+}
+.comment textarea {
+    height: 5rem;
+}
+.comment img{
+    border-radius: 50%;
+    margin: 0.7rem 0.7rem 0 0.7rem;
+    width: 3rem;
+}
+.comment p{
+    margin: 0;
+    padding: 0;
+    padding-right:1rem;
+}
+
+.comment .top-content{
+    padding-top:0.5rem;
+}
+.comment h5{
+    display: inline-block;
+}
+.comment .side_info{
+    float: right;
+    display: inline-block;
+    font-size: 0.8rem;
+}
+
+/*목록*/
+.updatd_and_delete{
+    display: block;
+    float: right;
+    padding-left: 0.3rem;
 }

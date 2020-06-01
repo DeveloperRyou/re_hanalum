@@ -8,11 +8,7 @@
 <body data-gr-c-s-loaded="true" onresize="check_size()">
     <nav class="navbar navbar-color fixed-top flex-md-nowrap p-0">
       <a href="{% url 'main' %}"> <img class="img-title" src="{% static 'images/title.png' %}" alt=""> </a>
-      <ul class="navbar-nav px-3" style="padding-bottom:5px; padding-top:5px; ">
-        <li class="nav-item text-nowrap">
-          <a class="nav-link logout" href="{% url 'logout' %}"><strong>로그아웃</strong></a>
-        </li>
-      </ul>
+      {% include 'acadnotice.html' %}
     </nav>
 
 
@@ -20,15 +16,25 @@
       <div class="row">
         <nav class="sidebar shadow-sm slide-anim">
           <div class="profile">
-            <a href="{% url 'memberinfo' %}">
+              <div id="profileimg" style = "float:left">
             {% if user.avatar %}
             <img class="profile-image" src="/media/{{user.avatar}}">
             {% else %}
             <img class="profile-image" src="{% static 'images/no-profile.png' %}">
             {% endif %}
-            </a>
+              </div>
+              <div class = "etc">
             <div class="nickname">
                 {{user}}
+            </div>
+            <div class="navbar-nav py-1">
+              <div class="nav-item text-nowrap">
+                <a class="nav-link" href="{% url 'memberinfo' %}"><strong>회원정보</strong></a>
+              </div>
+              <div class="nav-item text-nowrap">
+                <a class="nav-link" href="{% url 'logout' %}"><strong>로그아웃</strong></a>
+              </div>
+            </div>
             </div>
           </div>
           <div class="category-box">
@@ -47,6 +53,9 @@
               {% endfor %}
             </ul>
           </div>
+          <div class="snslink">
+            {% include 'snslink.html' %}
+          </div>
         </nav>
 
         <div class="side-button slide-anim">
@@ -62,9 +71,16 @@
       </div>
     </div>
 
-    <!--메뉴오픈-->
+
     <script type="text/javascript">
+         // 전역변수
+         var side = $('.sidebar');
+         var side_bt = $('.side-button');
+         var main = $('main');
+
+        // 사이트 화면 새로고침 시
         $(document).ready(function(){
+            // 메뉴오픈
             $("#flip>div").click(function(){
                 var submenu = $(this).next("ul");
 
@@ -74,40 +90,15 @@
                     submenu.slideDown();
                 }
             });
+
+            // 메뉴 좌측으로 넣기
+            $('.slider').click(function(){
+                side.toggleClass('side-clicked');
+                side_bt.toggleClass('side-clicked');
+                main.toggleClass('side-clicked');
+            });
         });
     </script>
-
-    <!--메뉴 좌측으로 넣었다 빼기-->
-    <script type="text/javascript">
-      $(function(){
-        var side = $('.sidebar');
-        var side_bt = $('.side-button');
-        var main = $('main');
-
-        $('.slider').click(function(){
-          side.toggleClass('side-hide');
-          side_bt.toggleClass('side-hide');
-          main.toggleClass('side-hide');
-        });
-      });
-    </script>
-
-    <!--브라우저 크기 줄어들었을때-->
-    <script>
-        function check_size() {
-            var side = $('.sidebar');
-            var side_bt = $('.side-button');
-            var main = $('main');
-
-            var w = window.innerWidth;
-            if(w < 768){
-                side.addClass('side-hide');
-                side_bt.addClass('side-hide');
-                main.addClass('side-hide');
-            }
-        }
-    </script>
-
 
 </body>
 {% endblock %}

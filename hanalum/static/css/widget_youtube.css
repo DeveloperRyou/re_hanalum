@@ -1,0 +1,9 @@
+/* youtube html 관련 css */
+.y-block{
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.y-block .yt-img{
+    width:100%;
+}

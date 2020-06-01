@@ -1,0 +1,13 @@
+/* snslink html 관련 css */
+.snsimg img {
+    width: 2.8rem;        
+}
+
+.snsimg {
+    padding: 20px;
+    text-align: center;
+}
+
+.snsimg a {
+    padding: 0.5rem;
+}

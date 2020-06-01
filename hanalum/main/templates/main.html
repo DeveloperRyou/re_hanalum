@@ -6,10 +6,34 @@
 <link href="{% static 'css/main.css' %}" rel="stylesheet">
 {% endblock %}
 
-{% block content%}
+{% block content %}
+<div class="left" >
+    <div class="petition mb-3"> <!-- #청원 게시판 hot -->
+        {% include 'board_petition.html' %}
+    </div>
+    <div class="free mb-3"> <!-- #자유 게시판 hot -->
+        {% include 'board_free.html' %}
+    </div>
+    <div class="emailform mb-3"> <!-- #달력 -->
+        {% include 'emailform.html' %}
+    </div>
+</div>
 
-<div class="widget-space">
-  <!-- 메인 화면에 띄울 내용 -->
+<div class="right">
+    <div class="white-board mb-3"> <!--#화이트 보드 사진 -->
+        {% include 'whiteboard.html' %}
+    </div>
+    <div class="weafoo mb-3 d-flex">
+        <div class="weather"> <!--날씨-->
+            {% include 'weather.html' %}
+        </div>
+        <div class="schoolfood"> <!--급식-->
+            {% include 'cafeteria.html' %}
+        </div>
+    </div>
+    <div class="youtube mb-3 d-flex"> <!--유튜브-->
+        {% include 'youtube.html' %}
+    </div>
 </div>
 
 

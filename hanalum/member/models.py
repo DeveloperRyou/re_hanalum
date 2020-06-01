@@ -37,12 +37,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     nickname = models.CharField(
         verbose_name='Nickname',
-        max_length=30,
+        max_length=10,
         unique=True,
     )
     realname = models.CharField(
         verbose_name='Realname',
-        max_length=30,
+        max_length=10,
     )
     GENDER_CHOICES = (
         ('M', '남'),
@@ -65,7 +65,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     temp_list = []
     for year in range(2014, datetime.today().year + 1):
-        temp_list.append((year, str(year)))
+        temp_list.append((year, str(year)+' ('+str(year-2013)+'기)'))
     ADMISSION_YEAR_CHOICES = tuple(temp_list)
     admission_year = models.IntegerField(
         verbose_name='Admission_year',

@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.urls import re_path
 import login.views
 import article.views
+import article.views_comment
 import member.views
 import board.views
 import widget.views
@@ -26,7 +28,7 @@ from django.conf.urls.static import static
 from django.conf.urls import include
 from django.contrib.auth.decorators import login_required
 from ckeditor_uploader import views as views_ckeditor
-from django.views.decorators.cache import never_cache
+from django.views.decorators.cache import never_cache 
 
 
 urlpatterns = [
@@ -35,19 +37,27 @@ urlpatterns = [
     path('logout/', login.views.logout, name='logout'),
     path('main/', main.views.main, name='main'),
 
-    path('article/<int:article_id>/', article.views.article, name='article'),
-    path('like/', article.views.like, name='like'),
-    path('write/<str:board_id>/', article.views.write, name='write'),
-    path('article/<int:article_id>/', article.views.comment, name='comment'),
+    path('article/<int:article_id>', article.views.article, name='article'),
+    path('article_write/<str:board_id>', article.views.article_write, name='article_write'),
+    path('article_update/<int:article_id>', article.views.article_update, name='article_update'),
+    path('article_delete/<int:article_id>', article.views.article_delete, name='article_delete'),
 
-    path(r'^upload/', login_required(views_ckeditor.upload), name='ckeditor_upload'),
-    path(r'^browse/', never_cache(login_required(views_ckeditor.browse)), name='ckeditor_browse'),
+    path('like/', article.views.article_like, name='article_like'),
+    path('dislike/', article.views.article_dislike, name = 'article_dislike'),
+
+    path('comment_write/<int:article_id>', article.views_comment.comment_write, name='comment_write'),
+    path('comment_update/<int:comment_id>', article.views_comment.comment_update, name='comment_update'),
+    path('comment_delete/<int:comment_id>', article.views_comment.comment_delete, name='comment_delete'),
+  
+    re_path(r'^upload/', login_required(views_ckeditor.upload), name='ckeditor_upload'),
+    re_path(r'^browse/', never_cache(login_required(views_ckeditor.browse)), name='ckeditor_browse'),
+
 
     path('register/', member.views.register, name='register'),
-    path('memberinfo/', member.views.memberinfo, name='memberinfo'),
     path('agree/', member.views.agree, name='agree'),
     path('activate/<str:uidb64>/<str:token>/', member.views.activate, name="activate"),
 
+    path('memberinfo/', member.views.memberinfo, name='memberinfo'),
     path('memberdelete/', member.views.memberdelete, name='memberdelete'),
 
     path('board/<str:board_id>/', board.views.board, name='board'),
@@ -56,6 +66,6 @@ urlpatterns = [
     path('calendar/', widget.views.calendar, name='widget'),
     path('cafeteria/', widget.views.cafeteria, name='widget'),
     path('acadnotice/', widget.views.acadnotice, name='widget'),
-
-    path('like/', article.views.article_like, name='article_like'),
+    path('weekcalendar/', widget.views.weekcalendar, name='widget'),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

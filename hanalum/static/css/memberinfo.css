@@ -1,0 +1,44 @@
+/* 정보수정, 탈퇴페이지 */
+.memberinfo .register_error{
+    font-size: 0.7rem;
+    color: red;
+}
+.memberdelete p{
+    text-align: center;
+}
+.memberdelete .row-delete{
+    display: table;
+    width: 100%;
+}
+.memberdelete .form-control{
+    float: left;
+    width: 80%;
+}
+.memberdelete .btn-delete{
+    float: right;
+    font-size: 14px;
+}
+ul.tabs{
+	margin: auto;
+	padding: 0px;
+	list-style: none;
+}
+ul.tabs li{
+	background: none;
+	color: #000;
+	display: inline-block;
+	padding: 10px 15px;
+	cursor: pointer;
+}
+ul.tabs li.current{
+	background: #ffffff;
+	color: #000;
+}
+.tab-content{
+	display: none;
+	background: #ffffff;
+	padding: 15px;
+}
+.tab-content.current{
+	display: inherit;
+}
