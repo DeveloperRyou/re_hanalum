@@ -1,0 +1,24 @@
+{% load static %}
+
+<link href="{% static 'css/widget_emailform.css' %}" rel="stylesheet">
+
+<div class="form-title">
+    리뷰 작성
+    <div class="describe mt-2">여러분들의 리뷰는 사이트 개발에 큰 도움이 됩니다</div>
+</div>
+<div class="form-content">
+    <form action="https://script.google.com/macros/s/AKfycbxCqGInT0g7pOIg5iuICxeLO4Pg9rp85vI0-TM6UMjH54KIaz3x/exec" method="POST" data-email="contacthanmin 01@gmail.com" class="h-100 gform">
+        <textarea name="content" placeholder="사이트 구성, 디자인, 이벤트 등에 대한 리뷰를 남겨주세요!" id="emailform-content" class="form-text form-control"></textarea>
+        <div id="thankyou_message" class="form-text form-control d-none">
+            리뷰해주셔서 감사합니다!
+        </div>
+        <button id="emailform-btn" class="form-btn btn btn-success float-right">리뷰 전송</button>
+    </form>
+    <script data-cfasync="false" type="text/javascript" src="https://cdn.rawgit.com/dwyl/html-form-send-email-via-google-script-without-server/master/form-submission-handler.js"></script>
+    <script type="text/javascript">
+        $('#emailform-btn').click(function(){
+            $('#emailform-content').addClass("d-none");
+            $('#thankyou_message').removeClass("d-none");
+        });
+    </script>
+</div>

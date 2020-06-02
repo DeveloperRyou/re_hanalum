@@ -1,42 +1,9 @@
 /* youtube html 관련 css */
 .y-block{
-    background: white;
-    margin: 5px;
-    display: -webkit-box;
-    -webkit-box-orient:vertical;
-    -webkit-line-clamp: 1; /* 라인수 */
-    border: none;
-    height: 170px;
-    width: 31%;
-    float: left;
-    overflow: hidden;
-    white-space: normal;
-    text-overflow: ellipsis;
+    padding-right: 5px;
+    padding-left: 5px;
 }
 
-a:link{
-    text-decoration: none; color: black;
-}
-
-a:visited{
-    text-decoration: none; color: black;
-}
-
-a:active{
-    text-decoration: none; color: black;
-}
-
-a:hover{
-    text-decoration: none; color: black;
-}
-
-p{
-    margin-top: 3px;
-    margin-right: 3.5px;
-    margin-left: 3.5px;
-    font-size: 0.91rem;
-}
-
-.yt-img{
+.y-block .yt-img{
     width:100%;
 }

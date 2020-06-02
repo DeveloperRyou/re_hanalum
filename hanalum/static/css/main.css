@@ -40,11 +40,22 @@ body {
     width: 49%;
     display: inline-block;
 }
+
+@media (max-width: 900px) {
+    .left {
+        width: 100%;
+        display: inline-block;
+    }
+    .right {
+        width: 100%;
+        display: inline-block;
+    }
+}
+
 .white-board img{
     height: 210px;
     width: 100%;
     display: inline-block;
-    float: right;
 }
 
 .petition{
@@ -91,7 +102,15 @@ body {
     display: inline-block;
 }
 
-.youtube{
+.emailform{
+    background: white;
+    height: 180px;
+    width: 100%;
     display: inline-block;
+    border-radius: 7px;
+}
+
+.youtube{
+    display: flex;
     width: 100%;
 }

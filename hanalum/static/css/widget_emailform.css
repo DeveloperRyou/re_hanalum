@@ -1,0 +1,26 @@
+.form-title{
+    background-color: darkgray;
+    color: white;
+    font-size: 1.3rem;
+    border-radius: 7px 7px 0px 0px;
+    padding: 8px;
+}
+.form-title .describe{
+    font-size:0.8rem;
+    float:right;
+}
+.form-content{
+    padding: 8px;
+    height:130px;
+}
+.form-content .form-text{
+    width:calc(100% - 105px);
+    height: 100%;
+    margin: 0;
+    margin-right: 5px;
+    display: inline-block;
+}
+.form-content .form-btn{
+    width: 100px;
+    height: 100%;
+}

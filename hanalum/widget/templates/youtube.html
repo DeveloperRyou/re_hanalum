@@ -3,9 +3,8 @@
 <link href="{% static 'css/widget_youtube.css' %}" rel="stylesheet">
 
 {% for youtube_object in youtube_list %}
-<div class="y-block">
+<div class="y-block col-4">
     <a href="{{youtube_object.href}}"></a>
     <a href="https://www.youtube.com{{youtube_object.href}}"><img class="yt-img" src="{{youtube_object.img_src}}" alt=""></a>
-    <a href="https://www.youtube.com{{youtube_object.href}}"><p>{{youtube_object.title}}</p></a>
 </div>
 {% endfor %}

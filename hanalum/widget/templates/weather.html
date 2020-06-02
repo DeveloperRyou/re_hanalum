@@ -15,7 +15,6 @@ future_percentage
 
 <link href="{% static 'css/widget_weather.css' %}" rel="stylesheet">
 
-<div>
   <div class="weather_today">
     <!--<img src="{{weather.present_img}}" alt="">-->
     <div class="weather_describe">
@@ -77,9 +76,11 @@ future_percentage
         <div><p><center>어제와 비교해서 {{weather.present_compare}}℃</center></p></div>
         <div><p><center>미세먼지: {{weather.present_air}}</center></p></div>
       </div>
+
     </div>
   </div>
-  <div class="weather_tomorrow">
+<div class="weather_tomorrow">
+  <div class="weather_describe">
     <b>내일 </b>
     <!--<img src="{{weather.future_img}}" alt="">-->
       {% if weather.future_state == "흐림" %}
