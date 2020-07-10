@@ -1,8 +1,40 @@
 # re_hanalum
 
-re_hanalum is a django website for communicate with hanmin high school students & graduates
+re_hanalum is a django website to communicate with hanmin high school students & graduates
 
 ## version
+
+## Usage
+
+1. fork repository `https://github.com/ryou73/re_hanalum`
+
+2. clone your `re_hanalum` repository
+
+```
+$ git clone `https://github.com/YOUR_GITHUB_USERNAME/re_hanalum.git`
+```
+
+3. make venv & pip install 
+```
+$ cd re_hanalum
+$ python -m venv venv
+$ pip install -r requirements.txt
+```
+
+4. make secrets.json file in re_hanalum/hanalum/
+```
+{
+    "SECRET_KEY" : "DJANGO_SECRET_KEY",
+    "EMAIL_PASSWORD" : "APP_PASSWORD"
+}
+```
+
+5. migrate & run server
+```
+$ python manage.py makemigrations
+$ python manage.py migrate
+$ python manage.py runserver
+```
 
 ## Contributing
 
@@ -49,7 +81,7 @@ $ git remote add upstream https://github.com/ryou73/re_hanalum
 2. fetch & merge
 ```
 $ git fetch upstream
-$ git checkout [BRANCH_NANE]
+$ git checkout BRANCH_NANE
 $ git merge upstream/master
 ```
 

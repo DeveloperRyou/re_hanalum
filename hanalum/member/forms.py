@@ -5,7 +5,9 @@ import re
 
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode
-from django.core.mail import EmailMessage
+# from django.core.mail import EmailMessage
+from django.core.mail import send_mail
+from django.conf import settings
 from .tokens import account_activation_token
 from django.utils.encoding import force_bytes
 
@@ -94,9 +96,11 @@ class UserCreationForm(forms.ModelForm, CheckUserClass):
                 'token': account_activation_token.make_token(user),
             })
             mail_title = "한아름 계정 활성화 확인 이메일"
-            email = EmailMessage(mail_title, message, to=[mail_to])
-            email.content_subtype = "html"
-            email.send()
+            send_mail(subject = mail_title, message = message, from_email = settings.EMAIL_HOST_USER,\
+            recipient_list = [mail_to],  fail_silently=False, html_message = message)
+            # email = EmailMessage(, , to=[mail_to])
+            # email.content_subtype = "html"
+            # email.send()
 
         return user
 

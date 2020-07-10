@@ -10,35 +10,40 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-import os
+import os, json
 from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+secret_file = os.path.join(BASE_DIR, 'secrets.json') # secrets.json 파일 위치를 명시
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
+with open(secret_file) as f:
+    secrets = json.loads(f.read())
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'e9fy9m$c%)c_75if%h*e_c&06u##2dsl03*$8vp1*$e_ehoxs0'
+def get_secret(setting, secrets=secrets):
+    try:
+        return secrets[setting]
+    except KeyError:
+        error_msg = "Set the {} environment variable".format(setting)
+        raise ImproperlyConfigured(error_msg)
 
-# SECURITY WARNING: don't run with debug turned on in production!
+SECRET_KEY = get_secret("SECRET_KEY")
+
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'contacthanmin01@gmail.com'
-EMAIL_HOST_PASSWORD = 'hanalum01'
+EMAIL_HOST_PASSWORD  = get_secret("EMAIL_PASSWORD")
 EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 SERVER_EMAIL = 'contacthanmin01@gmail.com'
 DEFAULT_FORM_MAIL = 'contacthanmin01'
-
-
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Application definition
 
