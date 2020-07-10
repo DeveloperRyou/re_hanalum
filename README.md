@@ -1,6 +1,6 @@
 # re_hanalum
 
-re_hanalum is a django website to communicate with hanmin high school students & graduates
+re_hanalum is a django website to communicate with hanmin high school students & graduates 
 
 ## version
 
