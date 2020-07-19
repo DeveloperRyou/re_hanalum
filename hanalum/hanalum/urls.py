@@ -29,6 +29,7 @@ from django.conf.urls import include
 from django.contrib.auth.decorators import login_required
 from ckeditor_uploader import views as views_ckeditor
 from django.views.decorators.cache import never_cache 
+from django.views.static import serve
 
 
 urlpatterns = [
@@ -68,4 +69,7 @@ urlpatterns = [
     path('acadnotice/', widget.views.acadnotice, name='widget'),
     path('weekcalendar/', widget.views.weekcalendar, name='widget'),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    
+    re_path(r'^media/(?P<path>.*)$', serve, {'document_root':settings.MEDIA_ROOT}),
+    re_path(r'^static/(?P<path>.*)$', serve, {'document_root':settings.STATIC_ROOT}),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
