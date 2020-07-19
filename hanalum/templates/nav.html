@@ -18,7 +18,7 @@
           <div class="profile">
               <div id="profileimg" style = "float:left">
             {% if user.avatar %}
-            <img class="profile-image" src="/media/{{user.avatar}}">
+            <img class="profile-image" src="{{user.avatar.url}}">
             {% else %}
             <img class="profile-image" src="{% static 'images/no-profile.png' %}">
             {% endif %}
