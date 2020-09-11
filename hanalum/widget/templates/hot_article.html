@@ -1,16 +1,16 @@
 {% extends "board_template.html" %}
 
+{% load static %}
 
 {% block board_title %}
-{% load static %}
-    <div class="board_title free-title">
-        <a href="{% url 'board' board_id='free' %}">자유게시판 HOT</a>
+    <div class="board_title free-title" style="background-color: {{board.represent_color}}">
+        <a href="{% url 'board' board.board_id %}">{{board.title}} HOT</a>
     </div>
 {% endblock %}
 
 
 {% block board_content %}
-    {% for article in board_free %}
+    {% for article in board.articles %}
         <div class="main_board_content">
             <div class="board_content_title">
                 <a href="{% url 'article' article_id=article.pk %}">{{article}}</a>
