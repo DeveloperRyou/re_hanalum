@@ -6,10 +6,13 @@
     <div class="noticetitle col-2">공지사항</div>
     <div class="roll-area col-10">
         <ul class="noticelist col-9">
-            <li>Uno첫번째공지입니다</li>
-            <li>Dos두번째공지입니다</li>
-            <li>Tres세번째공지입니다</li>
-            <li>Uno다시첫번째공지입니다</li>
+            {% if notice %}
+                {% for each in notice %}
+                    <li> {{each.title}} </li>
+                {% endfor %}
+            {% else %}
+                <li>공지가 없습니다.</li>
+            {% endif %}
         </ul>
     </div>
 </div>

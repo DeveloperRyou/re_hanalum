@@ -25,7 +25,16 @@ def main(request):
     # 유튜브 크롤링, 3개의 유튜브객체가 들어있는 리스트 반환
     youtube_list = youtube_parser()
 
+    # 메뉴
     category = Board.objects.all().order_by('-priority')
 
+    # 공지사항
+    try:
+        notice_cnt = 3
+        board_notice_type = Board.objects.get(board_id='notice')
+        notice = Article.objects.filter(board_type=board_notice_type).order_by('-created_at')[:notice_cnt]
+    except:
+        notice = None
 
-    return render(request, 'main.html', {'category': category,'board_free': board_free, 'cafeteria_list': cafeteria_list, 'youtube_list': youtube_list})
+
+    return render(request, 'main.html', {'notice': notice,'category': category,'board_free': board_free, 'cafeteria_list': cafeteria_list, 'youtube_list': youtube_list})
