@@ -28,4 +28,8 @@ def main(request):
     cafeteria_list = cafeteria_parser()
     # 유튜브 크롤링, 3개의 유튜브객체가 들어있는 리스트 반환
     youtube_list = youtube_parser()
-    return render(request, 'main.html', {'board_petition': board_petition, 'board_free': board_free, 'cafeteria_list': cafeteria_list, 'youtube_list': youtube_list})
+
+    category = Board.objects.all()
+
+
+    return render(request, 'main.html', {'category': category,'board_petition': board_petition, 'board_free': board_free, 'cafeteria_list': cafeteria_list, 'youtube_list': youtube_list})
