@@ -86,6 +86,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name='Is admin',
         default=False,
     )
+    authority = models.IntegerField(
+        verbose_name='authority',
+        default=0
+    )
 
     objects = UserManager()
 
