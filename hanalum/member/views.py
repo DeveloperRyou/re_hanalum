@@ -5,6 +5,8 @@ from django.contrib.auth import update_session_auth_hash
 from .models import User
 from django.contrib import auth
 from login.forms import UserLoginForm
+from board.models import Board
+from article.models import Article
 
 # SMTP 관련 인증
 from django.contrib.sites.shortcuts import get_current_site
@@ -64,6 +66,14 @@ def agree(request):
 
 
 def memberinfo(request):
+    
+    try:
+        notice_cnt = 3
+        board_notice_type = Board.objects.get(board_id='notice')
+        notice = Article.objects.filter(board_type=board_notice_type).order_by('-created_at')[:notice_cnt]
+    except:
+        notice = None
+    
     if request.method == "POST":
         form = CustomUserChangeForm(request.POST, request.FILES, instance=request.user)
         nickname_error = form.check_nickname(request.POST['nickname'], request.user.nickname)
@@ -76,15 +86,15 @@ def memberinfo(request):
                     update_session_auth_hash(request, user)
                     return redirect('main')
                 else:
-                    return render(request, 'memberinfo.html', {'form': form, 'password2_error': is_error})
+                    return render(request, 'memberinfo.html', {'form': form, 'password2_error': is_error, 'notice': notice})
             else:
                 return redirect('register')
         else:  # 닉네임 중복인경우
-            return render(request, 'memberinfo.html', {'form': form, 'nickname_error': nickname_error})
+            return render(request, 'memberinfo.html', {'form': form, 'nickname_error': nickname_error , 'notice': notice})
 
     else:
         form = CustomUserChangeForm(instance=request.user)
-        return render(request, 'memberinfo.html', {'form': form})
+        return render(request, 'memberinfo.html', {'form': form, 'notice': notice})
 
 
 def memberdelete(request):

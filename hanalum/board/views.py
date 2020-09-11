@@ -36,6 +36,13 @@ def board(request, board_id, page=1):
 
     articles = articles.order_by('-created_at')[page_start:page_start+PAGE_SIZE]
 
+    try:
+        notice_cnt = 3
+        board_notice_type = Board.objects.get(board_id='notice')
+        notice = Article.objects.filter(board_type=board_notice_type).order_by('-created_at')[:notice_cnt]
+    except:
+        notice = None
+
     return render(request, 'board.html', {'board': board_detail, 'board_id': board_id, 'articles': articles,
                                           'board_count': board_count//10+1, 'start': (page-1)//10*10,
-                                          'mobile_start': (page-1)//5*5, 'page': page})
+                                          'mobile_start': (page-1)//5*5, 'page': page, 'notice': notice})
