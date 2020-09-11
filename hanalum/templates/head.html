@@ -50,7 +50,19 @@
 
 </head>
 
+
 {% block content_body %}
 {% endblock %}
 
+<script>
+    window.onload = function() {
+        {% if messages %}
+            {% for message in messages %}
+                alert("{{message.message}}");
+            {% endfor %}
+        {% endif %}
+    }
+</script>
+{% block script%}
+{% endblock %}
 </html>
