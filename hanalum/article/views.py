@@ -73,6 +73,7 @@ def article_write(request, board_id):
     if request.method == "POST":
         form = ArticleCreationForm(request.POST, request.FILES)
         if form.is_valid():
+            board_type = get_object_or_404(Board, board_id=board_id)
             pk = form.save(pub_user=request.user, board_type=board_type)
             return redirect('/article/'+str(pk))
         else:
