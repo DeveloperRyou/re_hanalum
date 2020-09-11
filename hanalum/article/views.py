@@ -1,5 +1,6 @@
 import json
 from django.shortcuts import render
+from django.urls.base import reverse
 from .forms import ArticleCreationForm
 from .forms import CommentCreationForm
 from django.shortcuts import redirect, get_object_or_404
@@ -8,7 +9,7 @@ import datetime
 from .models import Article
 from board.models import Board
 from django.http import HttpResponse
-
+from django.contrib import messages
 
 @login_required
 def article(request, article_id):
@@ -56,15 +57,20 @@ def article_write(request, board_id):
     if request.method == "POST":
         form = ArticleCreationForm(request.POST, request.FILES)
         if form.is_valid():
-            #유저가 게시판에 등록할수 있는지 검사 필요
-            board_type = get_object_or_404(Board, board_id=board_id)
             pk = form.save(pub_user=request.user, board_type=board_type)
             return redirect('/article/'+str(pk))
         else:
             return render(request, 'write.html', {'form': form})
     else:
-        form = ArticleCreationForm()
-        return render(request, 'write.html', {'form': form})
+        board_type = get_object_or_404(Board, board_id=board_id)
+        board_authority = board_type.auth_write or 10
+        
+        if board_authority <= request.user.authority:
+            form = ArticleCreationForm()
+            return render(request, 'write.html', {'form': form})
+        else:
+            messages.add_message(request, messages.INFO, '글을 쓸 권한이 없습니다.')
+            return redirect('/board/'+board_id)
 
 
 @login_required
