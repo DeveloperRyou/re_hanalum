@@ -67,6 +67,9 @@ def agree(request):
 
 def memberinfo(request):
     
+    # 메뉴
+    category = Board.objects.all().order_by('-priority')
+
     try:
         notice_cnt = 3
         board_notice_type = Board.objects.get(board_id='notice')
@@ -86,15 +89,15 @@ def memberinfo(request):
                     update_session_auth_hash(request, user)
                     return redirect('main')
                 else:
-                    return render(request, 'memberinfo.html', {'form': form, 'password2_error': is_error, 'notice': notice})
+                    return render(request, 'memberinfo.html', {'category': category, 'form': form, 'password2_error': is_error, 'notice': notice})
             else:
                 return redirect('register')
         else:  # 닉네임 중복인경우
-            return render(request, 'memberinfo.html', {'form': form, 'nickname_error': nickname_error , 'notice': notice})
+            return render(request, 'memberinfo.html', {'category': category, 'form': form, 'nickname_error': nickname_error , 'notice': notice})
 
     else:
         form = CustomUserChangeForm(instance=request.user)
-        return render(request, 'memberinfo.html', {'form': form, 'notice': notice})
+        return render(request, 'memberinfo.html', {'category': category, 'form': form, 'notice': notice})
 
 
 def memberdelete(request):
