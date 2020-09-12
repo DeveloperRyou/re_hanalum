@@ -14,6 +14,9 @@ from django.contrib import messages
 @login_required
 def article(request, article_id):
 
+    # 메뉴
+    category = Board.objects.all().order_by('-priority')
+
     try:
         notice_cnt = 3
         board_notice_type = Board.objects.get(board_id='notice')
@@ -39,7 +42,7 @@ def article(request, article_id):
         user_disliked = 0
 
     response = render(request, 'article.html', {'article': article_detail, 'comment_form': comment_form,
-                                                'user_liked': user_liked, 'user_disliked': user_disliked, 'notice': notice})
+                                                'user_liked': user_liked, 'user_disliked': user_disliked, 'notice': notice, 'category' : category})
 
     # 조회수 증가 코드
     cookie_name = 'watched'
@@ -62,6 +65,8 @@ def article(request, article_id):
 
 @login_required
 def article_write(request, board_id):
+    # 메뉴
+    category = Board.objects.all().order_by('-priority')
 
     try:
         notice_cnt = 3
@@ -77,14 +82,14 @@ def article_write(request, board_id):
             pk = form.save(pub_user=request.user, board_type=board_type)
             return redirect('/article/'+str(pk))
         else:
-            return render(request, 'write.html', {'form': form, 'notice': notice})
+            return render(request, 'write.html', {'form': form, 'notice': notice, 'category': category})
     else:
         board_type = get_object_or_404(Board, board_id=board_id)
         board_authority = board_type.auth_write or 10
         
         if board_authority <= request.user.authority:
             form = ArticleCreationForm()
-            return render(request, 'write.html', {'form': form , 'notice': notice})
+            return render(request, 'write.html', {'form': form , 'notice': notice, 'category': category})
         else:
             messages.add_message(request, messages.INFO, '글을 쓸 권한이 없습니다.')
             return redirect('/board/'+board_id)
@@ -103,10 +108,10 @@ def article_update(request, article_id):
                 pk = form.save(pub_user=request.user, board_type=board_type)
                 return redirect('/article/'+str(pk))
             else:
-                return render(request, 'write.html', {'form': form})
+                return render(request, 'write.html', {'form': form, 'category' : category})
         else:
             form = ArticleCreationForm(instance=article_detail)
-            return render(request, 'write.html', {'form': form})
+            return render(request, 'write.html', {'form': form, 'category' : category})
     else:
         return redirect('/article/' + str(article_detail.pk))
 
