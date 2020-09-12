@@ -1,5 +1,6 @@
 import json
 from django.shortcuts import render
+from django.urls.base import reverse
 from .forms import ArticleCreationForm
 from .forms import CommentCreationForm
 from django.shortcuts import redirect, get_object_or_404
@@ -8,10 +9,21 @@ import datetime
 from .models import Article
 from board.models import Board
 from django.http import HttpResponse
-
+from django.contrib import messages
 
 @login_required
 def article(request, article_id):
+
+    # 메뉴
+    category = Board.objects.all().order_by('-priority')
+
+    try:
+        notice_cnt = 3
+        board_notice_type = Board.objects.get(board_id='notice')
+        notice = Article.objects.filter(board_type=board_notice_type).order_by('-created_at')[:notice_cnt]
+    except:
+        notice = None
+    
     article_detail = get_object_or_404(Article, pk=article_id)
     comment_form = CommentCreationForm()
 
@@ -30,7 +42,7 @@ def article(request, article_id):
         user_disliked = 0
 
     response = render(request, 'article.html', {'article': article_detail, 'comment_form': comment_form,
-                                                'user_liked': user_liked, 'user_disliked': user_disliked})
+                                                'user_liked': user_liked, 'user_disliked': user_disliked, 'notice': notice, 'category' : category})
 
     # 조회수 증가 코드
     cookie_name = 'watched'
@@ -53,18 +65,34 @@ def article(request, article_id):
 
 @login_required
 def article_write(request, board_id):
+    # 메뉴
+    category = Board.objects.all().order_by('-priority')
+
+    try:
+        notice_cnt = 3
+        board_notice_type = Board.objects.get(board_id='notice')
+        notice = Article.objects.filter(board_type=board_notice_type).order_by('-created_at')[:notice_cnt]
+    except:
+        notice = None
+    
     if request.method == "POST":
         form = ArticleCreationForm(request.POST, request.FILES)
         if form.is_valid():
-            #유저가 게시판에 등록할수 있는지 검사 필요
             board_type = get_object_or_404(Board, board_id=board_id)
             pk = form.save(pub_user=request.user, board_type=board_type)
             return redirect('/article/'+str(pk))
         else:
-            return render(request, 'write.html', {'form': form})
+            return render(request, 'write.html', {'form': form, 'notice': notice, 'category': category})
     else:
-        form = ArticleCreationForm()
-        return render(request, 'write.html', {'form': form})
+        board_type = get_object_or_404(Board, board_id=board_id)
+        board_authority = board_type.auth_write or 10
+        
+        if board_authority <= request.user.authority:
+            form = ArticleCreationForm()
+            return render(request, 'write.html', {'form': form , 'notice': notice, 'category': category})
+        else:
+            messages.add_message(request, messages.INFO, '글을 쓸 권한이 없습니다.')
+            return redirect('/board/'+board_id)
 
 
 @login_required
@@ -80,10 +108,10 @@ def article_update(request, article_id):
                 pk = form.save(pub_user=request.user, board_type=board_type)
                 return redirect('/article/'+str(pk))
             else:
-                return render(request, 'write.html', {'form': form})
+                return render(request, 'write.html', {'form': form, 'category' : category})
         else:
             form = ArticleCreationForm(instance=article_detail)
-            return render(request, 'write.html', {'form': form})
+            return render(request, 'write.html', {'form': form, 'category' : category})
     else:
         return redirect('/article/' + str(article_detail.pk))
 

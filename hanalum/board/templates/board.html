@@ -8,7 +8,7 @@
 
 {% block content%}
 
-<div class="d-flex align-items-center p-3 bg-blue rounded shadow-sm {{board.board_id}}">
+<div class="d-flex align-items-center p-3 bg-blue rounded shadow-sm" style="background-color: {{board.represent_color}};">
   <h5 class="m-auto mb-0 text-center text-white lh-100">{{board}}</h5>
 </div>
 
@@ -99,38 +99,42 @@
     </ul>
   </nav>
 </div>
-<script type="text/javascript">
-  var current_li_num = {{page}}
-  var current_li = $('#li_{{page}}');
-  var current_mobile_li = $('#mobile_li_{{page}}');
-  current_li.addClass('active');
-  current_mobile_li.addClass('active');
+{% endblock %}
 
-  if({{start}}==0){
-    $('#li_previous').addClass('disabled');
-    $('#mobile_li_previous').addClass('disabled');
-  }
+{% block script%}
+  <script type="text/javascript">
+    var current_li_num = {{page}}
+    var current_li = $('#li_{{page}}');
+    var current_mobile_li = $('#mobile_li_{{page}}');
+    current_li.addClass('active');
+    current_mobile_li.addClass('active');
 
-  for(var i={{board_count}}+1;i<=(parseInt(({{board_count}}-1)/10)+1)*10;i++){
-    $('#li_'+i.toString()).addClass('d-none');
-    $('#mobile_li_'+i.toString()).addClass('d-none');
-  }
-
-  if((parseInt(({{board_count}}-1)/10)+1)*10-current_li_num<10) $('#li_next').addClass('disabled');
-
-  if((parseInt(({{board_count}}-1)/5)+1)*5-current_li_num<5) $('#mobile_li_next').addClass('disabled');
-
-  function check_size() {
-    var w = window.innerWidth;
-    if (w<576){
-      $('.page').addClass('d-none');
-      $('.mobile_page').removeClass('d-none');
+    if({{start}}==0){
+      $('#li_previous').addClass('disabled');
+      $('#mobile_li_previous').addClass('disabled');
     }
-    else{
-      $('.page').removeClass('d-none');
-      $('.mobile_page').addClass('d-none');
+
+    for(var i={{board_count}}+1;i<=(parseInt(({{board_count}}-1)/10)+1)*10;i++){
+      $('#li_'+i.toString()).addClass('d-none');
+      $('#mobile_li_'+i.toString()).addClass('d-none');
     }
-  }
-  check_size()
-</script>
+
+    if((parseInt(({{board_count}}-1)/10)+1)*10-current_li_num<10) $('#li_next').addClass('disabled');
+
+    if((parseInt(({{board_count}}-1)/5)+1)*5-current_li_num<5) $('#mobile_li_next').addClass('disabled');
+
+    function check_size() {
+      var w = window.innerWidth;
+      if (w<576){
+        $('.page').addClass('d-none');
+        $('.mobile_page').removeClass('d-none');
+      }
+      else{
+        $('.page').removeClass('d-none');
+        $('.mobile_page').addClass('d-none');
+      }
+    }
+    check_size()
+  </script>
+
 {% endblock %}

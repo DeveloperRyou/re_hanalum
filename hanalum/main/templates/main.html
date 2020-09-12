@@ -8,12 +8,14 @@
 
 {% block content %}
 <div class="left" >
-    <div class="petition mb-3"> <!-- #청원 게시판 hot -->
-        {% include 'board_petition.html' %}
-    </div>
-    <div class="free mb-3"> <!-- #자유 게시판 hot -->
-        {% include 'board_free.html' %}
-    </div>
+    {% if boards %}
+        {% for board in boards %}
+        <div class="free mb-3"> <!-- #자유 게시판 hot -->
+            {% include 'hot_article.html' %}
+        </div>
+        {% endfor %}
+
+    {% endif %}
     <div class="emailform mb-3"> <!-- #달력 -->
         {% include 'emailform.html' %}
     </div>

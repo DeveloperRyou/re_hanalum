@@ -1,5 +1,5 @@
 from django.db import models
-
+from colorfield.fields import ColorField
 
 # Create your models here.
 class Board(models.Model):
@@ -34,6 +34,15 @@ class Board(models.Model):
     use_anony = models.BooleanField(
         verbose_name='Use_anony',
         default=False,
+    )
+
+    priority = models.IntegerField(
+        verbose_name='priority',
+        default=0
+    )
+
+    represent_color = ColorField(
+        default='#FF0000'
     )
 
     def __str__(self):

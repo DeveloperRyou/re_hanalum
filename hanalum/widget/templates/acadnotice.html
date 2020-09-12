@@ -2,31 +2,46 @@
 
 <link href="{% static 'css/widget_acadnotice.css' %}" rel="stylesheet">
 
-<div class="notice row mr-4">
+<div class="notice row mr-4" onclick = "clickedNotice()">
     <div class="noticetitle col-2">공지사항</div>
     <div class="roll-area col-10">
         <ul class="noticelist col-9">
-            <li>Uno첫번째공지입니다</li>
-            <li>Dos두번째공지입니다</li>
-            <li>Tres세번째공지입니다</li>
-            <li>Uno다시첫번째공지입니다</li>
+            {% if notice %}
+                {% for each in notice %}
+                    <li> 
+                        {{each.title}} 
+                    </li>
+                {% endfor %}
+            {% else %}
+                <li>공지가 없습니다.</li>
+            {% endif %}
         </ul>
     </div>
 </div>
 
 <script>
+    var noticeIdList = [];
+    var index = 0;
+    {% if notice %}
+        {% for each in notice %}
+            noticeIdList.push('{{each.id}}');
+        {% endfor %}
+    {% endif %}
     $(function() {
         var count = $('.noticelist li').length;
         var height = $('.noticelist li').height();
-        
         function ascend(index) {
             $('.noticelist').delay(3000).animate({
                 top: -height * index,
              }, 500, function() {
-                if(index < count - 1) ascend((index + 1));
-                else $('.noticelist').css({top: 0}), ascend(1);
+                if(index < count ) ascend((index + 1));
+                else $('.noticelist').css({top: 0}), ascend(0);
             });
-        }        
-        ascend(1);
+        }
+        
+        ascend(index);
     });
+    function clickedNotice() {
+        window.location.href = "{% url 'article' 1 %}".replace("1",noticeIdList[index]);
+    }
 </script>

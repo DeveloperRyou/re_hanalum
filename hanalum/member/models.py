@@ -86,6 +86,14 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name='Is admin',
         default=False,
     )
+    is_superuser = models.BooleanField(
+        verbose_name='Is superuser',
+        default=False,
+    )
+    authority = models.IntegerField(
+        verbose_name='authority',
+        default=0
+    )
 
     objects = UserManager()
 
