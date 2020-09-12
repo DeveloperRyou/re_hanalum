@@ -14,7 +14,7 @@
 
     <div class="container-fluid">
       <div class="row">
-        <nav class="sidebar shadow-sm slide-anim">
+        <nav class="sidebar slide-anim" style="box-shadow: 0 1rem 1.5rem rgba(0,0,0,.175)!important;">
           <div class="profile">
               <div id="profileimg" style = "float:left">
             {% if user.avatar %}
@@ -41,6 +41,17 @@
             <ul class="categories">
               {% for each_category in category %}
                 <li class="category" id="flip">
+                  <a href="{% url 'board' each_category.board_id%}" style="text-decoration: none; color: black">
+                    <div class="no-drag">{{each_category.title}}</div>
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+          <!-- <div class="category-box">
+            <ul class="categories">
+              {% for each_category in category %}
+                <li class="category" id="flip">
                     <div class="no-drag">{{each_category}}</div>
                     <ul class="boards hide">
                         {% for each_unit in unit %}
@@ -52,7 +63,7 @@
                 </li>
               {% endfor %}
             </ul>
-          </div>
+          </div> -->
           <div class="snslink">
             {% include 'snslink.html' %}
           </div>
