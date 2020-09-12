@@ -36,6 +36,9 @@ def board(request, board_id, page=1):
 
     articles = articles.order_by('-created_at')[page_start:page_start+PAGE_SIZE]
 
+    # 메뉴
+    category = Board.objects.all().order_by('-priority')
+
     try:
         notice_cnt = 3
         board_notice_type = Board.objects.get(board_id='notice')
@@ -45,4 +48,4 @@ def board(request, board_id, page=1):
 
     return render(request, 'board.html', {'board': board_detail, 'board_id': board_id, 'articles': articles,
                                           'board_count': board_count//10+1, 'start': (page-1)//10*10,
-                                          'mobile_start': (page-1)//5*5, 'page': page, 'notice': notice})
+                                          'mobile_start': (page-1)//5*5, 'page': page, 'notice': notice, 'category' : category})
