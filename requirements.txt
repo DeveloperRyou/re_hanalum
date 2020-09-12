@@ -28,7 +28,7 @@ beautifulsoup4==4.9.1
 billboard.py==5.3.0
 bitarray==0.9.3
 bkcharts==0.2
-bleach==3.1.0
+bleach==3.1.4
 bokeh==1.2.0
 boto==2.49.0
 Bottleneck==1.2.1
