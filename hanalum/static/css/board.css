@@ -57,12 +57,13 @@
     height: 30px;
 }
 
-.ellipsis-title {
+/* .ellipsis-title {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
     max-width: 130px;
-}
+} */
+
 .ellipsis-title a {
     color: black;
 }
