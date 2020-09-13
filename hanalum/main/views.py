@@ -21,7 +21,7 @@ def main(request):
     boards = Board.objects.all().exclude(board_id = 'notice').order_by('-priority')[:board_cnt]
     for i in range(len(boards)):
         board_type = boards[i]
-        boards[i].articles = Article.objects.filter(board_type=board_type, created_at__range=[datetime_past, datetime_now]).order_by('like_user_set')[:ARTICLE_NUM]
+        boards[i].articles = Article.objects.filter(board_type=board_type, created_at__range=[datetime_past, datetime_now]).distinct().order_by('like_user_set')[:ARTICLE_NUM]
 
     # 날씨 크롤링, 날씨객체 반환
     # weather = weather_parser()
