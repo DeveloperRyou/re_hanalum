@@ -66,6 +66,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     temp_list = []
     for year in range(2014, datetime.today().year + 1):
         temp_list.append((year, str(year)+' ('+str(year-2013)+'기)'))
+    temp_list.append((2014, '교직원'))
     ADMISSION_YEAR_CHOICES = tuple(temp_list)
     admission_year = models.IntegerField(
         verbose_name='Admission_year',
