@@ -78,7 +78,7 @@ class UserCreationForm(forms.ModelForm, CheckUserClass):
             'nickname': '닉네임',
             'realname': '실명',
             'gender': '성별',
-            'admission_year': '입학년도',
+            'admission_year': '분류',
         }
 
 
