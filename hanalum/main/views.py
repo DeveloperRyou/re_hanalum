@@ -17,7 +17,7 @@ def main(request):
     
     # 메인 게시판
 
-    board_cnt = 2
+    board_cnt = 3
     boards = Board.objects.all().exclude(board_id = 'notice').order_by('-priority')[:board_cnt]
     for i in range(len(boards)):
         board_type = boards[i]
