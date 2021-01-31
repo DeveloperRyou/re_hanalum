@@ -44,5 +44,18 @@
     <div class="checkbox-board">
     </div>
 </div>-->
+{% endblock %}
 
+{% block script %}
+    <script>
+        $(document).ready(function(){ 
+            {% if article_popups %}
+                {% for article in article_popups %}
+                    var popoup = window.open("{% url 'popup' article.id %}", "", "width=800,height=600,location=no,menubar=no,status=no,titilebar=no,resizable=no,");
+            
+                    console.log({{article.id}});
+                {% endfor %}
+            {% endif %}
+        })
+    </script>
 {% endblock %}

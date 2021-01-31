@@ -50,6 +50,11 @@ class Article(models.Model):
         through='Dislike',
     )
 
+    is_popup = models.BooleanField(
+        verbose_name='팝업창으로 띄우는 게시글',
+        default=False,
+    )
+
     file_1 = models.FileField(
         verbose_name='File_1',
         blank=True,

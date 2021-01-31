@@ -7,7 +7,7 @@ from .models import Comment
 
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ['title', 'board_type','pub_user', 'created_at', 'like_count', 'dislike_count']
+    list_display = ['title', 'board_type','pub_user', 'created_at', 'like_count', 'dislike_count', 'is_popup']
     list_filter = ['created_at', ]
 
 

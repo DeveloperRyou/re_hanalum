@@ -27,6 +27,7 @@ urlpatterns = [
     path('article_write/<str:board_id>', article.views.article_write, name='article_write'),
     path('article_update/<int:article_id>', article.views.article_update, name='article_update'),
     path('article_delete/<int:article_id>', article.views.article_delete, name='article_delete'),
+    path('popup/<int:article_id>', article.views.popup, name='popup'),
 
     path('like/', article.views.article_like, name='article_like'),
     path('dislike/', article.views.article_dislike, name = 'article_dislike'),

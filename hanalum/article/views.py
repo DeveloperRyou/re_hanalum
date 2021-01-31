@@ -42,7 +42,7 @@ def article(request, article_id):
         user_disliked = 0
 
     response = render(request, 'article.html', {'article': article_detail, 'comment_form': comment_form,
-                                                'user_liked': user_liked, 'user_disliked': user_disliked, 'notice': notice, 'category' : category})
+                                                'user_liked': user_liked, 'user_disliked': user_disliked, 'notice': notice, 'category' : category })
 
     # 조회수 증가 코드
     cookie_name = 'watched'
@@ -172,3 +172,28 @@ def article_dislike(request): #게시글 비추천
                'message': message, 'is_failed': is_failed}
 
     return HttpResponse(json.dumps(context), content_type="application/json")
+
+@login_required
+def popup(request, article_id):
+    
+    article_detail = get_object_or_404(Article, pk=article_id)
+
+    response = render(request, 'popup.html', {'article': article_detail})
+
+    # 조회수 증가 코드
+    cookie_name = 'watched'
+    tomorrow = datetime.datetime.replace(datetime.datetime.now(), hour=23, minute=59, second=0)
+    expires = datetime.datetime.strftime(tomorrow, "%a, %d-%b-%Y %H:%M:%S GMT")
+    if request.COOKIES.get(cookie_name) is not None:
+        cookies = request.COOKIES.get(cookie_name)
+        cookies_list = cookies.split('|')
+        if str(article_id) not in cookies_list:
+            response.set_cookie(cookie_name, cookies + f'|{article_id}', expires=expires)
+            article_detail.num_view = article_detail.num_view + 1
+            article_detail.save()
+    else:
+        response.set_cookie(cookie_name, article_id, expires=expires)
+        article_detail.num_view = article_detail.num_view + 1
+        article_detail.save()
+
+    return response
