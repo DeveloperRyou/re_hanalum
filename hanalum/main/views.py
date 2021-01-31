@@ -23,6 +23,8 @@ def main(request):
         board_type = boards[i]
         boards[i].articles = Article.objects.filter(board_type=board_type, created_at__range=[datetime_past, datetime_now]).distinct().order_by('like_user_set')[:ARTICLE_NUM]
 
+    article_popups = Article.objects.filter(is_popup = True)
+
     # 날씨 크롤링, 날씨객체 반환
     # weather = weather_parser()
     # 급식 크롤링, 3개의 급식객체가 들어있는 리스트 반환
@@ -42,4 +44,4 @@ def main(request):
         notice = None
 
 
-    return render(request, 'main.html', {'notice': notice,'category': category,'boards': boards, 'cafeteria_list': cafeteria_list, 'youtube_list': youtube_list})
+    return render(request, 'main.html', {'notice': notice,'category': category,'boards': boards, 'cafeteria_list': cafeteria_list, 'youtube_list': youtube_list, 'article_popups' : article_popups})
